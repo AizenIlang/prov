@@ -1,0 +1,140 @@
+<div class="marginme">
+
+
+<mat-tab-group (selectedTabChange)="onLinkClick($event)">
+    <mat-tab label="USERS"> 
+      <br>
+
+      <h1 style="margin:10px">USERS</h1>
+      <br>
+      <button mat-raised-button color="primary" (click)="AddUser()">Add User <mat-icon>add_box</mat-icon></button>
+      <br>
+      <br>
+
+      <div *ngIf="choiceisUser">
+          <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+              <!--- Note that these columns can be defined in any order.
+                                    The actual rendered columns are set as a property on the row definition" -->
+    
+              <!-- Position Column -->
+              <ng-container matColumnDef="userName">
+                  <th mat-header-cell *matHeaderCellDef> UserName </th>
+                  <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+              </ng-container>
+    
+              <!-- Name Column -->
+              <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef> Email </th>
+                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+    
+              <!-- Name Column -->
+              <ng-container matColumnDef="bloodType">
+                  <th mat-header-cell *matHeaderCellDef> Blood Type </th>
+                  <td mat-cell *matCellDef="let element"> {{element.bloodType}} </td>
+              </ng-container>
+    
+              <!-- Name Column -->
+              <!-- <ng-container matColumnDef="isAdmin">
+                  <th mat-header-cell *matHeaderCellDef> Admin </th>
+                  <td mat-cell *matCellDef="let element"> {{element.isAdmin}} </td>
+              </ng-container> -->
+    
+                <!-- Name Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+    
+                  <!-- Name Column -->
+              <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef> FirstName </th>
+                  <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+              </ng-container>
+    
+                <!-- Name Column -->
+                <ng-container matColumnDef="middleName">
+                    <th mat-header-cell *matHeaderCellDef> MiddleName </th>
+                    <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
+                </ng-container>
+    
+                  <!-- Name Column -->
+              <ng-container matColumnDef="lastName">
+                  <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="actionsColumn">
+                  <th mat-header-cell *matHeaderCellDef>
+                      Tools
+                  </th>
+                      
+                 
+                  <td mat-cell *matCellDef="let element"> <a [routerLink]="['/edituser',element.userKey]">edit</a> </td>
+              </ng-container>
+    
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    
+          <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
+      </div>
+     
+
+    </mat-tab>
+    <mat-tab label="HOSPITALS"> 
+      <br>
+      
+        <h1>HOSPITALS</h1>
+        <br>
+        <button mat-raised-button color="primary" (click)="AddHospital()">Add Hospital <mat-icon>add_box</mat-icon></button>
+        <br>
+        <br>
+          
+    <div *ngIf="choiceisHopital">
+        <table mat-table [dataSource]="dataHospital" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+    
+            <!-- Position Column -->
+    
+            <ng-container matColumnDef="Name">
+                <th mat-header-cell *matHeaderCellDef> Hosital Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="Address">
+                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="ContactNumber">
+                <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.ContactNumber}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="Email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+            </ng-container>
+    
+    
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
+    </div>
+    
+        
+    </mat-tab>
+    <mat-tab label="TOOLS"> TOOLS</mat-tab>
+  </mat-tab-group>
+
+</div>
