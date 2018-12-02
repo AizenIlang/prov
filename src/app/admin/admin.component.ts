@@ -6,6 +6,9 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { HospitalService } from '../service/hospital.service';
 import { MatTabChangeEvent } from '@angular/material';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage'; 
+import {Observable} from 'rxjs';
+import { AddhospitalComponent } from '../addhospital/addhospital.component';
 
 @Component({
   selector: 'app-admin',
@@ -31,7 +34,25 @@ export class AdminComponent implements OnInit {
   columnsToDisplayHospital: string[] = this.displayedColumnsHospital.slice();
   dataHospital: any;
 
+
+  //ANGUAR FIRE STORAGE USAGE
+  task : AngularFireUploadTask;
+
+  percentage : Observable<number>;
+
+  snapshot : Observable<any>;
+
+  downloadURL : Observable<string>;
+
+  isHovering : boolean;
+
+
+
+  //END OF USAGE
+
   constructor(public dialog: MatDialog, private userService : UserService, private hospitalService : HospitalService, private router : Router) {
+
+
     this.checkMe = JSON.parse(localStorage.getItem('user'));
     if(!this.checkMe.admin){
       console.log(!this.checkMe.admin);
@@ -39,6 +60,13 @@ export class AdminComponent implements OnInit {
     }
       
    }
+
+
+   //STORAGE UPLOAD
+
+   
+
+
 
   async ngOnInit() {
     this.userService.getUsers().valueChanges().subscribe(data=>{
@@ -55,6 +83,12 @@ export class AdminComponent implements OnInit {
   AddUser(){
     this.dialog.open(SignupComponent);
   }
+
+  AddHospital(){
+    this.dialog.open(AddhospitalComponent);
+  }
+
+  
 
   changeUsers(){
     this.choiceisUser = true;
@@ -109,8 +143,19 @@ export class AdminComponent implements OnInit {
       this.dataHospital = new MatTableDataSource(hospitalList);
       this.dataHospital.sort = this.sort;
       this.dataHospital.paginator = this.paginator;
+
+      
       
     });
+  }
+
+  applyFilter(filterValue: string) {
+    if(this.choiceisHopital){
+      this.dataHospital.filter = filterValue.trim().toLowerCase();
+    }else{
+      this.data.filter = filterValue.trim().toLowerCase();
+    }
+    
   }
 
   changeUser(){
@@ -131,8 +176,8 @@ export class AdminComponent implements OnInit {
     // this.router.navigate(['contacts']); 
   }
 
-  AddHospital(){
-    
-  }
 
 }
+
+
+

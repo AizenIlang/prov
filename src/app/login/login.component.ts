@@ -84,15 +84,18 @@ invalidLogin : boolean;
             swal("Welcome back "+magic.firstName);
             this.route.navigate(['admin']);
             console.log("is admin");
+            this.userService.isLoggedIn = true;
             return;
            }
            
            console.log("check if hospial membr" + magic.hospitalMember)
            if(magic.hospitalMember){
              this.route.navigate(['memberhospital']);
+             this.userService.isLoggedIn = true;
             return;
              
            }
+           this.userService.isLoggedIn = true;
            console.log("is not admin");
           return;
          }

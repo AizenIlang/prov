@@ -89,13 +89,10 @@ export class SignupComponent implements OnInit {
   }
 
   selected(event) {
-    let target = event.source.selected._element.nativeElement;
-    let selectedData = {
-      value: event.value,
-      text: target.innerText.trim()
-    };
-    this.selectedValue = selectedData.value.name;
-    console.log(selectedData);
+   
+    
+    this.selectedValue = event.value.name;
+    console.log(this.selectedValue);
 }
 
 }

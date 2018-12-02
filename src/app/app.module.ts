@@ -20,6 +20,8 @@ import { UserService} from './service/user.service';
 import { AdminComponent } from './admin/admin.component';
 import { MemberhospitalComponent } from './memberhospital/memberhospital.component';
 import { EdituserComponent } from './edituser/edituser.component';
+import { AddhospitalComponent} from './addhospital/addhospital.component';
+
 
 
 
@@ -32,6 +34,7 @@ import { EdituserComponent } from './edituser/edituser.component';
     AdminComponent,
     MemberhospitalComponent,
     EdituserComponent,
+    AddhospitalComponent
     
   ],
   imports: [
@@ -88,6 +91,6 @@ import { EdituserComponent } from './edituser/edituser.component';
     
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SignupComponent]
+  entryComponents:[SignupComponent,AddhospitalComponent]
 })
 export class AppModule { }

@@ -28,6 +28,8 @@ export class UserService {
   isAdmin = observableOf(false);
   User;
   user;
+  isLoggedIn = false;
+
   uid = this.afAuth.authState.pipe(
     map(authState => {
       if (!authState) {
@@ -52,7 +54,7 @@ export class UserService {
       fn,
       mn,
       ln,
-      "",
+      bt,
       dt,
       pw,
       un,
@@ -68,7 +70,7 @@ export class UserService {
         swal("Good job!", "User " + user.userName + " Created", "success");
 
       }, prom => {
-
+        swal("Not good... " +prom);
       });
   }
 
