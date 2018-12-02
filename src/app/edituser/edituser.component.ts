@@ -130,7 +130,14 @@ export class EdituserComponent implements OnInit {
 
 
   onUpdate() {
+    if(!this.selectedValueHospital){
+      this.selectedValueHospital ="";
+      this.selectedVal = false;
+    }
 
+    if(!this.selectedValue){
+      this.selectedValue = this.bloodType;
+    }
 
     let user: Users = new Users(true,
       false, this.email, this.selectedVal,
@@ -138,7 +145,7 @@ export class EdituserComponent implements OnInit {
       this.firstName,
       this.middleName,
       this.lastName,
-      this.bloodType,
+      this.selectedValue,
       this.date,
       this.password,
       this.userName,
@@ -148,6 +155,14 @@ export class EdituserComponent implements OnInit {
     this.userService.update(user);
 
   }
+
+  selected(event) {
+   
+    
+    this.selectedValue = event.value.name;
+    console.log(this.selectedValue);
+}
+
 
 }
 
