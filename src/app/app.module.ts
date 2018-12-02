@@ -91,6 +91,6 @@ import { AddhospitalComponent} from './addhospital/addhospital.component';
     
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SignupComponent,AddhospitalComponent]
+  entryComponents:[SignupComponent,AddhospitalComponent,EdituserComponent]
 })
 export class AppModule { }

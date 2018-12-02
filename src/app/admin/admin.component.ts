@@ -9,6 +9,7 @@ import { MatTabChangeEvent } from '@angular/material';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage'; 
 import {Observable} from 'rxjs';
 import { AddhospitalComponent } from '../addhospital/addhospital.component';
+import {EdituserComponent} from '../edituser/edituser.component';
 
 @Component({
   selector: 'app-admin',
@@ -96,7 +97,7 @@ export class AdminComponent implements OnInit {
     console.log(this.choiceisHopital);
     this.displayedColumns = ['userName','email','bloodType','date','firstName','middleName','lastName','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
-    
+
     this.loadUsers();
   }
 
@@ -176,6 +177,12 @@ export class AdminComponent implements OnInit {
     // this.router.navigate(['contacts']); 
   }
 
+  editUser(theKey){
+    let dialogRef = this.dialog.open(EdituserComponent, {
+      data : theKey
+    });
+    
+  }
 
 }
 

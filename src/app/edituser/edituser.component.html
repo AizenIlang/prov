@@ -1,4 +1,4 @@
-<!-- <mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
+<mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>First Name</mat-label>
       <input matInput type="text" [(ngModel)]="firstName" placeholder="First Name">
@@ -22,6 +22,14 @@
   
   
     </mat-form-field>
+
+    <mat-form-field appearance="outline" class="fullwidth">
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="address" type="text" placeholder="Address" required />
+    
+    
+    
+      </mat-form-field>
   
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>User Name</mat-label>
@@ -56,7 +64,23 @@
   
   
     </mat-form-field>
-  
+
+    <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onValChange(group.value)">
+        <mat-button-toggle value="left" disabled>
+          <p>Admin</p>
+          <mat-icon>adb</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="true">
+          <p>Hospital Member</p>
+          <mat-icon>local_hospital</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="false">
+          <p>User</p>
+          <mat-icon>wc</mat-icon>
+        </mat-button-toggle>
+       
+      </mat-button-toggle-group>
+      
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Birth Date</mat-label>
       <input matInput [(ngModel)]="date" type="date" placeholder="Birth Date" required />
@@ -76,6 +100,17 @@
           <mat-error *ngIf="animalControl.hasError('required')">Blood Type</mat-error>
           <mat-hint>{{animalControl.value?.sound}}</mat-hint>
         </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Hospital Member" [formControl]="hopsitalFormControl" (selectionChange)="selectedHospital($event)" >
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let animal of hospitals" [value]="animal">
+                {{animal.Name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="animalControl.hasError('required')">Choose Hospital</mat-error>
+            <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+          </mat-form-field>
   
     
   
@@ -85,5 +120,5 @@
   
   </mat-card>
   <p></p>
-  <button mat-raised-button color="primary" class="halfwidth" (click)="onSignUp()">Send</button> <button mat-flat-button
-    mat-dialog-close class="halfwidth">Cancel</button> -->
+  <button mat-raised-button color="primary" class="halfwidth" (click)="onUpdate()">Update</button> <button mat-flat-button
+    mat-dialog-close class="halfwidth">Cancel</button>

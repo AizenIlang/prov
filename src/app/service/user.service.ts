@@ -74,6 +74,14 @@ export class UserService {
       });
   }
 
+  update(user){
+      this.db.object('/Users/'+user.userKey).update(user).then(ful =>{
+          swal("Update Complete");
+      }, didnot => {
+        swal(didnot);
+      });
+  }
+
   logout(){
     this.isAdmin = observableOf(false);
     this.user = null;
