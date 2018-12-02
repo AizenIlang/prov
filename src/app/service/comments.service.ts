@@ -10,6 +10,10 @@ export class CommentsService {
 
 
    getCommentHospital(key){
-      return this.db.object('/Hospital/'+key+'/Comments');
+      return this.db.object('/Hospitals/'+key+'/Comments');
+   }
+
+   getComments(key){
+     return this.db.list('/Hospitals/'+key+'/Comments');
    }
 }

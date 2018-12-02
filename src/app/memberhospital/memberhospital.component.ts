@@ -24,7 +24,10 @@ export class MemberhospitalComponent implements OnInit {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
+  dataComments: any;
+
   AppointmentList;
+  CommentList;
 
   choiceAppointments = true;
   choiceComments = false;
@@ -41,43 +44,44 @@ export class MemberhospitalComponent implements OnInit {
   }
 
   async loadAppointments() {
-    this.hosptialService.getHospital(this.user.hospitalKey).valueChanges().subscribe(data => {
-      this.Hospital = data;
-      console.log(this.user.hospitalKey);
+    var appointmentlist= [];
 
-      var appointments = [];
-      this.appointmentService.getAppointmentsHospital(this.user.hospitalKey).snapshotChanges().subscribe(item => {
-        item.forEach(element => {
-          var y = element.payload.toJSON();
-          appointments.push(y);
-        })
-        console.log(appointments);
-        this.data = new MatTableDataSource(appointments);
-        this.data.sort = this.sort;
-        this.data.paginator = this.paginator;
+    this.AppointmentList =  await this.appointmentService.getAppointmentsHospital(this.user.hospitalKey);
+    await this.AppointmentList.snapshotChanges().subscribe(item =>{
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        appointmentlist.push(y);
 
-      });
+      })
+      console.log(appointmentlist);
+      this.data = new MatTableDataSource(appointmentlist);
+      this.data.sort = this.sort;
+      this.data.paginator = this.paginator;
+
+      
+      
     });
   }
 
 
   
   async loadComments() {
-    this.commentService.getCommentHospital(this.user.hospitalKey).valueChanges().subscribe(data => {
-      this.Hospital = data;
-      console.log(this.user.hospitalKey);
+    var hospitalList= [];
 
-      var appointments = [];
-      this.appointmentService.getAppointmentsHospital(this.user.hospitalKey).snapshotChanges().subscribe(item => {
-        item.forEach(element => {
-          var y = element.payload.toJSON();
-          appointments.push(y);
-        })
-        this.data = new MatTableDataSource(appointments);
-        this.data.sort = this.sort;
-        this.data.paginator = this.paginator;
+    this.CommentList =  await this.commentService.getComments(this.user.hospitalKey);
+    await this.CommentList.snapshotChanges().subscribe(item =>{
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        hospitalList.push(y);
 
-      });
+      })
+      console.log(hospitalList);
+      this.dataComments = new MatTableDataSource(hospitalList);
+      this.dataComments.sort = this.sort;
+      this.dataComments.paginator = this.paginator;
+
+      
+      
     });
   }
 
@@ -95,13 +99,13 @@ export class MemberhospitalComponent implements OnInit {
 
   changeComments(){
 
-    this.choiceAppointments = true;
-    this.choiceComments = false;
+    this.choiceAppointments = false;
+    this.choiceComments = true;
    
-    this.displayedColumns = ['message', 'status', 'type', 'date'];
+    this.displayedColumns = ['message', 'name', 'rate'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
-    this.loadAppointments();
+    this.loadComments();
 
   }
 

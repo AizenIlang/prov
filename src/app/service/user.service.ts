@@ -61,17 +61,18 @@ export class UserService {
       uk,
       add);
 
+      
 
-    this.afAuth.auth.createUserWithEmailAndPassword(user.email.toString(), user.password.toString())
-      .then(reason => {
-        const theID = this.db.createPushId();
-        user.userKey = theID;
-        this.db.object('/Users/' + theID).set(user);
-        swal("Good job!", "User " + user.userName + " Created", "success");
-
-      }, prom => {
-        swal("Not good... " +prom);
-      });
+   let makeAuth =  this.afAuth.auth.createUserWithEmailAndPassword(user.email.toString(), user.password.toString())
+     makeAuth .then(reason => {
+      const theID = this.afAuth.auth.currentUser.uid;
+      user.userKey = theID;
+      this.db.object('/Users/' + theID).set(user);
+      swal("Good job!", "User " + user.userName + " Created", "success");
+      console.log(makeAuth);
+    }, prom => {
+      swal("Not good... " +prom);
+    });
   }
 
   update(user){
