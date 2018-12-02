@@ -20,7 +20,7 @@ export class MemberhospitalComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['message', 'status', 'type', 'date'];
+  displayedColumns: string[] = ['message', 'status', 'type', 'date','user'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
@@ -51,6 +51,7 @@ export class MemberhospitalComponent implements OnInit {
           var y = element.payload.toJSON();
           appointments.push(y);
         })
+        console.log(appointments);
         this.data = new MatTableDataSource(appointments);
         this.data.sort = this.sort;
         this.data.paginator = this.paginator;
