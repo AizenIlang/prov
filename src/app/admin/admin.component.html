@@ -12,56 +12,56 @@
           </mat-form-field>
 
       <div *ngIf="choiceisUser">
-          <table mat-table [dataSource]="data" class="mat-elevation-z8">
+          <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
 
               <!--- Note that these columns can be defined in any order.
                                     The actual rendered columns are set as a property on the row definition" -->
     
               <!-- Position Column -->
               <ng-container matColumnDef="userName">
-                  <th mat-header-cell *matHeaderCellDef> UserName </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
                   <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
               </ng-container>
     
               <!-- Name Column -->
               <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef> Email </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
                   <td mat-cell *matCellDef="let element"> {{element.email}} </td>
               </ng-container>
     
               <!-- Name Column -->
               <ng-container matColumnDef="bloodType">
-                  <th mat-header-cell *matHeaderCellDef> Blood Type </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </th>
                   <td mat-cell *matCellDef="let element"> {{element.bloodType}} </td>
               </ng-container>
     
               <!-- Name Column -->
               <!-- <ng-container matColumnDef="isAdmin">
-                  <th mat-header-cell *matHeaderCellDef> Admin </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin </th>
                   <td mat-cell *matCellDef="let element"> {{element.isAdmin}} </td>
               </ng-container> -->
     
                 <!-- Name Column -->
                 <ng-container matColumnDef="date">
-                    <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </th>
                     <td mat-cell *matCellDef="let element"> {{element.date}} </td>
                 </ng-container>
     
                   <!-- Name Column -->
               <ng-container matColumnDef="firstName">
-                  <th mat-header-cell *matHeaderCellDef> FirstName </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
                   <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
               </ng-container>
     
                 <!-- Name Column -->
                 <ng-container matColumnDef="middleName">
-                    <th mat-header-cell *matHeaderCellDef> MiddleName </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> MiddleName </th>
                     <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
                 </ng-container>
     
                   <!-- Name Column -->
               <ng-container matColumnDef="lastName">
-                  <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
                   <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
               </ng-container>
     
@@ -94,7 +94,7 @@
               </mat-form-field>
           
     <div *ngIf="choiceisHopital">
-        <table mat-table [dataSource]="dataHospital" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataHospital" matSort class="mat-elevation-z8">
 
             <!--- Note that these columns can be defined in any order.
                                   The actual rendered columns are set as a property on the row definition" -->
@@ -102,25 +102,25 @@
             <!-- Position Column -->
     
             <ng-container matColumnDef="Name">
-                <th mat-header-cell *matHeaderCellDef> Hosital Name </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Hosital Name </th>
                 <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
             </ng-container>
     
             <!-- Name Column -->
             <ng-container matColumnDef="Address">
-                <th mat-header-cell *matHeaderCellDef> Address </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
                 <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
             </ng-container>
     
             <!-- Name Column -->
             <ng-container matColumnDef="ContactNumber">
-                <th mat-header-cell *matHeaderCellDef> Contact Number </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
                 <td mat-cell *matCellDef="let element"> {{element.ContactNumber}} </td>
             </ng-container>
     
             <!-- Name Column -->
             <ng-container matColumnDef="Email">
-                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
                 <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
             </ng-container>
     

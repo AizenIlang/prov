@@ -96,7 +96,7 @@ export class AdminComponent implements OnInit {
     console.log(this.choiceisHopital);
     this.displayedColumns = ['userName','email','bloodType','date','firstName','middleName','lastName','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
-
+    
     this.loadUsers();
   }
 
