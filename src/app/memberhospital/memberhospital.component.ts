@@ -20,7 +20,7 @@ export class MemberhospitalComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['message', 'status', 'type', 'date','user'];
+  displayedColumns: string[] = ['message', 'status', 'type', 'date','user','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
@@ -93,7 +93,7 @@ export class MemberhospitalComponent implements OnInit {
     this.choiceAppointments = true;
     this.choiceComments = false;
    
-    this.displayedColumns = ['message', 'status', 'type', 'date'];
+    this.displayedColumns = ['message', 'status', 'type', 'date','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadAppointments();
