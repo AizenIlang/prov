@@ -45,9 +45,10 @@ export class MemberhospitalComponent implements OnInit {
 
   async loadAppointments() {
     var appointmentlist= [];
-
+    this.data = new MatTableDataSource(appointmentlist);
     this.AppointmentList =  await this.appointmentService.getAppointmentsHospital(this.user.hospitalKey);
     await this.AppointmentList.snapshotChanges().subscribe(item =>{
+      appointmentlist = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         appointmentlist.push(y);
@@ -68,8 +69,10 @@ export class MemberhospitalComponent implements OnInit {
   async loadComments() {
     var hospitalList= [];
 
+    this.dataComments = new MatTableDataSource(hospitalList);
     this.CommentList =  await this.commentService.getComments(this.user.hospitalKey);
     await this.CommentList.snapshotChanges().subscribe(item =>{
+      hospitalList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         hospitalList.push(y);
