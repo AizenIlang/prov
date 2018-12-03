@@ -54,12 +54,13 @@ export class AppointmentseditComponent implements OnInit {
 
   ];
 
+  theHospitalKey;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appointmentService: AppointmentsService) { }
 
   ngOnInit() {
     let x :any;
     x = JSON.parse(localStorage.getItem("user"));
-    console.log(x.hospitalKey);
+    this.theHospitalKey = x.hospitalKey;
     this.appointmentService.getAppointmentSingle(x.hospitalKey+"/"+this.data).valueChanges().subscribe(thedata => {
       console.log(this.data);
       console.log(thedata);
@@ -94,8 +95,8 @@ export class AppointmentseditComponent implements OnInit {
     let x : any ;
     x = JSON.parse(localStorage.getItem('user'));
     console.log("see this. "+x.hospitalKey);
-     
-    this.appointmentService.update("/-LSnhMhPR0nUseVKOUQF/-LSnimVzKB0M4wrRvwbT/",this.Appointment );
+    this.Appointment.status = "Pending";
+    this.appointmentService.update("/"+x.hospitalKey+"/"+this.data,this.Appointment );
     console.log(x.hospitalKey+"/"+this.data);
   }
 
@@ -104,6 +105,7 @@ export class AppointmentseditComponent implements OnInit {
     
     this.selectedValue = event.value.name;
     this.Appointment.date= this.date + " " +event.value.name;
+    
     
   }
 }
