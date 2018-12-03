@@ -15,4 +15,14 @@ export class AppointmentsService {
   getAppointmentsHospital(key){
     return this.db.list('/Appointments/'+key);
   }
+
+
+  update(hospitalKey,appointment){
+    this.db.object('/Appointments/'+hospitalKey).update(appointment).then(ful =>{
+        swal("Update Complete");
+    }, didnot => {
+      swal(didnot);
+    });
+}
+
 }

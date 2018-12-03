@@ -5,6 +5,8 @@ import { MatTabChangeEvent } from '@angular/material';
 import { AppointmentsService } from '../service/appointments.service';
 import { Router } from '@angular/router';
 import { CommentsService } from '../service/comments.service';
+import { AppointmentseditComponent } from '../appointmentsedit/appointmentsedit.component';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 
 @Component({
   selector: 'app-memberhospital',
@@ -32,7 +34,7 @@ export class MemberhospitalComponent implements OnInit {
   choiceAppointments = true;
   choiceComments = false;
 
-  constructor(private hosptialService: HospitalService, private appointmentService: AppointmentsService, private commentService: CommentsService) { }
+  constructor(public dialog: MatDialog,private hosptialService: HospitalService, private appointmentService: AppointmentsService, private commentService: CommentsService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -127,4 +129,13 @@ export class MemberhospitalComponent implements OnInit {
   
     // this.router.navigate(['contacts']); 
   }
+
+
+  editAppointment(theKey){
+    let dialogRef = this.dialog.open(AppointmentseditComponent, {
+      data : theKey
+    });
+    
+  }
+  
 }

@@ -1,3 +1,36 @@
-<p>
-  appointmentsedit works!
-</p>
+<mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
+
+
+
+
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Date</mat-label>
+    <input matInput [(ngModel)]="date" type="date" placeholder="Date" required />
+
+  </mat-form-field>
+
+
+  <br>
+
+      <mat-form-field>
+          <mat-select placeholder="Time" [formControl]="hopsitalFormControl" (selectionChange)="selectedTime($event)" >
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let animal of time" [value]="animal">
+              {{animal.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="animalControl.hasError('required')">Choose Time</mat-error>
+          <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+        </mat-form-field>
+
+  
+
+
+
+
+
+</mat-card>
+<p></p>
+<button mat-raised-button color="primary" class="halfwidth" (click)="onUpdate()">Update</button> <button mat-flat-button
+  mat-dialog-close class="halfwidth">Cancel</button>

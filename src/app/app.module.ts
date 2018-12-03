@@ -21,6 +21,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MemberhospitalComponent } from './memberhospital/memberhospital.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { AddhospitalComponent} from './addhospital/addhospital.component';
+import { AppointmentseditComponent } from './appointmentsedit/appointmentsedit.component';
 
 
 
@@ -34,7 +35,8 @@ import { AddhospitalComponent} from './addhospital/addhospital.component';
     AdminComponent,
     MemberhospitalComponent,
     EdituserComponent,
-    AddhospitalComponent
+    AddhospitalComponent,
+    AppointmentseditComponent
     
   ],
   imports: [
@@ -91,6 +93,6 @@ import { AddhospitalComponent} from './addhospital/addhospital.component';
     
   ],
   bootstrap: [AppComponent],
-  entryComponents:[SignupComponent,AddhospitalComponent,EdituserComponent]
+  entryComponents:[SignupComponent,AddhospitalComponent,EdituserComponent,AppointmentseditComponent]
 })
 export class AppModule { }
