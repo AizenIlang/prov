@@ -74,6 +74,7 @@ export class AppointmentseditComponent implements OnInit {
   }
 
   onUpdate() {
+    
 
   }
 
