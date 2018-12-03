@@ -64,3 +64,10 @@
 [debug] [2018-12-03T00:01:40.616Z] [uploadQueue] Retrying task e1197550736393427b5a70ee867dd0e0513d5d56c5599599c2bffe8c14fa5ffd
 [debug] [2018-12-03T00:02:33.373Z] [uploadQueue] Retrying task e1197550736393427b5a70ee867dd0e0513d5d56c5599599c2bffe8c14fa5ffd
 [debug] [2018-12-03T00:03:50.396Z] [uploadQueue] Retrying task e1197550736393427b5a70ee867dd0e0513d5d56c5599599c2bffe8c14fa5ffd
+[debug] [2018-12-03T00:04:28.130Z] [uploadQueue] Retrying task e1197550736393427b5a70ee867dd0e0513d5d56c5599599c2bffe8c14fa5ffd
+[debug] [2018-12-03T00:04:49.143Z] [uploadQueue] Retries exhausted for task e1197550736393427b5a70ee867dd0e0513d5d56c5599599c2bffe8c14fa5ffd:
+[debug] [2018-12-03T00:04:49.143Z] [hosting][upload queue][FINAL]
+[debug] [2018-12-03T00:04:49.578Z] Error: connect ETIMEDOUT 74.125.24.95:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1191:14)
+[error] 
+[error] Error: An unexpected error has occurred.
