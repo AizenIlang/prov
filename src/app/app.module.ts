@@ -23,6 +23,7 @@ import { EdituserComponent } from './edituser/edituser.component';
 import { AddhospitalComponent} from './addhospital/addhospital.component';
 import { AppointmentseditComponent } from './appointmentsedit/appointmentsedit.component';
 import { EdithospitalComponent } from './edithospital/edithospital.component';
+import { UserlobbyComponent } from './userlobby/userlobby.component';
 
 
 
@@ -38,7 +39,8 @@ import { EdithospitalComponent } from './edithospital/edithospital.component';
     EdituserComponent,
     AddhospitalComponent,
     AppointmentseditComponent,
-    EdithospitalComponent
+    EdithospitalComponent,
+    UserlobbyComponent
     
   ],
   imports: [
@@ -83,6 +85,11 @@ import { EdithospitalComponent } from './edithospital/edithospital.component';
       {
         path : 'edituser/:userkey',
         component : EdituserComponent
+      },
+
+      {
+        path : 'userlobby',
+        component : UserlobbyComponent
       }
       
 

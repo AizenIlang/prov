@@ -97,6 +97,8 @@ invalidLogin : boolean;
            }
            this.userService.isLoggedIn = true;
            console.log("is not admin");
+           this.route.navigate(['userlobby']);
+           this.userService.isLoggedIn = true;
           return;
          }
          
