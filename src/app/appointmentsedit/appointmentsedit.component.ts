@@ -28,7 +28,7 @@ export class AppointmentseditComponent implements OnInit {
   status: String;
   userName: String;
   key: String;
-  Appointment: Appointment;
+  Appointment: any;
   tempData: any;
 
   bloodControl = new FormControl('', [Validators.required]);
@@ -57,31 +57,53 @@ export class AppointmentseditComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appointmentService: AppointmentsService) { }
 
   ngOnInit() {
-    this.appointmentService.getAppointmentsHospital(this.data).valueChanges().subscribe(thedata => {
-      this.tempData = thedata;
+    let x :any;
+    x = JSON.parse(localStorage.getItem("user"));
+    console.log(x.hospitalKey);
+    this.appointmentService.getAppointmentSingle(x.hospitalKey+"/"+this.data).valueChanges().subscribe(thedata => {
+      console.log(this.data);
+      console.log(thedata);
+      this.tempData = thedata;  
       this.Appointment = new Appointment();
       this.Appointment.date = this.tempData.date;
       this.Appointment.hospitalName = this.tempData.hospitalName;
-      this.Appointment.message = this.tempData.status;
+      this.Appointment.message = this.tempData.message;
       this.Appointment.userName = this.tempData.userName;
       this.Appointment.key = this.tempData.key;
       this.Appointment.type = this.tempData.type;
       this.Appointment.uid = this.tempData.uid;
-      this.Appointment.message = this.tempData.message;
+      this.Appointment.status = this.tempData.status;
     });
 
 
   }
 
   onUpdate() {
-    
+    if(!this.selectedValue){
+      this.selectedValue ="";
+      
+    }
 
+    console.log("Check me again "+this.data);
+
+    if(!this.selectedValue){
+      this.selectedValue = this.time;
+    }
+
+   
+    let x : any ;
+    x = JSON.parse(localStorage.getItem('user'));
+    console.log("see this. "+x.hospitalKey);
+     
+    this.appointmentService.update("/-LSnhMhPR0nUseVKOUQF/-LSnimVzKB0M4wrRvwbT/",this.Appointment );
+    console.log(x.hospitalKey+"/"+this.data);
   }
 
-    selectedTime(event) {
-
-
+  selectedTime(event) {
+   
+    
     this.selectedValue = event.value.name;
-    console.log(this.selectedValue);
+    this.Appointment.date= this.date + " " +event.value.name;
+    
   }
 }

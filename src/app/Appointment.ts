@@ -1,14 +1,14 @@
 
 export class Appointment {
 
-      message : String;
-      uid : String;
-      type : String;
-      date : String;
-      hospitalName: String;
-      status : String;
-      userName : String;
-      key : String;
+      message? : String;
+      uid? : String;
+      type? : String;
+      date? : String;
+      hospitalName?: String;
+      status? : String;
+      userName? : String;
+      key? : String;
 
       constructor(message? : String, uid? : String, type? : String, date? : String, hn? : String, st? : String,
         un? : String, key? : String){
