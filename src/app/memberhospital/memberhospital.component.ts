@@ -8,6 +8,7 @@ import { CommentsService } from '../service/comments.service';
 import { AppointmentseditComponent } from '../appointmentsedit/appointmentsedit.component';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
+import {EdithospitalComponent} from '../edithospital/edithospital.component';
 
 @Component({
   selector: 'app-memberhospital',
@@ -149,6 +150,13 @@ export class MemberhospitalComponent implements OnInit {
   editAppointment(theKey){
     let dialogRef = this.dialog.open(AppointmentseditComponent, {
       data : theKey
+    });
+    
+  }
+
+  editHospital(){
+    let dialogRef = this.dialog.open(EdithospitalComponent, {
+      data : this.user.hospitalKey
     });
     
   }

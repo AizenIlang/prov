@@ -24,7 +24,7 @@ export class AppointmentsService {
 
 
   update(hospitalKey,appointment){
-  
+  //TODO ADD THE KEY FOR THE APPOINTMENTS INSTEAD
     console.log(appointment + " appointment.date");
     this.db.object("/Appointments/"+hospitalKey).update(appointment).then(ful =>{
         swal("Update Complete");
@@ -32,8 +32,8 @@ export class AppointmentsService {
     }, didnot => {
       swal(didnot);
     });
-
-    this.db.object("/UserAppointments/"+hospitalKey).update(appointment);
+    //Add the Key in here. The Push key.Add anther element.
+    this.db.object("/UserAppointments/"+appointment.uid+"/"+appointment.key).update(appointment);
   }
 
 }

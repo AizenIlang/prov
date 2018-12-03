@@ -36,6 +36,14 @@ export class HospitalService {
     this.addHospital(hospital);
     
   }
+
+  updateHospital(key : string , hospital : Hospital){
+    this.db.object("/Hospitals/"+key).update(hospital).then(pow =>{
+      swal("HOSPITAL Updated !!!");
+    }, future =>{
+      
+    })
+  }
   
 
 }

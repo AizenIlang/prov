@@ -1,0 +1,84 @@
+<mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
+
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Hospial ID</mat-label>
+    <input matInput [(ngModel)]="HospitalID" type="number" placeholder="HospitalID" />
+
+  </mat-form-field>
+  <br>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="Name" type="text" placeholder="Name" />
+
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Location</mat-label>
+
+    <input matInput [(ngModel)]="Location" type="text" placeholder="Location" />
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Address</mat-label>
+
+    <input matInput [(ngModel)]="Address" type="text" placeholder="Address" />
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Contact Number</mat-label>
+    <input matInput [(ngModel)]="ContactNumber" type="text" placeholder="ContactNumber" />
+
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="Email" type="text" placeholder="Email" />
+
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Coordinates</mat-label>
+    <input matInput [(ngModel)]="Coordinates" type="text" placeholder="Coordinates" />
+
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Details</mat-label>
+    <textarea matInput [(ngModel)]="Details" type="text" placeholder="Details"></textarea>
+
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Services</mat-label>
+
+    <textarea matInput [(ngModel)]="Services" type="textarea" placeholder="Services"></textarea>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Rating</mat-label>
+    <input matInput [(ngModel)]="Rating" type="number" placeholder="Rating" />
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="fullwidth">
+    <mat-label>Image</mat-label>
+    <input matInput [(ngModel)]="image" type="text" placeholder="image" />
+
+
+  </mat-form-field>
+
+
+  <input mat-raised-button color="primary" type="file" (change)="sanitizeUpload($event.target.files)" placeholder="Upload">
+
+  <button mat-raised-button color="primary" (click)="checkUpload()">UPDATE</button>
+</mat-card>
