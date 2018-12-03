@@ -2,7 +2,7 @@ import { Component, OnInit , ViewChild} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {SignupComponent} from '../signup/signup.component';
 import { UserService } from '../service/user.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator,MatTable } from '@angular/material';
 import { Router } from '@angular/router';
 import { HospitalService } from '../service/hospital.service';
 import { MatTabChangeEvent } from '@angular/material';
@@ -19,7 +19,7 @@ import {EdituserComponent} from '../edituser/edituser.component';
 export class AdminComponent implements OnInit {
   @ViewChild(MatSort) sort : MatSort;
   @ViewChild(MatPaginator) paginator : MatPaginator;
-
+  @ViewChild(MatTable) table: MatTable<any>;
   UserList : any;
   HospitalList : any;
   checkMe : any;
@@ -114,15 +114,19 @@ export class AdminComponent implements OnInit {
 
   async loadUsers(){
     var userManagerList= [];
-
+    
+    
+    this.data = new MatTableDataSource(userManagerList);
     this.UserList =  await this.userService.getUsers();
     await this.UserList.snapshotChanges().subscribe(item =>{
+      userManagerList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         userManagerList.push(y);
  
       })
-      console.log(userManagerList);
+      console.log(userManagerList + "The user Manager") ;
+      
       this.data = new MatTableDataSource(userManagerList);
       this.data.sort = this.sort;
       this.data.paginator = this.paginator;
@@ -130,11 +134,20 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  //NOT BEING USED YET
+  resetTableUserTable(){
+    
+    this.data.data = [];
+    this.table.renderRows();
+  }
+
   async loadHospital(){
     var hospitalList= [];
 
+    this.dataHospital = new MatTableDataSource(hospitalList);   
     this.HospitalList =  await this.hospitalService.getHospitalList();
     await this.HospitalList.snapshotChanges().subscribe(item =>{
+      hospitalList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
         hospitalList.push(y);
