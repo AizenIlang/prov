@@ -21,6 +21,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MemberhospitalComponent } from './memberhospital/memberhospital.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { AddhospitalComponent} from './addhospital/addhospital.component';
+import { EditappointmentComponent } from './editappointment/editappointment.component';
 
 
 
@@ -34,7 +35,8 @@ import { AddhospitalComponent} from './addhospital/addhospital.component';
     AdminComponent,
     MemberhospitalComponent,
     EdituserComponent,
-    AddhospitalComponent
+    AddhospitalComponent,
+    EditappointmentComponent
     
   ],
   imports: [
