@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { CommentsService } from '../service/comments.service';
 import { AppointmentseditComponent } from '../appointmentsedit/appointmentsedit.component';
 import {MatDialog, MatDialogConfig} from '@angular/material';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-memberhospital',
@@ -34,10 +35,24 @@ export class MemberhospitalComponent implements OnInit {
   choiceAppointments = true;
   choiceComments = false;
 
-  constructor(public dialog: MatDialog,private hosptialService: HospitalService, private appointmentService: AppointmentsService, private commentService: CommentsService) { }
+  HospitalObject : any;
+
+  picture : any;
+  constructor(private storage : AngularFireStorage,public dialog: MatDialog,private hosptialService: HospitalService, private appointmentService: AppointmentsService, private commentService: CommentsService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.hosptialService.getHospital("/Hospitals/"+this.user.hospitalKey).valueChanges().subscribe(theData =>{
+      this.HospitalObject = theData;
+      console.log(this.HospitalObject.image);
+     this.storage.ref(this.HospitalObject.image).getDownloadURL().subscribe(data =>{
+        this.picture = data;
+      });
+      
+    });
+
+    
+
     this.loadAppointments();
 
 

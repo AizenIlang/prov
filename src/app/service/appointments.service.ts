@@ -32,6 +32,8 @@ export class AppointmentsService {
     }, didnot => {
       swal(didnot);
     });
-}
+
+    this.db.object("/UserAppointments/"+hospitalKey).update(appointment);
+  }
 
 }
