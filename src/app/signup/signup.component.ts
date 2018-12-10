@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 
 import { UserService } from '../service/user.service';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormGroup} from '@angular/forms';
 
 
 
@@ -23,6 +23,19 @@ export interface Animal {
 })
 export class SignupComponent implements OnInit {
 
+  form = new FormGroup({
+    firstName: new FormControl(),
+    middleName: new FormControl(),
+    lastName: new FormControl(),
+    userName: new FormControl(),
+    address: new FormControl(),
+    date: new FormControl(),
+    password: new FormControl(),
+    retypepassword: new FormControl(),
+    email : new FormControl()
+
+  })
+
   actived;
   admin;
   email;
@@ -40,7 +53,7 @@ export class SignupComponent implements OnInit {
   selectedValue : String;
   bloodControl = new FormControl('', [Validators.required]);
   // selectFormControl = new FormControl('', Validators.required);
-
+  retypepassword : String;
 
 
   bloods: BloodType[] = [
