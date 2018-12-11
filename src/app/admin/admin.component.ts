@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   choiceisUser = true;
   choiceisHopital = false;
 
-  displayedColumns: string[] = ['userName','email','bloodType','date','firstName','middleName','lastName','actionsColumn'];
+  displayedColumns: string[] = ['userName','email','admin','hospitalMember','bloodType','date','firstName','middleName','lastName','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
@@ -95,7 +95,7 @@ export class AdminComponent implements OnInit {
     this.choiceisUser = true;
     this.choiceisHopital = false;
     console.log(this.choiceisHopital);
-    this.displayedColumns = ['userName','email','bloodType','date','firstName','middleName','lastName','actionsColumn'];
+    this.displayedColumns = ['userName','email','admin','hospitalMember','bloodType','date','firstName','middleName','lastName','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadUsers();
@@ -151,7 +151,7 @@ export class AdminComponent implements OnInit {
       item.forEach(element => {
         var y = element.payload.toJSON();
         hospitalList.push(y);
-
+        this.dialog.closeAll();
       })
       console.log(hospitalList);
       this.dataHospital = new MatTableDataSource(hospitalList);

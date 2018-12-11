@@ -28,6 +28,33 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
                   <td mat-cell *matCellDef="let element"> {{element.email}} </td>
               </ng-container>
+
+              <ng-container matColumnDef="hospitalMember">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="element.hospitalMember">
+                        
+                        Hospital Member
+                    </ng-container>    
+                    <ng-container *ngIf="!element.hospitalMember">
+                        
+                        User
+                    </ng-container>
+                    </td>
+                </ng-container>
+
+                <!-- Name Column -->
+              <ng-container matColumnDef="admin">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin </th>
+                    <td mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="element.admin">
+                                    Admin
+                                </ng-container>
+                                <ng-container *ngIf="!element.admin">
+                                    Client
+                                </ng-container>    
+                    </td>
+                </ng-container>
     
               <!-- Name Column -->
               <ng-container matColumnDef="bloodType">
@@ -71,7 +98,7 @@
                   </th>
                       
                  
-                  <td mat-cell *matCellDef="let element"> <a (click)="editUser(element.userKey)"><mat-icon>brush</mat-icon></a> </td>
+                  <td mat-cell *matCellDef="let element"> <button mat-button (click)="editUser(element.userKey)"><mat-icon>brush</mat-icon></button> </td>
               </ng-container>
     
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

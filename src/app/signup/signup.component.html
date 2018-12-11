@@ -1,10 +1,17 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSignUp()">
 
 
   <mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>First Name</mat-label>
-      <input matInput type="text" [(ngModel)]="firstName" placeholder="First Name">
+      <input matInput type="text" [formControl]="firstNameControl"  placeholder="First Name">
+      <mat-error *ngIf="firstNameControl.hasError('minlength')">
+          Minimum length is {{firstNameControl.errors.minlength.requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="firstNameControl.hasError('required')">
+          First name is <strong>required</strong>
+      </mat-error>
+
 
     </mat-form-field>
     <br>
@@ -12,8 +19,13 @@
 
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Middle Name</mat-label>
-      <input matInput [(ngModel)]="middleName" placeholder="Middle Name" type="text" required />
-
+      <input matInput [formControl]="middleNameControl"  placeholder="Middle Name" type="text" required />
+      <mat-error *ngIf="middleNameControl.hasError('minlength')">
+          Minimum length is {{middleNameControl.errors.minlength.requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="middleNameControl.hasError('required')">
+          Middle name is <strong>required</strong>
+      </mat-error>
 
 
     </mat-form-field>
@@ -21,15 +33,25 @@
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Last Name</mat-label>
 
-      <input matInput [(ngModel)]="lastName" placeholder="Last Name" type="text" required />
-
+      <input matInput [formControl]="lastNameControl"  placeholder="Last Name" type="text" required />
+      <mat-error *ngIf="lastNameControl.hasError('minlength')">
+          Minimum length is {{lastNameControl.errors.minlength.requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="lastNameControl.hasError('required')">
+          Last name is <strong>required</strong>
+      </mat-error>
 
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Address</mat-label>
-      <input matInput [(ngModel)]="address" type="text" placeholder="Address" required />
-
+      <input matInput [formControl]="addressControl"  type="text" placeholder="Address" required />
+      <mat-error *ngIf="addressControl.hasError('minlength')">
+          Minimum length is {{addressControl.errors.minlength.requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="addressControl.hasError('required')">
+          Address name is <strong>required</strong>
+      </mat-error>
 
 
     </mat-form-field>
@@ -37,22 +59,37 @@
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>User Name</mat-label>
 
-      <input matInput [(ngModel)]="userName" placeholder="Username" type="text" required />
-
+      <input matInput [formControl]="userNameControl"  placeholder="Username" type="text" required />
+      <mat-error *ngIf="userNameControl.hasError('minlength')">
+          Minimum length is {{userNameControl.errors.minlength.requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="userNameControl.hasError('required')">
+          Username is <strong>required</strong>
+      </mat-error>
 
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" type="email" placeholder="Email" required />
-
-
+      <input matInput [formControl]="emailControl" type="email" placeholder="Email" required />
+      <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">
+          Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailControl.hasError('required')">
+          Email is <strong>required</strong>
+      </mat-error>
 
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Password</mat-label>
-      <input matInput [(ngModel)]="password" placeholder="Password" type="password" required />
+      <input matInput [formControl]="passwordControl"  placeholder="Password" type="password" required />
+      <mat-error *ngIf="addressControl.hasError('minlength')">
+          Minimum length is {{addressControl.errors.minlength.requiredLength}}
+      </mat-error>
+      <mat-error *ngIf="addressControl.hasError('required')">
+          Address name is <strong>required</strong>
+      </mat-error>
 
 
 
@@ -61,7 +98,7 @@
 
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Re-type Password</mat-label>
-      <input matInput [(ngModel)]="password" placeholder="Re-type Password" type="password" required />
+      <input matInput [formControl]="retypepasswordControl"  placeholder="Re-type Password" type="password" required />
 
 
 
@@ -70,7 +107,7 @@
 
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Birth Date</mat-label>
-      <input matInput [(ngModel)]="date" type="date" placeholder="Birth Date" required />
+      <input matInput [formControl]="dateControl"  type="date" placeholder="Birth Date" required />
 
 
 
@@ -84,17 +121,20 @@
           {{animal.name}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="animalControl.hasError('required')">Blood Type</mat-error>
+      <mat-error *ngIf="bloodControl.hasError('required')">Blood Type</mat-error>
       <mat-hint>{{animalControl.value?.sound}}</mat-hint>
     </mat-form-field>
 
 
 
 
-    <button mat-raised-button color="primary" class="halfwidth" (click)="onSignUp()">Send</button> <button
-      mat-flat-button mat-dialog-close class="halfwidth">Cancel</button>
+    <button mat-raised-button color="primary" class="fullwidthButton" [disabled]="!form.valid" type="submit" >Add</button> 
+    <br>
+    <button
+      mat-flat-button mat-dialog-close class="fullwidthButton">Cancel</button>
 
 
   </mat-card>
 </form>
+
 <p></p>

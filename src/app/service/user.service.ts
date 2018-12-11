@@ -29,15 +29,18 @@ export class UserService {
   User;
   user;
   isLoggedIn = false;
+  hospitalName = "";
 
   uid = this.afAuth.authState.pipe(
     map(authState => {
       if (!authState) {
+       
         return null;
       } else {
         this.User = JSON.parse(localStorage.getItem('user'));
         this.isAdmin = this.User.admin;
         this.user = this.User;
+        this.isLoggedIn = true;
         return authState.uid;
       }
 
@@ -85,6 +88,7 @@ export class UserService {
 
   logout(){
     this.isAdmin = observableOf(false);
+    this.isLoggedIn = false;
     this.user = null;
     this.afAuth.auth.signOut();
     

@@ -1,4 +1,6 @@
 
+
+<h1>{{HospitalObject.Name}}</h1>
 <mat-tab-group (selectedTabChange)="onLinkClick($event)">
    
             <mat-tab label="Appointments">
@@ -116,7 +118,7 @@
                       </p>
                     </mat-card-content>
                     <mat-card-actions>
-                      <button (click)="editHospital()" mat-button>EDIT</button>
+                      <button (click)="editHospital()" mat-raised-button color="primary">EDIT</button>
                      
                     </mat-card-actions>
                   </mat-card>

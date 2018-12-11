@@ -85,6 +85,7 @@ invalidLogin : boolean;
             this.route.navigate(['admin']);
             console.log("is admin");
             this.userService.isLoggedIn = true;
+            this.userService.user = magic;
             return;
            }
            
@@ -92,13 +93,16 @@ invalidLogin : boolean;
            if(magic.hospitalMember){
              this.route.navigate(['memberhospital']);
              this.userService.isLoggedIn = true;
+             this.userService.user = magic;
             return;
              
            }
            this.userService.isLoggedIn = true;
+           
            console.log("is not admin");
            this.route.navigate(['userlobby']);
            this.userService.isLoggedIn = true;
+           this.userService.user = magic;
           return;
          }
          

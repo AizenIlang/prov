@@ -5,6 +5,7 @@ import { AngularFireDatabase} from '@angular/fire/database';
 import { Observable} from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { Hospital} from '../Hospital';
+import { FormGroup, Validators,FormControl } from '@angular/forms';
 
 
 @Component({
@@ -25,6 +26,53 @@ export class AddhospitalComponent implements OnInit {
   downloadURL : Observable<string>;
 
   isHovering : boolean;
+
+  form = new FormGroup({
+    HospitalIDControl : new FormControl('',Validators.required),
+    NameControl : new FormControl('',Validators.required),
+    LocationControl : new FormControl('',Validators.required),
+    AddressControl : new FormControl('',Validators.required),
+    ContactNumberControl : new FormControl('',Validators.required),
+    ServicesControl : new FormControl('', Validators.required),
+    EmailControl : new FormControl('',[Validators.required,Validators.email]),
+    CoordinatesControl : new FormControl('',Validators.required),
+    DetailsControl : new FormControl('',Validators.required),
+    RatingControl : new FormControl(0,Validators.required)
+    
+  });
+
+  get HospitalIDControl(){
+    return this.form.get('HospitalIDControl');
+  }
+  get CoordinatesControl(){
+    return this.form.get('CoordinatesControl');
+  }
+  get DetailsControl(){
+    return this.form.get('DetailsControl');
+  }
+
+  get RatingControl(){
+    return this.form.get('RatingControl');
+  }
+
+  get NameControl(){
+    return this.form.get('NameControl');
+  }
+  get LocationControl(){
+    return this.form.get('LocationControl');
+  }
+  get AddressControl(){
+    return this.form.get('AddressControl');
+  }
+  get ContactNumberControl(){
+    return this.form.get('ContactNumberControl');
+  }
+  get ServicesControl(){
+    return this.form.get('ServicesControl');
+  }
+  get EmailControl(){
+    return this.form.get('EmailControl');
+  }
 
   HospitalID : number;
   Name : String;
@@ -77,17 +125,17 @@ export class AddhospitalComponent implements OnInit {
        this.task.snapshotChanges().pipe(
          finalize(()=>{
           const tempHospital = new Hospital;    
-          tempHospital.HospitalID = this.HospitalID;
-          tempHospital.Address = this.Address;
-          tempHospital.ContactNumber = this.ContactNumber;
-          tempHospital.Coordinates = this.Coordinates;
-          tempHospital.Details = this.Details;
-          tempHospital.Services = this.Services;
-          tempHospital.Email = this.Email;
+          tempHospital.HospitalID = this.HospitalIDControl.value;
+          tempHospital.Address = this.AddressControl.value;
+          tempHospital.ContactNumber = this.ContactNumberControl.value;
+          tempHospital.Coordinates = this.CoordinatesControl.value;
+          tempHospital.Details = this.DetailsControl.value;
+          tempHospital.Services = this.ServicesControl.value;
+          tempHospital.Email = this.EmailControl.value;
           tempHospital.image = path;
-          tempHospital.Location = this.Location;
-          tempHospital.Name = this.Name;
-          tempHospital.Rating = this.Rating;
+          tempHospital.Location = this.LocationControl.value;
+          tempHospital.Name = this.NameControl.value;
+          tempHospital.Rating = this.RatingControl.value;
           
           
           const theID = this.db.createPushId();
@@ -97,7 +145,7 @@ export class AddhospitalComponent implements OnInit {
          })
        ).subscribe();
    
-    
+      
         
  
    

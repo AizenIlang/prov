@@ -24,17 +24,57 @@ export interface Animal {
 export class SignupComponent implements OnInit {
 
   form = new FormGroup({
-    firstName: new FormControl(),
-    middleName: new FormControl(),
-    lastName: new FormControl(),
-    userName: new FormControl(),
-    address: new FormControl(),
-    date: new FormControl(),
-    password: new FormControl(),
-    retypepassword: new FormControl(),
-    email : new FormControl()
+    firstNameControl : new FormControl('',[Validators.required,Validators.minLength(2)]),
+    middleNameControl : new FormControl('',[Validators.required,Validators.minLength(2)]),
+    lastNameControl : new FormControl('',[Validators.required,Validators.minLength(2)]),
+    userNameControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    addressControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    dateControl : new FormControl('',Validators.required),
+    passwordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    retypepasswordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    emailControl : new FormControl('',[Validators.required,Validators.email]),
+    bloodControl : new FormControl('', [Validators.required])
+  });
 
-  })
+    get bloodControl(){
+      return this.form.get('bloodControl');
+    }
+    get addressControl(){
+      return this.form.get('addressControl');
+    }
+
+    get dateControl(){
+      return this.form.get('dateControl');
+    }
+
+    get passwordControl(){
+      return this.form.get('passwordControl');
+    }
+
+    get retypepasswordControl(){
+      return this.form.get('retypepasswordControl');
+    }
+
+    get emailControl(){
+      return this.form.get('emailControl');
+    }
+   
+    get firstNameControl(){
+      return this.form.get('firstNameControl');
+    }
+
+    get middleNameControl(){
+      return this.form.get('middleNameControl');
+    }
+
+    get lastNameControl(){
+      return this.form.get('lastNameControl');
+    }
+
+    get userNameControl(){
+      return this.form.get('userNameControl');
+    }
+ 
 
   actived;
   admin;
@@ -51,7 +91,7 @@ export class SignupComponent implements OnInit {
   userKey : String;
   address : String;
   selectedValue : String;
-  bloodControl = new FormControl('', [Validators.required]);
+  
   // selectFormControl = new FormControl('', Validators.required);
   retypepassword : String;
 
@@ -82,21 +122,27 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(){
+
+    console.warn(this.form.value);
+
+    
+
     this.userService.add(
       false,
       false,
-      this.email,
+      this.emailControl.value,
       false,
       "",
-      this.firstName,
-      this.middleName,
-      this.lastName,
+      this.firstNameControl.value,
+      this.middleNameControl.value,
+      this.lastNameControl.value,
       this.selectedValue,
-      this.date,
-      this.password,
-      this.userName,
+      this.dateControl.value,
+      this.passwordControl.value,
+      this.userNameControl.value,
       "",
-      this.address);
+      this.addressControl.value);
+      this.dialog.closeAll();
 
 
   }
@@ -107,5 +153,7 @@ export class SignupComponent implements OnInit {
     this.selectedValue = event.value.name;
     console.log(this.selectedValue);
 }
+
+
 
 }
