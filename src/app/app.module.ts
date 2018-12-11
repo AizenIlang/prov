@@ -24,6 +24,7 @@ import { AddhospitalComponent} from './addhospital/addhospital.component';
 import { AppointmentseditComponent } from './appointmentsedit/appointmentsedit.component';
 import { EdithospitalComponent } from './edithospital/edithospital.component';
 import { UserlobbyComponent } from './userlobby/userlobby.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -56,6 +57,9 @@ import { UserlobbyComponent } from './userlobby/userlobby.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBRL3GznzT9wyJqqyj4iG_l8V1DtvSKHyM'
+    }),
     RouterModule.forChild([
       {
         path : '',

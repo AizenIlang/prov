@@ -1,3 +1,9 @@
+<br>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
 <table mat-table
        [dataSource]="dataHospital" multiTemplateDataRows
        class="mat-elevation-z8">
@@ -18,6 +24,9 @@
           <div class="example-element-weight"> {{element.Address}} </div>
         </div>
         <div class="example-element-description">
+            <agm-map [latitude]="lat" [longitude]="lng">
+                <agm-marker [latitude]="element.coordinates" [longitude]="lng"></agm-marker>
+              </agm-map>
           {{element.Description}}
           <span class="example-element-description-attribution"> -- PROVH </span>
         </div>

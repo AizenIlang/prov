@@ -39,6 +39,14 @@ export class UserlobbyComponent implements OnInit{
 
   }
 
+  applyFilter(filterValue: string) {
+    this.dataHospital.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataHospital.paginator) {
+      this.dataHospital.paginator.firstPage();
+    }
+  }
+
   async loadHospital(){
     var hospitalList= [];
 
