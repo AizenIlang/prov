@@ -112,6 +112,7 @@ import { AddcommentsComponent } from './addcomments/addcomments.component';
     AddhospitalComponent,
     EdituserComponent,
     AppointmentseditComponent,
-    EdithospitalComponent]
+    EdithospitalComponent,
+    AddcommentsComponent]
 })
 export class AppModule { }

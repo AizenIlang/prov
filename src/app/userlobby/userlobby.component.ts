@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatTableDataSource, MatSort, MatPaginator,MatTable } from '@angular/material';
 import { HospitalService } from '../service/hospital.service';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import { AddcommentsComponent } from '../addcomments/addcomments.component';
 
 /**
  * @title Table with expandable rows
@@ -40,7 +42,8 @@ export class UserlobbyComponent implements OnInit{
 
   }
 
-  constructor(private hospitalService : HospitalService){
+  constructor(private hospitalService : HospitalService,
+    public dialog : MatDialog){
 
   }
 
@@ -75,6 +78,13 @@ export class UserlobbyComponent implements OnInit{
       
       
     });
+  }
+
+  addComments(theKey){
+    let dialogRef = this.dialog.open(AddcommentsComponent, {
+      data : theKey
+    });
+    
   }
 
 

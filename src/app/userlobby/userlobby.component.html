@@ -31,7 +31,7 @@
                 <agm-marker [latitude]="element.lat1" [longitude]="element.lng2"></agm-marker>
               </agm-map>
           {{element.Description}}
-          <button mat-raised-button color="primary">Comments</button>
+          <button mat-raised-button color="primary" (click)="addComments(element.Key)">Comments</button>
          
           <span class="example-element-description-attribution"> -- PROVH </span>
         </div>

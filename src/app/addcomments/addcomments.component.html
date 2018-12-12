@@ -1,3 +1,35 @@
-<p>
-  addcomments works!
-</p>
+<ng-container *ngIf="CommentsList">
+    
+      <div *ngFor='let item of CommentsList'>
+          <mat-card>
+              <mat-card-header>
+                  
+                  <mat-card-title>Patient Name :{{item.name}}</mat-card-title>
+                  <mat-card-subtitle>Rating : {{item.rate}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                      {{item.message}}
+                    </p>
+                  </mat-card-content>
+          </mat-card>
+          <br>
+
+      </div>
+    
+
+   
+</ng-container>
+
+<ng-container *ngIf="!CommentsList">
+  No Comments Yet
+</ng-container>
+
+<form [formGroup]="form" (ngSubmit)="AddComment()">
+    <mat-form-field appearance="outline" class="fullwidth">
+        <mat-label>Message</mat-label>
+        <input matInput [formControl]="message"  type="text" placeholder="Message" required />
+    
+    
+    </mat-form-field>
+</form>

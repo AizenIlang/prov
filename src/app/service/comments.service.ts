@@ -16,4 +16,8 @@ export class CommentsService {
    getComments(key){
      return this.db.list('/Hospitals/'+key+'/Comments');
    }
+
+   getCommentsHospitalList(key){
+     return this.db.list('/Hospitals/'+key+'/Comments');
+   }
 }
