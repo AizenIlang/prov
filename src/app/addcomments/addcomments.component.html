@@ -26,10 +26,16 @@
 </ng-container>
 
 <form [formGroup]="form" (ngSubmit)="AddComment()">
+
+    <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+
     <mat-form-field appearance="outline" class="fullwidth">
         <mat-label>Message</mat-label>
-        <input matInput [formControl]="message"  type="text" placeholder="Message" required />
+        <textarea matInput [formControl]="message"   placeholder="Message" required >
+        </textarea>
     
     
     </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Add Comment</button>
+    <button mat-button (click)="Close()">Cancel</button>
 </form>

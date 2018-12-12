@@ -26,6 +26,7 @@ import { EdithospitalComponent } from './edithospital/edithospital.component';
 import { UserlobbyComponent } from './userlobby/userlobby.component';
 import { AgmCoreModule } from '@agm/core';
 import { AddcommentsComponent } from './addcomments/addcomments.component';
+import { BarRatingModule } from "ngx-bar-rating";
 
 
 
@@ -47,6 +48,7 @@ import { AddcommentsComponent } from './addcomments/addcomments.component';
     
   ],
   imports: [
+    BarRatingModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

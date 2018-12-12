@@ -13,6 +13,10 @@ export class CommentsService {
       return this.db.object('/Hospitals/'+key+'/Comments');
    }
 
+   addCommentHospital(hopsitalKey,userKey){
+     return this.db.object('Hospitals/'+hopsitalKey+'/Comments/'+userKey);
+   }
+
    getComments(key){
      return this.db.list('/Hospitals/'+key+'/Comments');
    }
