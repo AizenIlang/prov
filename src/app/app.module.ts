@@ -25,6 +25,7 @@ import { AppointmentseditComponent } from './appointmentsedit/appointmentsedit.c
 import { EdithospitalComponent } from './edithospital/edithospital.component';
 import { UserlobbyComponent } from './userlobby/userlobby.component';
 import { AgmCoreModule } from '@agm/core';
+import { AddcommentsComponent } from './addcomments/addcomments.component';
 
 
 
@@ -41,7 +42,8 @@ import { AgmCoreModule } from '@agm/core';
     AddhospitalComponent,
     AppointmentseditComponent,
     EdithospitalComponent,
-    UserlobbyComponent
+    UserlobbyComponent,
+    AddcommentsComponent
     
   ],
   imports: [
@@ -58,7 +60,7 @@ import { AgmCoreModule } from '@agm/core';
     AngularFireStorageModule,
     AngularFireAuthModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBRL3GznzT9wyJqqyj4iG_l8V1DtvSKHyM'
+      apiKey: 'AIzaSyC1_Zoh07zVan9-XAloa_xSUV27DJQvyj8'
     }),
     RouterModule.forChild([
       {

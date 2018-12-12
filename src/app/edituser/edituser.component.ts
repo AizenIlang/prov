@@ -113,10 +113,14 @@ export class EdituserComponent implements OnInit {
     });
   }
 
+  makeMeadmin = false;
+ 
   public onValChange(val) {
 
     this.selectedVal = val.toLowerCase() == 'true' ? true : false;
-
+    if(val.toLowerCase() == "left"){
+      this.makeMeadmin = true;
+    }
     console.log("the Type is " + this.selectedVal);
     console.log("the Type is 2" + val);
   }
@@ -140,7 +144,7 @@ export class EdituserComponent implements OnInit {
     }
 
     let user: Users = new Users(true,
-      false, this.email, this.selectedVal,
+      this.makeMeadmin, this.email, this.selectedVal,
       this.selectedValueHospital,
       this.firstName,
       this.middleName,

@@ -23,11 +23,16 @@
           <div class="example-element-name"> {{element.ContactNumber}} </div>
           <div class="example-element-weight"> {{element.Address}} </div>
         </div>
+       
+        
         <div class="example-element-description">
-            <agm-map [latitude]="lat" [longitude]="lng">
-                <agm-marker [latitude]="element.coordinates" [longitude]="lng"></agm-marker>
+        
+            <agm-map [zoom]="16"  [latitude]="element.lat1" [longitude]="element.lng2">
+                <agm-marker [latitude]="element.lat1" [longitude]="element.lng2"></agm-marker>
               </agm-map>
           {{element.Description}}
+          <button mat-raised-button color="primary">Comments</button>
+         
           <span class="example-element-description-attribution"> -- PROVH </span>
         </div>
       </div>
@@ -42,3 +47,4 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
+

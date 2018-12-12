@@ -39,6 +39,7 @@ table {
   }
   
   .example-element-description {
+    width:100%;
     padding: 16px;
   }
   
@@ -49,4 +50,8 @@ table {
   .mat-form-field {
     font-size: 14px;
     width: 100%;
+  }
+
+  agm-map {
+    height: 300px;
   }
