@@ -50,13 +50,13 @@ export class EdithospitalComponent implements OnInit {
   theFile: any;
 
   ngOnInit() {
-    this.hospitalService.getHospital(this.data).valueChanges().subscribe(thedata =>{
-      
+    this.hospitalService.getSpecificHospital(this.data).valueChanges().subscribe(thedata =>{
+    
       let x : any;
       x = thedata;
       console.log(this.data);
       console.log(x);
-      this.HospitalID      = x.HospitalID;
+      this.HospitalID = x.HospitalID;
       this.Name  = x.Name;
       this.Location  = x.Location;
       this.Address  = x.Address;
@@ -83,6 +83,11 @@ export class EdithospitalComponent implements OnInit {
 
   checkUpload(){
     const file = this.theFile;
+
+    if(!file){
+      swal("New Image Required");
+      return;
+    }
     
     if(file.type.split('/')[0] !== 'image'){
       console.error('unsupported file format');

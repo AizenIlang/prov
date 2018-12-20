@@ -1,0 +1,82 @@
+[debug] [2018-12-20T06:11:54.213Z] ----------------------------------------------------------------------
+[debug] [2018-12-20T06:11:54.215Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2018-12-20T06:11:54.216Z] CLI Version:   6.1.1
+[debug] [2018-12-20T06:11:54.216Z] Platform:      win32
+[debug] [2018-12-20T06:11:54.216Z] Node Version:  v8.12.0
+[debug] [2018-12-20T06:11:54.217Z] Time:          Thu Dec 20 2018 14:11:54 GMT+0800 (Malay Peninsula Standard Time)
+[debug] [2018-12-20T06:11:54.217Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-20T06:11:54.299Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-20T06:11:54.300Z] > authorizing via signed-in user
+[debug] [2018-12-20T06:11:54.300Z] [iam] checking project prov-h-fae96 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-12-20T06:11:54.302Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-12-20T06:11:54.302Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-12-20T06:11:54.982Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:11:55.028Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prov-h-fae96:testIamPermissions  
+
+[debug] [2018-12-20T06:11:56.468Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:11:56.469Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/prov-h-fae96  
+ 
+[debug] [2018-12-20T06:11:57.422Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prov-h-fae96'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-20T06:11:57.435Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T06:11:58.612Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database prov-h-fae96 is valid
+[debug] [2018-12-20T06:11:58.614Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/prov-h-fae96  
+ 
+[debug] [2018-12-20T06:12:00.430Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-12-20T06:12:00.438Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96:test  
+
+[debug] [2018-12-20T06:12:01.814Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[debug] [2018-12-20T06:12:01.817Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions  
+
+[debug] [2018-12-20T06:12:03.785Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-12-20T06:12:03.788Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/rulesets  
+
+[debug] [2018-12-20T06:12:05.183Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:12:05.183Z] [rules] created ruleset projects/prov-h-fae96/rulesets/0fabb1dd-316a-4bc7-a90b-a29efc68e7d7
+[info] i  hosting[prov-h-fae96]: beginning deploy...
+[info] i  hosting[prov-h-fae96]: found 7 files in dist
+[debug] [2018-12-20T06:12:05.195Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-12-20T06:12:05.432Z] [hosting] hash cache [ZGlzdA] stored for 7 files
+[debug] [2018-12-20T06:12:05.433Z] [hosting][hash queue][FINAL]
+[debug] [2018-12-20T06:12:05.433Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/d271b9747bc4bbb4:populateFiles  
+ <request body omitted>
+[debug] [2018-12-20T06:12:07.021Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:12:07.024Z] [hosting][populate queue][FINAL]
+[debug] [2018-12-20T06:12:07.024Z] [hosting] uploads queued: 2
+[debug] [2018-12-20T06:12:49.309Z] [uploadQueue] Retrying task 11a5235e293eb838e27883affa2655cced64be0114218cecef063db690f4b85d
+[debug] [2018-12-20T06:13:59.356Z] [uploadQueue] Retrying task 11a5235e293eb838e27883affa2655cced64be0114218cecef063db690f4b85d
+[debug] [2018-12-20T06:14:28.907Z] [uploadQueue] Retrying task 11a5235e293eb838e27883affa2655cced64be0114218cecef063db690f4b85d
+[debug] [2018-12-20T06:15:32.033Z] [uploadQueue] Retrying task 11a5235e293eb838e27883affa2655cced64be0114218cecef063db690f4b85d
+[debug] [2018-12-20T06:16:11.640Z] [uploadQueue] Retrying task 11a5235e293eb838e27883affa2655cced64be0114218cecef063db690f4b85d
+[debug] [2018-12-20T06:17:35.990Z] [uploadQueue] Retries exhausted for task 11a5235e293eb838e27883affa2655cced64be0114218cecef063db690f4b85d:
+[debug] [2018-12-20T06:17:35.991Z] [hosting][upload queue][FINAL]
+[debug] [2018-12-20T06:17:36.495Z] Error: ESOCKETTIMEDOUT
+    at ClientRequest.<anonymous> (C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:816:19)
+    at Object.onceWrapper (events.js:313:30)
+    at emitNone (events.js:106:13)
+    at ClientRequest.emit (events.js:208:7)
+    at TLSSocket.emitTimeout (_http_client.js:707:34)
+    at Object.onceWrapper (events.js:313:30)
+    at emitNone (events.js:106:13)
+    at TLSSocket.emit (events.js:208:7)
+    at TLSSocket.Socket._onTimeout (net.js:422:8)
+    at ontimeout (timers.js:498:11)
+[error] 
+[error] Error: An unexpected error has occurred.

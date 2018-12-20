@@ -9,6 +9,9 @@ import { AppointmentseditComponent } from '../appointmentsedit/appointmentsedit.
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {EdithospitalComponent} from '../edithospital/edithospital.component';
+import { DoctorsService } from '../service/doctors.service';
+import { DoctorsaddComponent } from '../doctorsadd/doctorsadd.component';
+import { AppointmentassigndoctorComponent } from '../appointmentassigndoctor/appointmentassigndoctor.component';
 
 @Component({
   selector: 'app-memberhospital',
@@ -24,22 +27,29 @@ export class MemberhospitalComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['userName','message', 'status', 'type', 'date','user','actionsColumn'];
+  displayedColumns: string[] = ['userName','user','message', 'status', 'type', 'date','doctor','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
   dataComments: any;
+  dataDoctors: any;
 
   AppointmentList;
   CommentList;
+  DoctorList;
 
   choiceAppointments = true;
   choiceComments = false;
+  choiceDoctors = false;
 
   HospitalObject : any;
 
   picture : any;
-  constructor(private storage : AngularFireStorage,public dialog: MatDialog,private hosptialService: HospitalService, private appointmentService: AppointmentsService, private commentService: CommentsService) { }
+  constructor(private storage : AngularFireStorage,public dialog: MatDialog,
+    private hosptialService: HospitalService,
+    private appointmentService: AppointmentsService,
+    private commentService: CommentsService,
+    private doctorService: DoctorsService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -60,6 +70,7 @@ export class MemberhospitalComponent implements OnInit {
 
 
   }
+  
 
   async loadAppointments() {
     var appointmentlist= [];
@@ -106,12 +117,35 @@ export class MemberhospitalComponent implements OnInit {
     });
   }
 
+  async loadDoctors() {
+    var hospitalList= [];
+
+    this.dataDoctors = new MatTableDataSource(hospitalList);
+    this.DoctorList =  await this.doctorService.getDoctorsServiceHospital(this.user.hospitalKey);
+    await this.DoctorList.snapshotChanges().subscribe(item =>{
+      hospitalList = [];
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        hospitalList.push(y);
+
+      })
+      console.log("The doctors " +hospitalList);
+      this.dataDoctors = new MatTableDataSource(hospitalList);
+      this.dataDoctors.sort = this.sort;
+      this.dataDoctors.paginator = this.paginator;
+
+      
+      
+    });
+  }
+
   changeAppointments(){
 
     this.choiceAppointments = true;
     this.choiceComments = false;
+    this.choiceDoctors = false;
    
-    this.displayedColumns = ['userName','message', 'status', 'type', 'date','actionsColumn'];
+    this.displayedColumns = ['userName','user','message', 'status', 'type','doctor', 'date','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadAppointments();
@@ -122,11 +156,24 @@ export class MemberhospitalComponent implements OnInit {
 
     this.choiceAppointments = false;
     this.choiceComments = true;
+    this.choiceDoctors = false;
    
     this.displayedColumns = ['message', 'name', 'rate'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadComments();
+
+  }
+
+  changeDoctors(){
+    this.choiceAppointments = false;
+    this.choiceComments = false;
+    this.choiceDoctors = true;
+   
+    this.displayedColumns = ['firstName', 'middleName', 'lastName','service'];
+    this.columnsToDisplay = this.displayedColumns.slice();
+
+    this.loadDoctors();
 
   }
 
@@ -138,6 +185,9 @@ export class MemberhospitalComponent implements OnInit {
     }
     if(event.index == 1){
       this.changeComments();
+    }
+    if(event.index == 2){
+      this.changeDoctors();
     }
     console.log('event => ', event);
     console.log('index => ', event.index);
@@ -154,11 +204,32 @@ export class MemberhospitalComponent implements OnInit {
     
   }
 
+  assignDoctor(theKey){
+    let dialogRef = this.dialog.open(AppointmentassigndoctorComponent,{
+      data : theKey
+    });
+  }
+
   editHospital(){
     let dialogRef = this.dialog.open(EdithospitalComponent, {
       data : this.user.hospitalKey
     });
     
   }
+
+  addDoctor(){
+    let dialogRef = this.dialog.open(DoctorsaddComponent, {
+      data : this.user.hospitalKey
+    })
+  }
   
+  removeAppointment(){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      type: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true     
+    })
+  }
 }

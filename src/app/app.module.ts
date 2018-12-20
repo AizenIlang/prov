@@ -27,6 +27,8 @@ import { UserlobbyComponent } from './userlobby/userlobby.component';
 import { AgmCoreModule } from '@agm/core';
 import { AddcommentsComponent } from './addcomments/addcomments.component';
 import { BarRatingModule } from "ngx-bar-rating";
+import { DoctorsaddComponent } from './doctorsadd/doctorsadd.component';
+import { AppointmentassigndoctorComponent } from './appointmentassigndoctor/appointmentassigndoctor.component';
 
 
 
@@ -44,7 +46,9 @@ import { BarRatingModule } from "ngx-bar-rating";
     AppointmentseditComponent,
     EdithospitalComponent,
     UserlobbyComponent,
-    AddcommentsComponent
+    AddcommentsComponent,
+    DoctorsaddComponent,
+    AppointmentassigndoctorComponent
     
   ],
   imports: [
@@ -111,10 +115,12 @@ import { BarRatingModule } from "ngx-bar-rating";
   ],
   bootstrap: [AppComponent],
   entryComponents:[SignupComponent,
+    AppointmentassigndoctorComponent,
     AddhospitalComponent,
     EdituserComponent,
     AppointmentseditComponent,
     EdithospitalComponent,
-    AddcommentsComponent]
+    AddcommentsComponent,
+    DoctorsaddComponent]
 })
 export class AppModule { }

@@ -18,6 +18,10 @@ export class HospitalService {
   getHospital(key){
     return this.db.object(key);
   }
+
+  getSpecificHospital(key){
+    return this.db.object('/Hospitals/'+key);
+  }
   
   addHospital(hospital : Hospital){
     this.key = this.db.createPushId();

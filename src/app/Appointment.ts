@@ -9,9 +9,10 @@ export class Appointment {
       status? : String;
       userName? : String;
       key? : String;
+      doctor? : String;
 
       constructor(message? : String, uid? : String, type? : String, date? : String, hn? : String, st? : String,
-        un? : String, key? : String){
+        un? : String, key? : String, dr? : String){
 
             this.message = message;
             this.uid = uid;
@@ -21,6 +22,7 @@ export class Appointment {
             this.status = st;
             this.userName = un;
             this.key = key;
+            this.doctor = dr;
       }
     
 }

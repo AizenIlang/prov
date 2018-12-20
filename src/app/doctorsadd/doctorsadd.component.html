@@ -1,0 +1,67 @@
+<form [formGroup]="form" (ngSubmit)="onDoctorAdd()">
+
+
+    <mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
+      <mat-form-field appearance="outline" class="fullwidth">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [formControl]="firstName"  placeholder="First Name">
+        <mat-error *ngIf="firstName.hasError('minlength')">
+            Minimum length is {{firstName.errors.minlength.requiredLength}}
+        </mat-error>
+        <mat-error *ngIf="firstName.hasError('required')">
+            First name is <strong>required</strong>
+        </mat-error>
+  
+  
+      </mat-form-field>
+      <br>
+  
+  
+      <mat-form-field appearance="outline" class="fullwidth">
+        <mat-label>Middle Name</mat-label>
+        <input matInput [formControl]="middleName"  placeholder="Middle Name" type="text" required />
+        <mat-error *ngIf="middleName.hasError('minlength')">
+            Minimum length is {{middleName.errors.minlength.requiredLength}}
+        </mat-error>
+        <mat-error *ngIf="middleName.hasError('required')">
+            Middle name is <strong>required</strong>
+        </mat-error>
+  
+  
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="fullwidth">
+        <mat-label>Last Name</mat-label>
+  
+        <input matInput [formControl]="lastName"  placeholder="Last Name" type="text" required />
+        <mat-error *ngIf="lastName.hasError('minlength')">
+            Minimum length is {{lastName.errors.minlength.requiredLength}}
+        </mat-error>
+        <mat-error *ngIf="lastName.hasError('required')">
+            Last name is <strong>required</strong>
+        </mat-error>
+  
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Service" formControlName="service" (selectionChange)="selectedService($event)" >
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let animal of serviceList" [value]="animal">
+            {{animal}}
+          </mat-option>
+        </mat-select>
+        <!-- <mat-error *ngIf="hopsitalFormControl.hasError('required')">Choose Time</mat-error>
+        <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+      </mat-form-field>
+  
+  
+      <button mat-raised-button color="primary" class="fullwidthButton" [disabled]="!form.valid" type="submit" >Add</button> 
+      <br>
+      <button
+        mat-flat-button mat-dialog-close class="fullwidthButton">Cancel</button>
+  
+  
+    </mat-card>
+  </form>
+  
+  <p></p>
