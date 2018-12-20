@@ -36,4 +36,8 @@ export class AppointmentsService {
     this.db.object("/UserAppointments/"+appointment.uid+"/"+appointment.key).update(appointment);
   }
 
+  delete(hospitalKey,appointmentkey){
+    this.db.object("/Appointments/"+hospitalKey+"/"+appointmentkey).remove();
+  }
+
 }

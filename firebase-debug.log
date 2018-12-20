@@ -80,3 +80,58 @@
     at ontimeout (timers.js:498:11)
 [error] 
 [error] Error: An unexpected error has occurred.
+[debug] [2018-12-20T06:52:58.845Z] ----------------------------------------------------------------------
+[debug] [2018-12-20T06:52:58.850Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2018-12-20T06:52:58.851Z] CLI Version:   6.1.1
+[debug] [2018-12-20T06:52:58.851Z] Platform:      win32
+[debug] [2018-12-20T06:52:58.851Z] Node Version:  v8.12.0
+[debug] [2018-12-20T06:52:58.852Z] Time:          Thu Dec 20 2018 14:52:58 GMT+0800 (Malay Peninsula Standard Time)
+[debug] [2018-12-20T06:52:58.852Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-20T06:52:58.873Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-20T06:52:58.875Z] > authorizing via signed-in user
+[debug] [2018-12-20T06:52:58.875Z] [iam] checking project prov-h-fae96 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-12-20T06:52:58.883Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prov-h-fae96:testIamPermissions  
+
+[debug] [2018-12-20T06:53:00.096Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:53:00.097Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/prov-h-fae96  
+ 
+[debug] [2018-12-20T06:53:00.931Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prov-h-fae96'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-20T06:53:00.938Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T06:53:02.028Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database prov-h-fae96 is valid
+[debug] [2018-12-20T06:53:02.032Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/prov-h-fae96  
+ 
+[debug] [2018-12-20T06:53:03.622Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-12-20T06:53:03.625Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96:test  
+
+[debug] [2018-12-20T06:53:05.233Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[debug] [2018-12-20T06:53:05.237Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions  
+
+[debug] [2018-12-20T06:53:07.033Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-12-20T06:53:07.036Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/rulesets  
+
+[debug] [2018-12-20T06:53:07.656Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:53:07.657Z] [rules] created ruleset projects/prov-h-fae96/rulesets/4c4c5173-6e1c-4401-a84e-e9b04c23e481
+[info] i  hosting[prov-h-fae96]: beginning deploy...
+[info] i  hosting[prov-h-fae96]: found 7 files in dist
+[debug] [2018-12-20T06:53:07.668Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-12-20T06:53:07.832Z] [hosting] hash cache [ZGlzdA] stored for 7 files
+[debug] [2018-12-20T06:53:07.832Z] [hosting][hash queue][FINAL]
+[debug] [2018-12-20T06:53:07.832Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/f78641915699ef59:populateFiles  
+ <request body omitted>

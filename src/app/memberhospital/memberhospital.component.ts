@@ -12,6 +12,7 @@ import {EdithospitalComponent} from '../edithospital/edithospital.component';
 import { DoctorsService } from '../service/doctors.service';
 import { DoctorsaddComponent } from '../doctorsadd/doctorsadd.component';
 import { AppointmentassigndoctorComponent } from '../appointmentassigndoctor/appointmentassigndoctor.component';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-memberhospital',
@@ -223,13 +224,26 @@ export class MemberhospitalComponent implements OnInit {
     })
   }
   
-  removeAppointment(){
+  removeAppointment(theKey){
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once deleted, you will not be able to recover this Appointment file!",
       type: 'warning',
       showConfirmButton: true,
       showCancelButton: true     
     })
+    .then((willDelete) => {
+      if (willDelete.value) {
+         this.appointmentService.delete(this.user.hospitalKey,theKey);
+        swal({title:"Poof! Your Appointment file has been deleted!",
+          type: "success",
+        });
+      } else {
+        swal("Your Appointment file is safe!");
+      }
+    });
+
+
+
   }
 }
