@@ -39,6 +39,10 @@ export class EdituserComponent implements OnInit {
   userName: String;
   userKey: String;
   address: String;
+  genderControl: String;
+
+
+  genders: string[] = ['Male', 'Female'];
 
   selectedVal: boolean; // for hopsital member
   selectedValue: any; // for blood type;
@@ -87,6 +91,7 @@ export class EdituserComponent implements OnInit {
       this.userName = this.user.userName;
       this.userKey = this.user.userKey;
       this.address = this.user.address;
+      this.genderControl = this.user.gender;
 
     });
 
@@ -154,7 +159,8 @@ export class EdituserComponent implements OnInit {
       this.password,
       this.userName,
       this.userKey,
-      this.address);
+      this.address,
+      this.genderControl);
 
     this.userService.update(user);
 

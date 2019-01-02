@@ -150,7 +150,7 @@ export class SignupComponent implements OnInit {
       this.userNameControl.value,
       "",
       this.addressControl.value,
-      this.genderControl);
+      this.genderControl.value);
       this.dialog.closeAll();
 
 
