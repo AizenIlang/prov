@@ -26,7 +26,7 @@ export class AppointmentassigndoctorComponent implements OnInit {
   doctorsList : any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private appointmentService: AppointmentsService,
-  private doctorsService : DoctorsService) { }
+  private doctorsService : DoctorsService,private dialog : MatDialog) { }
   get doctorControl(){
     return this.form.get('doctorControl');
   }
@@ -78,6 +78,7 @@ export class AppointmentassigndoctorComponent implements OnInit {
   this.Appointment.status = "Pending";
   this.appointmentService.update("/" + x.hospitalKey + "/" + this.data, this.Appointment);
   console.log(x.hospitalKey + "/" + this.data);
+  this.dialog.closeAll();
 }
 
 

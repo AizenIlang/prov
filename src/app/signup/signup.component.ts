@@ -33,8 +33,13 @@ export class SignupComponent implements OnInit {
     passwordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
     retypepasswordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
     emailControl : new FormControl('',[Validators.required,Validators.email]),
-    bloodControl : new FormControl('', [Validators.required])
+    bloodControl : new FormControl('', [Validators.required]),
+    genderControl : new FormControl('',Validators.required)
   });
+
+    get genderControl(){
+      return this.form.get('genderControl');
+    }
 
     get bloodControl(){
       return this.form.get('bloodControl');
@@ -95,6 +100,9 @@ export class SignupComponent implements OnInit {
   // selectFormControl = new FormControl('', Validators.required);
   retypepassword : String;
 
+  pickGender: string;
+  genders: string[] = ['Male', 'Female'];
+
 
   bloods: BloodType[] = [
     {name: 'O', type: 'O'},
@@ -141,7 +149,8 @@ export class SignupComponent implements OnInit {
       this.passwordControl.value,
       this.userNameControl.value,
       "",
-      this.addressControl.value);
+      this.addressControl.value,
+      this.genderControl);
       this.dialog.closeAll();
 
 

@@ -49,7 +49,7 @@ export class UserService {
 
   )
 
-  add(act: boolean, adm: boolean, ema: String, hospitalMember: boolean, hospitalKey: String, fn: String, mn: String, ln: String, bt: String, dt: String, pw: String, un: String, uk: String,add : String) {
+  add(act: boolean, adm: boolean, ema: String, hospitalMember: boolean, hospitalKey: String, fn: String, mn: String, ln: String, bt: String, dt: String, pw: String, un: String, uk: String,add : String, gen : String) {
 
     let user: Users = new Users(act,
       adm, ema, hospitalMember,
@@ -62,7 +62,8 @@ export class UserService {
       pw,
       un,
       uk,
-      add);
+      add,
+      gen);
 
       
 

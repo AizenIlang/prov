@@ -224,7 +224,7 @@ export class MemberhospitalComponent implements OnInit {
     })
   }
   
-  removeAppointment(theKey){
+  removeAppointment(theKey,theUid){
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this Appointment file!",
@@ -234,7 +234,7 @@ export class MemberhospitalComponent implements OnInit {
     })
     .then((willDelete) => {
       if (willDelete.value) {
-         this.appointmentService.delete(this.user.hospitalKey,theKey);
+         this.appointmentService.delete(this.user.hospitalKey,theKey,theUid);
         swal({title:"Poof! Your Appointment file has been deleted!",
           type: "success",
         });
@@ -245,5 +245,9 @@ export class MemberhospitalComponent implements OnInit {
 
 
 
+  }
+
+  appoint(appkey,uid){
+    this.appointmentService.appoint(this.user.hospitalKey,appkey,uid);
   }
 }

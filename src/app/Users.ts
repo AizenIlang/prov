@@ -18,8 +18,9 @@ export class Users {
     userName : String;
     userKey : String;
     address : String;
+    gender : String;
 
-    constructor(act: boolean, adm : boolean, ema : String, hospitalMember : boolean, hospitalKey : String, fn : String, mn : String, ln : String, bt : String, dt : String, pw : String, un : String, uk : String, add : String){
+    constructor(act: boolean, adm : boolean, ema : String, hospitalMember : boolean, hospitalKey : String, fn : String, mn : String, ln : String, bt : String, dt : String, pw : String, un : String, uk : String, add : String, gen : String){
             this.actived = act;
             this.admin = adm;
             this.email = ema;
@@ -34,6 +35,7 @@ export class Users {
             this.userName = un;
             this.userKey = uk;
             this.address = add;
+            this.gender = gen;
             
     }
     

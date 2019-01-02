@@ -135,3 +135,654 @@
 [debug] [2018-12-20T06:53:07.832Z] [hosting][hash queue][FINAL]
 [debug] [2018-12-20T06:53:07.832Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/f78641915699ef59:populateFiles  
  <request body omitted>
+[debug] [2018-12-20T06:53:09.630Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:53:09.634Z] [hosting][populate queue][FINAL]
+[debug] [2018-12-20T06:53:09.634Z] [hosting] uploads queued: 3
+[debug] [2018-12-20T06:54:50.710Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T06:56:01.337Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T06:58:28.923Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T06:58:28.923Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-12-20T06:58:28.924Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-12-20T06:58:29.502Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T06:59:46.418Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T07:00:27.683Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T07:01:34.148Z] [uploadQueue] Retries exhausted for task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824:
+[debug] [2018-12-20T07:01:34.149Z] [hosting][upload queue][FINAL]
+[debug] [2018-12-20T07:01:34.875Z] Error: ESOCKETTIMEDOUT
+    at ClientRequest.<anonymous> (C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:816:19)
+    at Object.onceWrapper (events.js:313:30)
+    at emitNone (events.js:106:13)
+    at ClientRequest.emit (events.js:208:7)
+    at TLSSocket.emitTimeout (_http_client.js:707:34)
+    at Object.onceWrapper (events.js:313:30)
+    at emitNone (events.js:106:13)
+    at TLSSocket.emit (events.js:208:7)
+    at TLSSocket.Socket._onTimeout (net.js:422:8)
+    at ontimeout (timers.js:498:11)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2018-12-20T07:05:09.156Z] ----------------------------------------------------------------------
+[debug] [2018-12-20T07:05:09.161Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2018-12-20T07:05:09.161Z] CLI Version:   6.1.1
+[debug] [2018-12-20T07:05:09.161Z] Platform:      win32
+[debug] [2018-12-20T07:05:09.161Z] Node Version:  v8.12.0
+[debug] [2018-12-20T07:05:09.162Z] Time:          Thu Dec 20 2018 15:05:09 GMT+0800 (Malay Peninsula Standard Time)
+[debug] [2018-12-20T07:05:09.162Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-20T07:05:09.176Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-20T07:05:09.176Z] > authorizing via signed-in user
+[debug] [2018-12-20T07:05:09.176Z] [iam] checking project prov-h-fae96 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-12-20T07:05:09.179Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prov-h-fae96:testIamPermissions  
+
+[debug] [2018-12-20T07:05:10.359Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:05:10.360Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:05:14.098Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prov-h-fae96'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-20T07:05:14.103Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T07:05:15.240Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database prov-h-fae96 is valid
+[debug] [2018-12-20T07:05:15.243Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:05:16.846Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-12-20T07:05:16.849Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96:test  
+
+[debug] [2018-12-20T07:05:18.197Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[debug] [2018-12-20T07:05:18.200Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions  
+
+[debug] [2018-12-20T07:05:19.914Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-12-20T07:05:19.917Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/rulesets  
+
+[debug] [2018-12-20T07:05:21.238Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:05:21.238Z] [rules] created ruleset projects/prov-h-fae96/rulesets/4c9cded1-b1a6-4211-8dea-f952c3d19046
+[info] i  hosting[prov-h-fae96]: beginning deploy...
+[info] i  hosting[prov-h-fae96]: found 7 files in dist
+[debug] [2018-12-20T07:05:21.250Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-12-20T07:05:21.396Z] [hosting] hash cache [ZGlzdA] stored for 7 files
+[debug] [2018-12-20T07:05:21.396Z] [hosting][hash queue][FINAL]
+[debug] [2018-12-20T07:05:21.396Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/8d1cdafe8918445d:populateFiles  
+ <request body omitted>
+[debug] [2018-12-20T07:05:23.276Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:05:23.278Z] [hosting][populate queue][FINAL]
+[debug] [2018-12-20T07:05:23.278Z] [hosting] uploads queued: 1
+[debug] [2018-12-20T07:05:58.292Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T07:06:34.821Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T07:07:58.547Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[debug] [2018-12-20T07:09:24.619Z] ----------------------------------------------------------------------
+[debug] [2018-12-20T07:09:24.625Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug
+[debug] [2018-12-20T07:09:24.625Z] CLI Version:   6.1.1
+[debug] [2018-12-20T07:09:24.626Z] Platform:      win32
+[debug] [2018-12-20T07:09:24.626Z] Node Version:  v8.12.0
+[debug] [2018-12-20T07:09:24.627Z] Time:          Thu Dec 20 2018 15:09:24 GMT+0800 (Malay Peninsula Standard Time)
+[debug] [2018-12-20T07:09:24.628Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-20T07:09:24.642Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-20T07:09:24.643Z] > authorizing via signed-in user
+[debug] [2018-12-20T07:09:24.644Z] [iam] checking project prov-h-fae96 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-12-20T07:09:24.647Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prov-h-fae96:testIamPermissions  
+
+[debug] [2018-12-20T07:09:26.111Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:09:26.114Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:09:26.806Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prov-h-fae96'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-20T07:09:26.813Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T07:09:27.948Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database prov-h-fae96 is valid
+[debug] [2018-12-20T07:09:27.951Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:09:31.239Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-12-20T07:09:31.242Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96:test  
+
+[debug] [2018-12-20T07:09:32.581Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[debug] [2018-12-20T07:09:32.585Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions  
+
+[debug] [2018-12-20T07:09:35.038Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-12-20T07:09:35.041Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/rulesets  
+
+[debug] [2018-12-20T07:09:36.394Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:09:36.396Z] [rules] created ruleset projects/prov-h-fae96/rulesets/f244ef0d-78ac-4c6d-a2ad-aa16ad42c260
+[info] i  hosting[prov-h-fae96]: beginning deploy...
+[info] i  hosting[prov-h-fae96]: found 7 files in dist
+[debug] [2018-12-20T07:09:36.407Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-12-20T07:09:36.540Z] [hosting] hash cache [ZGlzdA] stored for 7 files
+[debug] [2018-12-20T07:09:36.541Z] [hosting][hash queue][FINAL]
+[debug] [2018-12-20T07:09:36.542Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/dad83a50ccde0dc7:populateFiles  
+ <request body omitted>
+[debug] [2018-12-20T07:09:38.093Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:09:38.098Z] [hosting][populate queue][FINAL]
+[debug] [2018-12-20T07:09:38.098Z] [hosting] uploads queued: 1
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:10:20.686Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:11:16.083Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:12:35.742Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:13:25.037Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:14:03.023Z] ----------------------------------------------------------------------
+[debug] [2018-12-20T07:14:03.029Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug
+[debug] [2018-12-20T07:14:03.029Z] CLI Version:   6.1.1
+[debug] [2018-12-20T07:14:03.029Z] Platform:      win32
+[debug] [2018-12-20T07:14:03.030Z] Node Version:  v8.12.0
+[debug] [2018-12-20T07:14:03.031Z] Time:          Thu Dec 20 2018 15:14:03 GMT+0800 (Malay Peninsula Standard Time)
+[debug] [2018-12-20T07:14:03.031Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-20T07:14:03.047Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-20T07:14:03.049Z] > authorizing via signed-in user
+[debug] [2018-12-20T07:14:03.050Z] [iam] checking project prov-h-fae96 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-12-20T07:14:03.054Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prov-h-fae96:testIamPermissions  
+
+[debug] [2018-12-20T07:14:04.481Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:14:04.484Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:14:05.287Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prov-h-fae96'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-20T07:14:05.294Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T07:14:06.409Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database prov-h-fae96 is valid
+[debug] [2018-12-20T07:14:06.412Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:14:08.303Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-12-20T07:14:08.307Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96:test  
+
+[debug] [2018-12-20T07:14:09.669Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[debug] [2018-12-20T07:14:09.673Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions  
+
+[debug] [2018-12-20T07:14:11.724Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-12-20T07:14:11.728Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/rulesets  
+
+[debug] [2018-12-20T07:14:12.398Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:14:12.400Z] [rules] created ruleset projects/prov-h-fae96/rulesets/def16fc1-a94d-4517-b855-2565c3d107f7
+[info] i  hosting[prov-h-fae96]: beginning deploy...
+[info] i  hosting[prov-h-fae96]: found 7 files in dist
+[debug] [2018-12-20T07:14:12.412Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-12-20T07:14:12.546Z] [hosting] hash cache [ZGlzdA] stored for 7 files
+[debug] [2018-12-20T07:14:12.548Z] [hosting][hash queue][FINAL]
+[debug] [2018-12-20T07:14:12.548Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/89867753d8a80380:populateFiles  
+ <request body omitted>
+[debug] [2018-12-20T07:14:14.094Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:14:14.098Z] [hosting][populate queue][FINAL]
+[debug] [2018-12-20T07:14:14.099Z] [hosting] uploads queued: 1
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:15:01.610Z] ----------------------------------------------------------------------
+[debug] [2018-12-20T07:15:01.617Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\VanHyori\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --debug
+[debug] [2018-12-20T07:15:01.617Z] CLI Version:   6.1.1
+[debug] [2018-12-20T07:15:01.618Z] Platform:      win32
+[debug] [2018-12-20T07:15:01.618Z] Node Version:  v8.12.0
+[debug] [2018-12-20T07:15:01.619Z] Time:          Thu Dec 20 2018 15:15:01 GMT+0800 (Malay Peninsula Standard Time)
+[debug] [2018-12-20T07:15:01.620Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-20T07:15:01.635Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-12-20T07:15:01.638Z] > authorizing via signed-in user
+[debug] [2018-12-20T07:15:01.638Z] [iam] checking project prov-h-fae96 for permissions ["firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-12-20T07:15:01.641Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/prov-h-fae96:testIamPermissions  
+
+[debug] [2018-12-20T07:15:02.811Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:15:02.816Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:15:03.843Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'prov-h-fae96'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-12-20T07:15:03.852Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T07:15:04.909Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database prov-h-fae96 is valid
+[debug] [2018-12-20T07:15:04.913Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/prov-h-fae96  
+ 
+[debug] [2018-12-20T07:15:06.722Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-12-20T07:15:06.726Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96:test  
+
+[debug] [2018-12-20T07:15:07.378Z] <<< HTTP RESPONSE 200
+[info] +  storage: rules file storage.rules compiled successfully
+[debug] [2018-12-20T07:15:07.383Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions  
+
+[debug] [2018-12-20T07:15:09.016Z] <<< HTTP RESPONSE 200
+[info] i  storage: uploading rules storage.rules...
+[debug] [2018-12-20T07:15:09.019Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/rulesets  
+
+[debug] [2018-12-20T07:15:10.879Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:15:10.881Z] [rules] created ruleset projects/prov-h-fae96/rulesets/6b7389a2-7bf8-4204-bd43-dbed6d8ee2b6
+[info] i  hosting[prov-h-fae96]: beginning deploy...
+[info] i  hosting[prov-h-fae96]: found 7 files in dist
+[debug] [2018-12-20T07:15:10.891Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2018-12-20T07:15:11.025Z] [hosting] hash cache [ZGlzdA] stored for 7 files
+[debug] [2018-12-20T07:15:11.027Z] [hosting][hash queue][FINAL]
+[debug] [2018-12-20T07:15:11.028Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/2dd09708e33fdc35:populateFiles  
+ <request body omitted>
+[debug] [2018-12-20T07:15:12.542Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:15:12.546Z] [hosting][populate queue][FINAL]
+[debug] [2018-12-20T07:15:12.546Z] [hosting] uploads queued: 1
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:16:25.618Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:17:37.941Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:18:29.176Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:19:52.485Z] [uploadQueue] Retrying task e733ab76426b9a16b7464632bd167a9a5808c045f1ecbdf8958af62821a1a824
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[info] i  hosting: uploading new files [0/1] (0%)
+[debug] [2018-12-20T07:21:34.966Z] [hosting][upload queue][FINAL]
+[info] +  hosting[prov-h-fae96]: file upload complete
+[debug] [2018-12-20T07:21:34.968Z] [hosting] deploy completed after 384086ms
+[info] i  database: releasing rules...
+[debug] [2018-12-20T07:21:35.282Z] >>> HTTP REQUEST PUT https://prov-h-fae96.firebaseio.com/.settings/rules.json  
+ {
+  "rules": {
+    ".read": "true",
+    ".write": "true"
+  }
+}
+
+[debug] [2018-12-20T07:21:36.215Z] <<< HTTP RESPONSE 200
+[info] +  database: rules for database prov-h-fae96 released successfully
+[debug] [2018-12-20T07:21:36.221Z] [rules] releasing firebase.storage/prov-h-fae96.appspot.com with ruleset projects/prov-h-fae96/rulesets/6b7389a2-7bf8-4204-bd43-dbed6d8ee2b6
+[debug] [2018-12-20T07:21:36.225Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/prov-h-fae96/releases/firebase.storage/prov-h-fae96.appspot.com  
+
+[debug] [2018-12-20T07:21:37.605Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:21:37.606Z] [rules] updated release projects/prov-h-fae96/releases/firebase.storage/prov-h-fae96.appspot.com
+[info] +  storage: released rules storage.rules to firebase.storage/prov-h-fae96.appspot.com
+[debug] [2018-12-20T07:21:37.608Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "prov-h-fae96"
+    },
+    "site": "prov-h-fae96",
+    "version": "sites/prov-h-fae96/versions/2dd09708e33fdc35"
+  }
+]
+[info] i  hosting[prov-h-fae96]: finalizing version...
+[debug] [2018-12-20T07:21:37.610Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/versions/2dd09708e33fdc35?updateMask=status  
+
+[debug] [2018-12-20T07:21:39.044Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:21:39.045Z] [hosting] finalized version for prov-h-fae96:
+[info] +  hosting[prov-h-fae96]: version finalized
+[info] i  hosting[prov-h-fae96]: releasing new version...
+[debug] [2018-12-20T07:21:39.048Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/prov-h-fae96/releases?version_name=sites/prov-h-fae96/versions/2dd09708e33fdc35  
+
+[debug] [2018-12-20T07:21:40.723Z] <<< HTTP RESPONSE 200
+[debug] [2018-12-20T07:21:40.725Z] [hosting] release:
+[info] +  hosting[prov-h-fae96]: release complete
+[info] 
+[info] +  Deploy complete!
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/prov-h-fae96/overview
+[info] Hosting URL: https://prov-h-fae96.firebaseapp.com

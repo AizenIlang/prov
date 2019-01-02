@@ -26,6 +26,7 @@ export class AppointmentsService {
   update(hospitalKey,appointment){
   //TODO ADD THE KEY FOR THE APPOINTMENTS INSTEAD
     console.log(appointment + " appointment.date");
+    appointment.status = "Pending";
     this.db.object("/Appointments/"+hospitalKey).update(appointment).then(ful =>{
         swal("Update Complete");
        
@@ -36,8 +37,14 @@ export class AppointmentsService {
     this.db.object("/UserAppointments/"+appointment.uid+"/"+appointment.key).update(appointment);
   }
 
-  delete(hospitalKey,appointmentkey){
+  delete(hospitalKey,appointmentkey,uid){
     this.db.object("/Appointments/"+hospitalKey+"/"+appointmentkey).remove();
+    this.db.object("/UserAppointments/"+uid+"/"+appointmentkey).remove();
+  }
+
+  appoint(hospitalKey,appointmentkey,uid){
+    this.db.object("/Appointments/"+hospitalKey+"/"+appointmentkey+"/status").set("Appointed");
+    this.db.object("/UserAppointments/"+uid+"/"+appointmentkey+"/status").set("Appointed");
   }
 
 }

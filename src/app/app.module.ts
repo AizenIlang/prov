@@ -29,6 +29,7 @@ import { AddcommentsComponent } from './addcomments/addcomments.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { DoctorsaddComponent } from './doctorsadd/doctorsadd.component';
 import { AppointmentassigndoctorComponent } from './appointmentassigndoctor/appointmentassigndoctor.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -58,6 +59,7 @@ import { AppointmentassigndoctorComponent } from './appointmentassigndoctor/appo
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatRadioModule,
     MaterialModule,
     MatTableModule,
     MatPaginatorModule,      
