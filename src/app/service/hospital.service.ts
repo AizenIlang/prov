@@ -31,6 +31,10 @@ export class HospitalService {
     });
   }
 
+  deleteHospital(key){
+
+  }
+
 
   
   createandPushHospital(path : string, hospital : Hospital ){

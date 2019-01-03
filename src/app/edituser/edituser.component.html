@@ -66,10 +66,11 @@
     </mat-form-field>
 
     <mat-radio-group class="example-radio-group fullwidth" [(ngModel)]="genderControl">
-        <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="genders">
+        <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
           {{gender}}
         </mat-radio-button>
     </mat-radio-group>
+    
 
     <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onValChange(group.value)">
         <mat-button-toggle value="left">
