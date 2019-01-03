@@ -160,7 +160,7 @@ export class EdituserComponent implements OnInit {
       this.userName,
       this.userKey,
       this.address,
-      this.genderControl);
+      this.genderControl.value);
 
     this.userService.update(user);
 

@@ -105,10 +105,15 @@ export class SignupComponent implements OnInit {
 
 
   bloods: BloodType[] = [
-    {name: 'O', type: 'O'},
-    {name: 'A', type: 'A'},
-    {name: 'AB', type: 'AB'},
-    {name: 'B', type: 'B'},
+    {name: 'A positive', type: 'A positive'},
+    {name: 'A negative', type: 'A negative'},
+    {name: 'B positive', type: 'B positive'},
+    {name: 'B negative', type: 'B negative'},
+    {name: 'B negative', type: 'B negative'},
+    {name: 'AB positive', type: 'AB positive'},
+    {name: 'AB negative', type: 'AB negative'},
+    {name: 'O positive', type: 'O positive'},
+    {name: 'O negative', type: 'O negative'},
   ];
 
 
