@@ -10,6 +10,8 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import {Observable} from 'rxjs';
 import { AddhospitalComponent } from '../addhospital/addhospital.component';
 import {EdituserComponent} from '../edituser/edituser.component';
+import {EdithospitalComponent} from '../edithospital/edithospital.component';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin',
@@ -31,7 +33,7 @@ export class AdminComponent implements OnInit {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
-  displayedColumnsHospital: string[] = ['Name','Address','ContactNumber','Email'];
+  displayedColumnsHospital: string[] = ['Name','Address','ContactNumber','Email','actionsColumn'];
   columnsToDisplayHospital: string[] = this.displayedColumnsHospital.slice();
   dataHospital: any;
 
@@ -105,7 +107,7 @@ export class AdminComponent implements OnInit {
     this.choiceisUser = false;
     this.choiceisHopital = true;
     console.log(this.choiceisHopital);
-    this.displayedColumns = ['Name','Address','ContactNumber','Email'];
+    this.displayedColumns = ['Name','Address','ContactNumber','Email','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadHospital();
@@ -196,6 +198,59 @@ export class AdminComponent implements OnInit {
     });
     
   }
+
+  editHospital(key){
+    let dialogRef = this.dialog.open(EdithospitalComponent, {
+      data : key
+    });
+  }
+
+  removeHospital(key){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Hospital file!",
+      type: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true     
+    })
+    .then((willDelete) => {
+      if (willDelete.value) {
+         this.hospitalService.deleteHospital(key);
+        swal({title:"Poof! Your Hospital file has been deleted!",
+          type: "success",
+        });
+      } else {
+        swal("Your Hospital file is safe!");
+      }
+    });
+
+    // swal({
+    //   title: "Are you sure?",
+    //   text: "Once deleted, you will not be able to recover this Appointment file!",
+    //   icon: 'warning',
+    //   buttons: {
+    //     cancel: "Cancel",
+    //     confirm: {
+    //       text : "Confirm",
+    //       value : true
+    //     },
+    //   }, 
+    // })
+    // .then((value) => {
+    //   console.log(value);
+    //   if (value) {
+    //     this.hospitalService.deleteHospital(key);
+        
+    //     swal({title:"Poof! Your Hospital file has been deleted!",
+    //       type: "success",
+    //     });
+    //   } else {
+    //     swal("Your Hospital file is safe!");
+    //   }
+    // });
+  }
+
+  //console
 
 }
 

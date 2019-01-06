@@ -32,7 +32,7 @@ export class HospitalService {
   }
 
   deleteHospital(key){
-
+    this.db.object('/Hospitals/'+key).remove();
   }
 
 
