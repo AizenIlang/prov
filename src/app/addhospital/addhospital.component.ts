@@ -7,6 +7,10 @@ import { tap, finalize } from 'rxjs/operators';
 import { Hospital} from '../Hospital';
 import { FormGroup, Validators,FormControl } from '@angular/forms';
 
+export interface Location {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-addhospital',
@@ -26,6 +30,27 @@ export class AddhospitalComponent implements OnInit {
   downloadURL : Observable<string>;
 
   isHovering : boolean;
+
+  selectedLocation : any;
+
+  Locations : Location[] = [
+    {value : 'Caloocan', viewValue : 'Caloocan'},
+    {value : 'Las Pinas', viewValue : 'Las Pinas'},
+    {value : 'Makati', viewValue : 'Makati'},
+    {value : 'Malabon', viewValue : 'Malabon'},
+    {value : 'Mandaluyong', viewValue : 'Mandaluyong'},
+    {value : 'Manila', viewValue : 'Manila'},
+    {value : 'Marikina', viewValue : 'Marikina'},
+    {value : 'Muntinlupa', viewValue : 'MuntinLupa'},
+    {value : 'Navotas', viewValue : 'Navotas'},
+    {value : 'Paranaque', viewValue: 'Paranaque'},
+    {value : 'Pasay', viewValue : 'Pasay'},
+    {value : 'Pasig', viewValue : 'Pasig'},
+    {value : 'Quezon City', viewValue :'Quezon City'},
+    {value : 'San Juan City, Metro Manila', viewValue : 'San Juan City, Metro Manila'},
+    {value : 'Taguig', viewValue : 'Taguig'},
+    {value : 'Valenzuela, Metro Manila', viewValue : 'Valenzuela, Metro Manila'}
+  ];
 
   form = new FormGroup({
     HospitalIDControl : new FormControl('',Validators.required),
@@ -133,7 +158,7 @@ export class AddhospitalComponent implements OnInit {
           tempHospital.Services = this.ServicesControl.value;
           tempHospital.Email = this.EmailControl.value;
           tempHospital.image = path;
-          tempHospital.Location = this.LocationControl.value;
+          tempHospital.Location = this.selectedLocation.value;
           tempHospital.Name = this.NameControl.value;
           tempHospital.Rating = this.RatingControl.value;
           
@@ -152,6 +177,13 @@ export class AddhospitalComponent implements OnInit {
     
    
 
+  }
+
+  selected(event) {
+   
+    
+    this.selectedLocation = event.value;
+    console.log(this.selectedLocation);
   }
 
 

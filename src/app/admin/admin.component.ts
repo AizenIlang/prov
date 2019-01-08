@@ -12,6 +12,7 @@ import { AddhospitalComponent } from '../addhospital/addhospital.component';
 import {EdituserComponent} from '../edituser/edituser.component';
 import {EdithospitalComponent} from '../edithospital/edithospital.component';
 import swal from 'sweetalert2';
+import {Chart } from 'chart.js';
 
 @Component({
   selector: 'app-admin',
@@ -53,6 +54,11 @@ export class AdminComponent implements OnInit {
 
   //END OF USAGE
 
+  //USAGE FOR CHART
+  
+  chartUser = [];
+  //END OF USAGE FOR CHART
+
   constructor(public dialog: MatDialog, private userService : UserService, private hospitalService : HospitalService, private router : Router) {
 
 
@@ -80,6 +86,8 @@ export class AdminComponent implements OnInit {
     
     this.changeUsers();
 
+
+   
   
   }
 
@@ -112,6 +120,41 @@ export class AdminComponent implements OnInit {
 
     this.loadHospital();
     
+  }
+
+  changeTools(){
+    this.chartUser = new Chart(
+      'canvasUser',
+      {type : 'doughnut',
+      data :{
+        datasets: [{
+          data : [10,20,30,10],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          '1st Week',
+          '2nd Week',
+          '3rd Week',
+          '4th Week'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
   }
 
   async loadUsers(){
@@ -185,6 +228,10 @@ export class AdminComponent implements OnInit {
     if(event.index == 1){
       this.changeHospital();
     }
+
+    if(event.index == 2){
+      this.changeTools();
+    }
     console.log('event => ', event);
     console.log('index => ', event.index);
     console.log('tab => ', event.tab);
@@ -250,7 +297,123 @@ export class AdminComponent implements OnInit {
     // });
   }
 
-  //console
+  reportUsersWeekly(){
+    
+    this.chartUser = new Chart(
+      'canvasUser',
+      {type : 'doughnut',
+      data :{
+        datasets: [{
+          data : [10,20,30,10],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          '1st Week',
+          '2nd Week',
+          '3rd Week',
+          '4th Week'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
+
+  }
+
+  reportUsersMonthly(){
+    this.chartUser = new Chart(
+      'canvasUser',
+      {type : 'line',
+      data :{
+        datasets: [{
+          data : [10,20,30,10,2,4,10,0,0,2,32,3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
+
+  }
+
+
+  reportUsersYearly(){
+    this.chartUser = new Chart(
+      'canvasUser',
+      {type : 'bar',
+      data :{
+        datasets: [{
+          data : [0,0,23,4],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          '2016',
+          '2017',
+          '2018',
+          '2019'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
+
+  }
 
 }
 

@@ -13,6 +13,11 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+export interface Location {
+  value: string;
+  viewValue: string;
+}
+
 
 @Component({
   selector: 'app-edithospital',
@@ -34,6 +39,8 @@ export class EdithospitalComponent implements OnInit {
 
   isHovering : boolean;
 
+  selectedLocation : any;
+
   HospitalID : number;
   Name : String;
   Location : String;
@@ -48,6 +55,25 @@ export class EdithospitalComponent implements OnInit {
   Key : String;
 
   theFile: any;
+
+  Locations : Location[] = [
+    {value : 'Caloocan', viewValue : 'Caloocan'},
+    {value : 'Las Pinas', viewValue : 'Las Pinas'},
+    {value : 'Makati', viewValue : 'Makati'},
+    {value : 'Malabon', viewValue : 'Malabon'},
+    {value : 'Mandaluyong', viewValue : 'Mandaluyong'},
+    {value : 'Manila', viewValue : 'Manila'},
+    {value : 'Marikina', viewValue : 'Marikina'},
+    {value : 'Muntinlupa', viewValue : 'MuntinLupa'},
+    {value : 'Navotas', viewValue : 'Navotas'},
+    {value : 'Paranaque', viewValue: 'Paranaque'},
+    {value : 'Pasay', viewValue : 'Pasay'},
+    {value : 'Pasig', viewValue : 'Pasig'},
+    {value : 'Quezon City', viewValue :'Quezon City'},
+    {value : 'San Juan City, Metro Manila', viewValue : 'San Juan City, Metro Manila'},
+    {value : 'Taguig', viewValue : 'Taguig'},
+    {value : 'Valenzuela, Metro Manila', viewValue : 'Valenzuela, Metro Manila'}
+  ];
 
   ngOnInit() {
     this.hospitalService.getSpecificHospital(this.data).valueChanges().subscribe(thedata =>{
@@ -117,7 +143,7 @@ export class EdithospitalComponent implements OnInit {
           tempHospital.Services = this.Services;
           tempHospital.Email = this.Email;
           tempHospital.image = path;
-          tempHospital.Location = this.Location;
+          tempHospital.Location = this.selectedLocation;
           tempHospital.Name = this.Name;
           tempHospital.Rating = this.Rating;                 
           
@@ -136,5 +162,13 @@ export class EdithospitalComponent implements OnInit {
    
 
   }
+
+  selected(event) {
+   
+    
+    this.selectedLocation = event.value;
+    console.log(this.selectedLocation);
+  }
+
 
 }

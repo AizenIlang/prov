@@ -175,7 +175,23 @@
         
     </mat-tab>
     
-    <mat-tab label="TOOLS"> TOOLS</mat-tab>
+    <mat-tab label="REPORTS"> 
+        <ng-container *ngIf="chartUser">
+            <h1>User reports</h1>
+            <div class="chart-container">
+                    <canvas id="canvasUser">
+                           
+                        </canvas>
+            </div>
+            <button mat-raised-button (click)="reportUsersWeekly()">Weekly</button>
+            <button mat-raised-button (click)="reportUsersMonthly()">Monthly</button>
+            <button mat-raised-button (click)="reportUsersYearly()">Yearly</button>
+
+        </ng-container>       
+       
+        
+        
+    </mat-tab>
   </mat-tab-group>
 
 </div>

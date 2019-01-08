@@ -18,12 +18,23 @@
   
     </mat-form-field>
   
-    <mat-form-field appearance="outline" class="fullwidth">
+    <!-- <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Location</mat-label>
   
       <input matInput [formControl]="LocationControl" type="text" placeholder="Location" />
   
-    </mat-form-field>
+    </mat-form-field> -->
+
+    <mat-form-field>
+        <mat-select placeholder="Location" [formControl]="LocationControl"  (selectionChange)="selected($event)">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let animal of Locations" [value]="animal.value">
+            {{animal.viewValue}}
+          </mat-option>
+        </mat-select>
+       
+      </mat-form-field>
+
   
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Address</mat-label>
