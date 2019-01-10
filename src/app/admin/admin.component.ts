@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewChild} from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {SignupComponent} from '../signup/signup.component';
 import { UserService } from '../service/user.service';
@@ -13,6 +13,8 @@ import {EdituserComponent} from '../edituser/edituser.component';
 import {EdithospitalComponent} from '../edithospital/edithospital.component';
 import swal from 'sweetalert2';
 import {Chart } from 'chart.js';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-admin',
@@ -23,6 +25,8 @@ export class AdminComponent implements OnInit {
   @ViewChild(MatSort) sort : MatSort;
   @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild('canvasUser') content : ElementRef;
+  
   UserList : any;
   HospitalList : any;
   checkMe : any;
@@ -30,7 +34,7 @@ export class AdminComponent implements OnInit {
   choiceisUser = true;
   choiceisHopital = false;
 
-  displayedColumns: string[] = ['userName','email','admin','hospitalMember','bloodType','date','firstName','middleName','lastName','actionsColumn'];
+  displayedColumns: string[] = ['userName','email','admin','hospitalMember','bloodType','gender','date','firstName','middleName','lastName','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
@@ -57,6 +61,9 @@ export class AdminComponent implements OnInit {
   //USAGE FOR CHART
   
   chartUser = [];
+  chartHospital = [];
+  chartAppointment = [];
+
   //END OF USAGE FOR CHART
 
   constructor(public dialog: MatDialog, private userService : UserService, private hospitalService : HospitalService, private router : Router) {
@@ -81,13 +88,9 @@ export class AdminComponent implements OnInit {
     this.userService.getUsers().valueChanges().subscribe(data=>{
       this.UserList;
     });
-
-
     
     this.changeUsers();
-
-
-   
+  
   
   }
 
@@ -105,7 +108,7 @@ export class AdminComponent implements OnInit {
     this.choiceisUser = true;
     this.choiceisHopital = false;
     console.log(this.choiceisHopital);
-    this.displayedColumns = ['userName','email','admin','hospitalMember','bloodType','date','firstName','middleName','lastName','actionsColumn'];
+    this.displayedColumns = ['userName','email','admin','hospitalMember','bloodType','gender','date','firstName','middleName','lastName','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadUsers();
@@ -123,26 +126,51 @@ export class AdminComponent implements OnInit {
   }
 
   changeTools(){
-    this.chartUser = new Chart(
-      'canvasUser',
-      {type : 'doughnut',
+    this.chartHospital = new Chart(
+      'canvasHospital',
+      {type : 'polarArea',
       data :{
         datasets: [{
-          data : [10,20,30,10],
+          data : [3,2,4,5,2,0,0,1,2,5,2,0,0,1,1,2],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
+            'rgba(25, 20, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(15, 10, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(2, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(2, 206, 86, 0.2)',
             'rgba(75, 192, 192, 0.2)',
             'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
+            'rgba(255, 1, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 1, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 1, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(2, 159, 64, 0.2)',
+
         ]
         }],
         labels: [
-          '1st Week',
-          '2nd Week',
-          '3rd Week',
-          '4th Week'
+          'Caloocan',
+          'Las Pinas',
+          'Makati',
+          'Malabon',
+          'Mandaluyong',
+          'Manila',
+          'Marikina',
+          'Muntinlupa',
+          'Navotas',
+          'Paranaque',
+          'Pasay',
+          'Pasig',
+          'Quezon City',
+          'San Juan, Metro Manila',
+          'Taguig',
+          'Valenzuela, Metro Manila'
         ]
       },
       options :{
@@ -155,6 +183,74 @@ export class AdminComponent implements OnInit {
       }
     
       });
+
+      this.chartUser = new Chart(
+        'canvasUser',
+        {type : 'doughnut',
+        data :{
+          datasets: [{
+            data : [10,20,30,10],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ]
+          }],
+          labels: [
+            '1st Week',
+            '2nd Week',
+            '3rd Week',
+            '4th Week'
+          ]
+        },
+        options :{
+          xAxes : [{
+            display: true
+          }],
+          yAxes : [{
+            display: true
+          }]
+        }
+      
+        });
+
+
+        this.chartAppointment = new Chart(
+          'canvasAppointment',
+          {type : 'doughnut',
+          data :{
+            datasets: [{
+              data : [2,1,4,3],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ]
+            }],
+            labels: [
+              '1st Week',
+              '2nd Week',
+              '3rd Week',
+              '4th Week'
+            ]
+          },
+          options :{
+            xAxes : [{
+              display: true
+            }],
+            yAxes : [{
+              display: true
+            }]
+          }
+        
+          });
+
   }
 
   async loadUsers(){
@@ -271,34 +367,13 @@ export class AdminComponent implements OnInit {
       }
     });
 
-    // swal({
-    //   title: "Are you sure?",
-    //   text: "Once deleted, you will not be able to recover this Appointment file!",
-    //   icon: 'warning',
-    //   buttons: {
-    //     cancel: "Cancel",
-    //     confirm: {
-    //       text : "Confirm",
-    //       value : true
-    //     },
-    //   }, 
-    // })
-    // .then((value) => {
-    //   console.log(value);
-    //   if (value) {
-    //     this.hospitalService.deleteHospital(key);
-        
-    //     swal({title:"Poof! Your Hospital file has been deleted!",
-    //       type: "success",
-    //     });
-    //   } else {
-    //     swal("Your Hospital file is safe!");
-    //   }
-    // });
   }
 
   reportUsersWeekly(){
-    
+    let resetMe : any;
+    resetMe = document.getElementById('canvasUser');
+    resetMe.width += 0;
+
     this.chartUser = new Chart(
       'canvasUser',
       {type : 'doughnut',
@@ -335,6 +410,9 @@ export class AdminComponent implements OnInit {
   }
 
   reportUsersMonthly(){
+    let resetMe : any;
+    resetMe = document.getElementById('canvasUser');
+    resetMe.width += 0;
     this.chartUser = new Chart(
       'canvasUser',
       {type : 'line',
@@ -380,6 +458,9 @@ export class AdminComponent implements OnInit {
 
 
   reportUsersYearly(){
+    let resetMe : any;
+    resetMe = document.getElementById('canvasUser');
+    resetMe.width += 0;
     this.chartUser = new Chart(
       'canvasUser',
       {type : 'bar',
@@ -412,6 +493,188 @@ export class AdminComponent implements OnInit {
       }
     
       });
+
+  }
+
+  reportAppointmentWeekly(){
+    this.chartAppointment = new Chart(
+      'canvasAppointment',
+      {type : 'doughnut',
+      data :{
+        datasets: [{
+          data : [2,1,4,3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          '1st Week',
+          '2nd Week',
+          '3rd Week',
+          '4th Week'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
+  }
+
+  reportAppointmentMonthly(){
+    let resetMe : any;
+    resetMe = document.getElementById('canvasAppointment');
+    resetMe.width += 0;
+    this.chartAppointment = new Chart(
+      'canvasAppointment',
+      {type : 'line',
+      data :{
+        datasets: [{
+          data : [10,20,30,10,2,4,10,0,0,2,32,3],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
+
+  }
+
+  reportAppointmentYearly(){
+    let resetMe : any;
+    resetMe = document.getElementById('canvasAppointment');
+    resetMe.width += 0;
+    this.chartAppointment = new Chart(
+      'canvasAppointment',
+      {type : 'bar',
+      data :{
+        datasets: [{
+          data : [0,0,33,30],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+        ]
+        }],
+        labels: [
+          '2016',
+          '2017',
+          '2018',
+          '2019'
+        ]
+      },
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }]
+      }
+    
+      });
+
+  }
+
+  downloadHospitalPDF(){
+    let doc = new jsPDF();
+
+    html2canvas(document.getElementById('canvasHospital')).then(can =>{
+      var imgData = can.toDataURL("image/png");
+      doc.setFontSize(40);
+      doc.text(30, 150, 'Hospital Report PROV-H');
+      doc.addImage(imgData,'JPEG',20,20);
+      doc.save('HospitalReports.pdf');
+    })
+  }
+
+
+  GenerateUserReport(){
+    
+
+   
+    var doc = new jsPDF("p", "mm", "a4");
+
+    var width = doc.internal.pageSize.getWidth();
+    var height = doc.internal.pageSize.getHeight();
+    html2canvas(document.getElementById('canvasUserTable')).then(can =>{
+      
+      var imgData = can.toDataURL("image/png");
+      doc.setFontSize(40);
+      doc.text(30, 18, 'UserTable Report PROV-H');
+      doc.addImage(imgData,'JPEG',0,30,width,0);
+      doc.save('UserTableReports.pdf');
+    })
+  }
+
+
+  downloadAppointmentPDF(){
+    let doc = new jsPDF();
+
+    html2canvas(document.getElementById('canvasAppointment')).then(can =>{
+      
+      var imgData = can.toDataURL("image/png");
+      doc.setFontSize(40);
+      doc.text(30, 150, 'Appointment Report PROV-H');
+      doc.addImage(imgData,'JPEG',20,20);
+      doc.save('AppointmentReports.pdf');
+    })
+  }
+
+  downloadUserPDF(){
+
+    
+    let doc = new jsPDF();
+
+    html2canvas(document.getElementById('canvasUser')).then(can =>{
+      var imgData = can.toDataURL("image/png");
+      doc.setFontSize(40);
+      doc.text(30, 150, 'User Report PROV-H');
+      doc.addImage(imgData,'JPEG',20,20);
+      doc.save('UserReports.pdf');
+    })
+  
 
   }
 

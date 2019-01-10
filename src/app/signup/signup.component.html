@@ -100,7 +100,9 @@
       <mat-label>Re-type Password</mat-label>
       <input matInput [formControl]="retypepasswordControl"  placeholder="Re-type Password" type="password" required />
 
-
+      <mat-error *ngIf="retypepasswordControl.hasError('passwordMatch')">
+          Password does not match
+      </mat-error>
 
 
     </mat-form-field>

@@ -3,6 +3,8 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 
 import { UserService } from '../service/user.service';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
+import {PasswordValidators} from '../common/validators/password.validators';
+
 
 
 
@@ -31,7 +33,9 @@ export class SignupComponent implements OnInit {
     addressControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
     dateControl : new FormControl('',Validators.required),
     passwordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
-    retypepasswordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    
+    retypepasswordControl : new FormControl('',[Validators.required,Validators.minLength(8),
+  PasswordValidators.passwordMatch]),
     emailControl : new FormControl('',[Validators.required,Validators.email]),
     bloodControl : new FormControl('', [Validators.required]),
     genderControl : new FormControl('',Validators.required)
