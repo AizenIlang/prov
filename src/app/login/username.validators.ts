@@ -6,7 +6,18 @@ export class UsernameValidators{
         if((control.value as string).indexOf(' ') >= 0)
             return {cannotContainSpace : true};
 
+               
         return null;    
+    }
+
+    static shouldContainUppercase(control : AbstractControl) : ValidationErrors | null{
+
+        
+        if (control.value == control.value.toUpperCase()) {
+            return {shouldContainUppercase : true};
+           }
+
+        return null;
     }
 
     static shouldBeUnique(control : AbstractControl) : Promise<ValidationErrors | null> {

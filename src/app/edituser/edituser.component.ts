@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Users } from '../Users';
 import { UserService } from '../service/user.service';
+
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Inject } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators ,FormGroup} from '@angular/forms';
 import { HospitalService } from '../service/hospital.service';
+import {PasswordValidators} from '../common/validators/password.validators';
 
 
 export interface BloodType {
@@ -20,7 +22,7 @@ export interface BloodType {
 })
 export class EdituserComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private route: ActivatedRoute, private userService: UserService,
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private route: ActivatedRoute, public userService: UserService,
     private hospitalService: HospitalService) { }
   user: any;
   key: string;
@@ -39,24 +41,83 @@ export class EdituserComponent implements OnInit {
   userName: String;
   userKey: String;
   address: String;
-  genderControl: String;
+  gender : String;
 
+  //forDropdown
+  hospitalName : any;
 
+  newBlood : BloodType = {
+    name : '',
+    type : ''
+  }
   genders: string[] = ['Male', 'Female'];
 
   selectedVal: boolean; // for hopsital member
   selectedValue: any; // for blood type;
   selectedValueHospital: any; //for hospital member;
 
-  bloodControl = new FormControl('', [Validators.required]);
-  // selectFormControl = new FormControl('', Validators.required);
-  animalControl = new FormControl('', [Validators.required]);
-  selectFormControl = new FormControl('', Validators.required);
-  hopsitalFormControl = new FormControl('', Validators.required);
-
+  form = new FormGroup({
+    firstNameControl : new FormControl(this.firstName,[Validators.required]),
+    middleNameControl : new FormControl(this.middleName,[Validators.required]),
+    lastNameControl : new FormControl(this.lastName,[Validators.required]),
+    addressControl : new FormControl(this.address,[Validators.required]),
+    bloodControl : new FormControl(this.newBlood, [Validators.required]),
+    userNameControl : new FormControl(this.userName,[Validators.required]),
+    // animalControl : new FormControl('', [Validators.required]),
+    // selectFormControl : new FormControl('', Validators.required),
+    hospitalFormControl : new FormControl(this.hospitalName, Validators.required),
+    dateControl : new FormControl('',[Validators.required]),
+    passwordControl : new FormControl('',[Validators.required]),
+    retypepasswordControl : new FormControl('',[Validators.required,PasswordValidators.passwordMatch]),
+    emailControl : new FormControl('',[Validators.required, Validators.email]),
+    genderControl : new FormControl('',[Validators.required])
+  });
+  get genderControl(){
+    return this.form.get('genderControl');
+  }
+  get emailControl(){
+    return this.form.get('emailControl');
+  }
+  get userNameControl(){
+    return this.form.get('userNameControl');
+  }
+  get firstNameControl(){
+    return this.form.get('firstNameControl');
+  }
+  get middleNameControl(){
+    return this.form.get('middleNameControl');
+  }
+  get lastNameControl(){
+    return this.form.get('lastNameControl');
+  }
+  get addressControl(){
+    return this.form.get('addressControl');
+  }
+  get dateControl(){
+    return this.form.get('dateControl');
+  }
+  get bloodControl(){
+    return this.form.get('bloodControl');
+  }
+  get animalControl(){
+    return this.form.get('animalControl');
+  }
+  get selectFormControl(){
+    return this.form.get('selectFormControl');
+  }
+  get hospitalFormControl(){
+    return this.form.get('hospitalFormControl');
+  }
+  get passwordControl(){
+    return this.form.get('passwordControl');
+  }
+  get retypepasswordControl(){
+    return this.form.get('retypepasswordControl');
+  }
+  
   HospitalList: any;
 
-  hospitals: any;
+  hospitals = [];
   bloods: BloodType[] = [
     {name: 'A positive', type: 'A positive'},
     {name: 'A negative', type: 'A negative'},
@@ -96,8 +157,10 @@ export class EdituserComponent implements OnInit {
       this.userName = this.user.userName;
       this.userKey = this.user.userKey;
       this.address = this.user.address;
-      this.genderControl = this.user.gender;
+      this.gender = this.user.gender;
 
+      this.bindNewValues();
+      this.bindMember()
     });
 
     this.loadHospital();
@@ -112,14 +175,26 @@ export class EdituserComponent implements OnInit {
     await this.HospitalList.snapshotChanges().subscribe(item => {
       item.forEach(element => {
         var y = element.payload.toJSON();
+        
+        
+        
+          if(y.Key == this.hospitalKey){
+            this.hospitalName = y;
+            
+            this.bindNewValues();
+          }
+      
         hospitalList.push(y);
+        
 
       })
-      console.log(hospitalList);
+ 
       this.hospitals = hospitalList;
-
-
-
+      
+      console.log("The Hospitals is IS NOW ****** " +this.hospitals);
+      console.log("The Hospitals is IS NOW ****** " + JSON.stringify(this.hospitals));
+      console.log("The Bloods ********* " + JSON.stringify(this.bloods));
+      this.bindNewValues();
     });
   }
 
@@ -133,6 +208,25 @@ export class EdituserComponent implements OnInit {
     }
     console.log("the Type is " + this.selectedVal);
     console.log("the Type is 2" + val);
+  }
+
+  memberType : any;
+  bindMember(){
+    
+    if(this.user.hospitalMember){
+      this.memberType = "true";
+      this.selectedVal = true;
+    }else{
+      this.memberType = "false";
+      this.selectedVal = false;
+    }
+
+    if(this.admin){
+      this.memberType = "left";
+      this.makeMeadmin = true;
+    }else{
+      this.makeMeadmin = false;
+    }
   }
 
   selectedHospital(event) {
@@ -161,11 +255,12 @@ export class EdituserComponent implements OnInit {
       this.lastName,
       this.selectedValue,
       this.date,
-      this.password,
+      this.passwordControl.value,
       this.userName,
       this.userKey,
       this.address,
-      this.genderControl);
+      this.genderControl.value,
+      Date());
 
     this.userService.update(user);
 
@@ -175,9 +270,33 @@ export class EdituserComponent implements OnInit {
    
     
     this.selectedValue = event.value.name;
-    console.log(this.selectedValue);
+    console.log(this.selectedValue + " is this the blood?");
 }
 
+bindNewValues(){
+  
+  
+  console.log("The Array is " + JSON.stringify(this.bloods) + " The Object " + JSON.stringify(this.newBlood));
+  console.log("The Hospitals " + this.hospitals + "The Object " + JSON.stringify(this.hospitalName));
+  this.newBlood.name = this.bloodType as string;
+  this.newBlood.type = this.bloodType as string;
+  this.form = new FormGroup({
+    firstNameControl : new FormControl(this.firstName,[Validators.required]),
+    middleNameControl : new FormControl(this.middleName,[Validators.required]),
+    lastNameControl : new FormControl(this.lastName,[Validators.required]),
+    addressControl : new FormControl(this.address,[Validators.required]),
+    bloodControl : new FormControl(this.newBlood, [Validators.required]),
+    userNameControl : new FormControl(this.userName,[Validators.required]),
+    // animalControl : new FormControl('', [Validators.required]),
+    // selectFormControl : new FormControl('', Validators.required),
+    hospitalFormControl : new FormControl(this.hospitalName, Validators.required),
+    dateControl : new FormControl(this.date,[Validators.required]),
+    passwordControl : new FormControl(this.password,[Validators.required]),
+    retypepasswordControl : new FormControl(this.password,[Validators.required,PasswordValidators.passwordMatch]),
+    emailControl : new FormControl(this.email,[Validators.required, Validators.email]),
+    genderControl : new FormControl(this.gender,[Validators.required])
+  });
+}
 
 }
 

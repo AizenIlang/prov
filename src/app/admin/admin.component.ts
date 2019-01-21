@@ -15,6 +15,10 @@ import swal from 'sweetalert2';
 import {Chart } from 'chart.js';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import { AppointmentsService } from '../service/appointments.service';
+import { FormControl } from '@angular/forms';
+import { ReportParserService } from '../service/report-parser.service';
+
 
 @Component({
   selector: 'app-admin',
@@ -29,18 +33,28 @@ export class AdminComponent implements OnInit {
   
   UserList : any;
   HospitalList : any;
+  AppointmentList : any;
   checkMe : any;
+
+  //Dates
+  date = new FormControl(new Date());
+  date2 = new FormControl(new Date());
 
   choiceisUser = true;
   choiceisHopital = false;
+  choiceisReport = false;
 
-  displayedColumns: string[] = ['userName','email','admin','hospitalMember','bloodType','gender','date','firstName','middleName','lastName','actionsColumn'];
+  displayedColumns: string[] = ['userName','email','type','bloodType','gender','date','firstName','middleName','lastName','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
   displayedColumnsHospital: string[] = ['Name','Address','ContactNumber','Email','actionsColumn'];
   columnsToDisplayHospital: string[] = this.displayedColumnsHospital.slice();
   dataHospital: any;
+
+  displayedColumnsAppointment: string[] = ['hospitalName','user','message','status','date'];
+  columnsToDisplayAppointment: string[] = this.displayedColumnsAppointment.slice();
+  dataAppointment: any;
 
 
   //ANGUAR FIRE STORAGE USAGE
@@ -62,11 +76,13 @@ export class AdminComponent implements OnInit {
   
   chartUser = [];
   chartHospital = [];
-  chartAppointment = [];
+  
 
   //END OF USAGE FOR CHART
 
-  constructor(public dialog: MatDialog, private userService : UserService, private hospitalService : HospitalService, private router : Router) {
+  constructor(public dialog: MatDialog, private userService : UserService, private hospitalService : HospitalService,
+     private router : Router, private appointmentService : AppointmentsService,
+     private reportService : ReportParserService) {
 
 
     this.checkMe = JSON.parse(localStorage.getItem('user'));
@@ -107,8 +123,9 @@ export class AdminComponent implements OnInit {
   changeUsers(){
     this.choiceisUser = true;
     this.choiceisHopital = false;
+    this.choiceisReport = false;
     console.log(this.choiceisHopital);
-    this.displayedColumns = ['userName','email','admin','hospitalMember','bloodType','gender','date','firstName','middleName','lastName','actionsColumn'];
+    this.displayedColumns = ['userName','email','type','bloodType','gender','date','firstName','middleName','lastName','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadUsers();
@@ -117,6 +134,7 @@ export class AdminComponent implements OnInit {
   changeHospital(){
     this.choiceisUser = false;
     this.choiceisHopital = true;
+    this.choiceisReport = false;
     console.log(this.choiceisHopital);
     this.displayedColumns = ['Name','Address','ContactNumber','Email','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
@@ -126,9 +144,17 @@ export class AdminComponent implements OnInit {
   }
 
   changeTools(){
+    this.choiceisUser = false;
+    this.choiceisHopital = false;
+    this.choiceisReport = true;
+
+    // this.displayedColumns = ['hospitalName','user','firstName','lastName','gender','doctor','expertise','message','status','date'];
+    // this.columnsToDisplay = this.displayedColumns.slice();
+    // this.chartReportAppointment();
+
     this.chartHospital = new Chart(
       'canvasHospital',
-      {type : 'polarArea',
+      {type : 'bar',
       data :{
         datasets: [{
           data : [3,2,4,5,2,0,0,1,2,5,2,0,0,1,1,2],
@@ -218,38 +244,7 @@ export class AdminComponent implements OnInit {
         });
 
 
-        this.chartAppointment = new Chart(
-          'canvasAppointment',
-          {type : 'doughnut',
-          data :{
-            datasets: [{
-              data : [2,1,4,3],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ]
-            }],
-            labels: [
-              '1st Week',
-              '2nd Week',
-              '3rd Week',
-              '4th Week'
-            ]
-          },
-          options :{
-            xAxes : [{
-              display: true
-            }],
-            yAxes : [{
-              display: true
-            }]
-          }
         
-          });
 
   }
 
@@ -263,7 +258,8 @@ export class AdminComponent implements OnInit {
       userManagerList = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
-        userManagerList.push(y);
+        let userObject = this.reportService.userObjectParse(y);
+        userManagerList.push(userObject);
  
       })
       console.log(userManagerList + "The user Manager") ;
@@ -273,6 +269,9 @@ export class AdminComponent implements OnInit {
       this.data.paginator = this.paginator;
       
     });
+
+
+    
   }
 
   //NOT BEING USED YET
@@ -496,126 +495,48 @@ export class AdminComponent implements OnInit {
 
   }
 
-  reportAppointmentWeekly(){
-    this.chartAppointment = new Chart(
-      'canvasAppointment',
-      {type : 'doughnut',
-      data :{
-        datasets: [{
-          data : [2,1,4,3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ]
-        }],
-        labels: [
-          '1st Week',
-          '2nd Week',
-          '3rd Week',
-          '4th Week'
-        ]
-      },
-      options :{
-        xAxes : [{
-          display: true
-        }],
-        yAxes : [{
-          display: true
-        }]
-      }
-    
-      });
-  }
+  async chartReportAppointment(){
+    var appointmentList= [];
+    var tempAppointment = [];
+    this.dataAppointment = new MatTableDataSource(appointmentList);   
+    this.AppointmentList =  await this.appointmentService.getAppointments();
+    await this.AppointmentList.snapshotChanges().subscribe(item =>{
+      tempAppointment = [];
+      appointmentList = [];
+      
+      console.log("THE BEGINIG");
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        console.log(y);
+        tempAppointment.push(y);
+        
+         
+        });
 
-  reportAppointmentMonthly(){
-    let resetMe : any;
-    resetMe = document.getElementById('canvasAppointment');
-    resetMe.width += 0;
-    this.chartAppointment = new Chart(
-      'canvasAppointment',
-      {type : 'line',
-      data :{
-        datasets: [{
-          data : [10,20,30,10,2,4,10,0,0,2,32,3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ]
-        }],
-        labels: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
-        ]
-      },
-      options :{
-        xAxes : [{
-          display: true
-        }],
-        yAxes : [{
-          display: true
-        }]
+      
+      for(let app of tempAppointment){
+        console.log(app);
+        for(let tec in app){
+           console.log("test " + tec);
+           let value = app[tec];
+           console.log("The value " + value);
+           appointmentList.push(value);
+        }
       }
+      console.log(appointmentList);
+      this.dataAppointment = new MatTableDataSource(appointmentList);
+      this.dataAppointment.sort = this.sort;
+      this.dataAppointment.paginator = this.paginator; 
+      })
+      // console.log(appointmentList);
+      
+
+      
+      
     
-      });
 
   }
-
-  reportAppointmentYearly(){
-    let resetMe : any;
-    resetMe = document.getElementById('canvasAppointment');
-    resetMe.width += 0;
-    this.chartAppointment = new Chart(
-      'canvasAppointment',
-      {type : 'bar',
-      data :{
-        datasets: [{
-          data : [0,0,33,30],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ]
-        }],
-        labels: [
-          '2016',
-          '2017',
-          '2018',
-          '2019'
-        ]
-      },
-      options :{
-        xAxes : [{
-          display: true
-        }],
-        yAxes : [{
-          display: true
-        }]
-      }
-    
-      });
-
-  }
+  
 
   downloadHospitalPDF(){
     let doc = new jsPDF();
@@ -641,7 +562,7 @@ export class AdminComponent implements OnInit {
     html2canvas(document.getElementById('canvasUserTable')).then(can =>{
       
       var imgData = can.toDataURL("image/png");
-      doc.setFontSize(40);
+      doc.setFontSize(30);
       doc.text(30, 18, 'UserTable Report PROV-H');
       doc.addImage(imgData,'JPEG',0,30,width,0);
       doc.save('UserTableReports.pdf');
@@ -650,14 +571,16 @@ export class AdminComponent implements OnInit {
 
 
   downloadAppointmentPDF(){
-    let doc = new jsPDF();
+    var doc = new jsPDF("p", "mm", "a4");
 
-    html2canvas(document.getElementById('canvasAppointment')).then(can =>{
+    var width = doc.internal.pageSize.getWidth();
+    var height = doc.internal.pageSize.getHeight();
+    html2canvas(document.getElementById('canvasAppointmentTable')).then(can =>{
       
       var imgData = can.toDataURL("image/png");
-      doc.setFontSize(40);
-      doc.text(30, 150, 'Appointment Report PROV-H');
-      doc.addImage(imgData,'JPEG',20,20);
+      doc.setFontSize(30);
+      doc.text(30, 18, 'Appointment Report PROV-H');
+      doc.addImage(imgData,'JPEG',0,30,width,0);
       doc.save('AppointmentReports.pdf');
     })
   }
@@ -677,6 +600,79 @@ export class AdminComponent implements OnInit {
   
 
   }
+
+  formatDate(date : Date) : string{
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    console.log(`${year}-${month}-${day}`);
+    return `${month}-${day}-${year}`;
+
+  }
+
+  async filterTestDate(){
+    // let start = "01-02-2017";
+    // let end = "01-07-2019";
+
+    let start = this.formatDate(this.date.value);
+    let end = this.formatDate(this.date2.value);
+
+    var appointmentList= [];
+    var tempAppointment = [];
+    this.dataAppointment = new MatTableDataSource(appointmentList);   
+    this.AppointmentList =  await this.appointmentService.getAppointments();
+    await this.AppointmentList.snapshotChanges().subscribe(item =>{
+      tempAppointment = [];
+      appointmentList = [];
+      
+      console.log("THE BEGINIG");
+      item.forEach(element => {
+        var y = element.payload.toJSON();
+        console.log(y);
+        tempAppointment.push(y);
+        
+         
+        });
+
+      
+      for(let app of tempAppointment){
+        console.log(app);
+        for(let tec in app){
+           console.log("test " + tec);
+           let value = app[tec];
+           console.log("The value " + value);
+           appointmentList.push(value);
+        }
+      }
+
+      let selectedMembers = appointmentList.filter(
+        m => new Date(m.date) >= new Date(start) && new Date(m.date) <= new Date(end)
+        );
+      console.log(appointmentList);
+      this.dataAppointment = new MatTableDataSource(selectedMembers);
+      this.dataAppointment.sort = this.sort;
+      this.dataAppointment.paginator = this.paginator; 
+      })
+
+
+
+    
+  }
+
+  //SWITCHING SECTION
+  switchReportHospitalAdmin(){
+    this.router.navigate(['/hospitalreport']);
+  }
+
+  switchReportAppointmentReport(){
+    this.router.navigate(['/adminappointmentreport']);
+  }
+
+  switchReportUserAdmin(){
+    this.router.navigate(['/userreports']);
+  }
+
+  //END OF SWITCHING
 
 }
 

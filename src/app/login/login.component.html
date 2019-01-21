@@ -3,10 +3,10 @@
 <mat-card class="loginCard"> 
 <form [formGroup]="form" (ngSubmit)="login()" >
 
-      <mat-form-field appearance="outline" class="fullwidth">
+      <mat-form-field appearance="outline" class="logininput">
        
         <mat-label>Username</mat-label>
-        <input formControlName="username" class="fullwidth" matInput placeholder="Username">
+        <input formControlName="username" class="logininput" matInput placeholder="Username">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
             
@@ -17,9 +17,9 @@
           </div>
       </mat-form-field>
     <p>
-        <mat-form-field appearance="outline" class="fullwidth">
+        <mat-form-field appearance="outline" class="logininput">
             <mat-label>Password</mat-label>
-            <input type="password" class="fullwidth" formControlName="password" matInput placeholder="Password">
+            <input type="password" class="logininput" formControlName="password" matInput placeholder="Password">
             
           </mat-form-field>
     </p>
@@ -29,6 +29,8 @@
      
     
 </form>
-<p><button type="button" class="fullwidth" mat-button (click)="onCreate()">Sign Up</button></p>
-<p><button type="button" class="fullwidth" routerLink="" mat-button >Back</button></p>
+<p><button type="button" class="fullwidth" mat-button (click)="onCreate()"><mat-icon>create</mat-icon> Sign Up</button></p>
+<p><button mat-button (click)="ResetPass()" class="fullwidth">Reset Password</button></p>
+<p><button type="button" class="fullwidth" routerLink="" mat-button ><mat-icon>arrow_back</mat-icon> Back</button></p>
+
 </mat-card>

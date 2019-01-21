@@ -11,7 +11,7 @@
 
 
     <ng-container *ngIf="userService.isLoggedIn">
-        <p >Welcome, {{userService.user.firstName}} {{userService.user.lastName}}</p><button mat-icon-button (click)="logout()"><mat-icon class="example-icon">power_settings_new</mat-icon></button> 
+        <a routerLink="/profile">Welcome, {{userService.user.firstName}} {{userService.user.lastName}}</a><button mat-icon-button (click)="logout()"><mat-icon class="example-icon">power_settings_new</mat-icon></button> 
     </ng-container>
    
   </mat-toolbar-row>
@@ -33,7 +33,10 @@
  
   
     <mat-sidenav-content >
-        <router-outlet></router-outlet>
+        <div class="marginator">
+                <router-outlet></router-outlet>
+        </div>
+        
     </mat-sidenav-content>
   </mat-sidenav-container>
   

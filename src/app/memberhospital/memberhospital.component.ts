@@ -26,6 +26,7 @@ export class MemberhospitalComponent implements OnInit {
   Hospital: any;
   user: any;
 
+  
 
 
   displayedColumns: string[] = ['userName','user','message', 'status', 'type', 'date','doctor','actionsColumn'];
@@ -50,7 +51,8 @@ export class MemberhospitalComponent implements OnInit {
     private hosptialService: HospitalService,
     private appointmentService: AppointmentsService,
     private commentService: CommentsService,
-    private doctorService: DoctorsService) { }
+    private doctorService: DoctorsService,
+    private route : Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -245,6 +247,10 @@ export class MemberhospitalComponent implements OnInit {
 
 
 
+  }
+
+  switchtoAppointment(){
+    this.route.navigate(['reportappointment']);
   }
 
   appoint(appkey,uid){

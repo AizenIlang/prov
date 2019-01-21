@@ -1,229 +1,227 @@
 <div class="marginme">
 
 
-<mat-tab-group (selectedTabChange)="onLinkClick($event)">
-    <mat-tab label="USERS"> 
-      <br> 
-      <button mat-raised-button color="primary" (click)="AddUser()">Add User <mat-icon>add_box</mat-icon></button>
-      <button mat-raised-button color="warning" (click)="GenerateUserReport()">Generate Report <mat-icon>assessment</mat-icon></button>
-      <br>
-      
-      <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
+    <mat-tab-group (selectedTabChange)="onLinkClick($event)">
+        <mat-tab label="USERS">
+            <br>
+            <button mat-raised-button color="primary" (click)="AddUser()">Add User <mat-icon>add_box</mat-icon></button>
+            <button mat-raised-button color="warning" (click)="GenerateUserReport()">Generate Report <mat-icon>assessment</mat-icon></button>
+            <br>
 
-      <div *ngIf="choiceisUser" id="canvasUserTable">
-          <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
 
-              <!--- Note that these columns can be defined in any order.
+            <div *ngIf="choiceisUser" id="canvasUserTable">
+                <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
                                     The actual rendered columns are set as a property on the row definition" -->
-    
-              <!-- Position Column -->
-              <ng-container matColumnDef="userName">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
-                  <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
-              </ng-container>
-    
-              <!-- Name Column -->
-              <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-              </ng-container>
 
-              <ng-container matColumnDef="hospitalMember">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-                    <td mat-cell *matCellDef="let element">
-                    <ng-container *ngIf="element.hospitalMember">
-                        
-                        Hospital Member
-                    </ng-container>    
-                    <ng-container *ngIf="!element.hospitalMember">
-                        
-                        User
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="userName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> UserName </th>
+                        <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
                     </ng-container>
-                    </td>
-                </ng-container>
 
-                <!-- Name Column -->
-              <ng-container matColumnDef="admin">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin </th>
-                    <td mat-cell *matCellDef="let element">
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                        <td mat-cell *matCellDef="let element">
+                           {{element.type}}
+                        </td>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="hospitalMember">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                        <td mat-cell *matCellDef="let element">
+                            <ng-container *ngIf="element.hospitalMember">
+
+                                Hospital Member
+                            </ng-container>
+                            <ng-container *ngIf="!element.hospitalMember">
+
+                                User
+                            </ng-container>
+                        </td>
+                    </ng-container> -->
+
+                    <!-- Name Column -->
+                    <!-- <ng-container matColumnDef="admin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin </th>
+                        <td mat-cell *matCellDef="let element">
                             <ng-container *ngIf="element.admin">
-                                    Admin
-                                </ng-container>
-                                <ng-container *ngIf="!element.admin">
-                                    Client
-                                </ng-container>    
-                    </td>
-                </ng-container>
-    
-              <!-- Name Column -->
-              <ng-container matColumnDef="bloodType">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </th>
-                  <td mat-cell *matCellDef="let element"> {{element.bloodType}} </td>
-              </ng-container>
+                                Admin
+                            </ng-container>
+                            <ng-container *ngIf="!element.admin">
+                                Client
+                            </ng-container>
+                        </td>
+                    </ng-container> -->
 
-              <ng-container matColumnDef="gender">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
-                    <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
-                </ng-container>
-    
-              <!-- Name Column -->
-              <!-- <ng-container matColumnDef="isAdmin">
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="bloodType">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </th>
+                        <td mat-cell *matCellDef="let element"> {{element.bloodType}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="gender">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+                        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <!-- <ng-container matColumnDef="isAdmin">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Admin </th>
                   <td mat-cell *matCellDef="let element"> {{element.isAdmin}} </td>
               </ng-container> -->
-    
-                <!-- Name Column -->
-                <ng-container matColumnDef="date">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                </ng-container>
-    
-                  <!-- Name Column -->
-              <ng-container matColumnDef="firstName">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
-                  <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-              </ng-container>
-    
-                <!-- Name Column -->
-                <ng-container matColumnDef="middleName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> MiddleName </th>
-                    <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
-                </ng-container>
-    
-                  <!-- Name Column -->
-              <ng-container matColumnDef="lastName">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-                  <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-              </ng-container>
-    
-              <ng-container matColumnDef="actionsColumn">
-                  <th mat-header-cell *matHeaderCellDef>
-                      Tools
-                  </th>
-                      
-                 
-                  <td mat-cell *matCellDef="let element"> <button mat-button (click)="editUser(element.userKey)"><mat-icon>brush</mat-icon></button> </td>
-              </ng-container>
-    
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-    
-          <mat-paginator [pageSizeOptions]="[7,14,21]" showFirstLastButtons></mat-paginator>
-      </div>
-     
 
-    </mat-tab>
-    <mat-tab label="HOSPITALS"> 
-      <br>
-      
-        
-        <button mat-raised-button color="primary" (click)="AddHospital()">Add Hospital <mat-icon>add_box</mat-icon></button>
-        <br>
-        <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-              </mat-form-field>
-          
-    <div *ngIf="choiceisHopital">
-        <table mat-table [dataSource]="dataHospital" matSort class="mat-elevation-z8">
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                    </ng-container>
 
-            <!--- Note that these columns can be defined in any order.
-                                  The actual rendered columns are set as a property on the row definition" -->
-    
-            <!-- Position Column -->
-    
-            <ng-container matColumnDef="Name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Hosital Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
-            </ng-container>
-    
-            <!-- Name Column -->
-            <ng-container matColumnDef="Address">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-                <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
-            </ng-container>
-    
-            <!-- Name Column -->
-            <ng-container matColumnDef="ContactNumber">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
-                <td mat-cell *matCellDef="let element"> {{element.ContactNumber}} </td>
-            </ng-container>
-    
-            <!-- Name Column -->
-            <ng-container matColumnDef="Email">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
-            </ng-container>
-    
-            <ng-container matColumnDef="actionsColumn">
-                    <th mat-header-cell *matHeaderCellDef>
-                        Tools
-                    </th>
-                        
-                   
-                    <td mat-cell *matCellDef="let element"> 
-                            <button mat-raised-button color="primary" (click)="editHospital(element.Key)" mat-raised-button color="primary"><mat-icon>brush</mat-icon></button>
-                        <button mat-raised-button color="warn" (click)="removeHospital(element.Key)"><mat-icon>clear</mat-icon></button>
-                        
-                    </td>
-                </ng-container>
-    
-    
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    
-        <mat-paginator [pageSizeOptions]="[7,14,21]" showFirstLastButtons></mat-paginator>
-    </div>
-    
-        
-    </mat-tab>
-    
-    <mat-tab label="CHART REPORTS"> 
-        <ng-container *ngIf="chartUser">
-            <h1>User reports</h1>
-            <div class="chart-container">
-                    <canvas id="canvasUser">
-                           
-                        </canvas>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
+                        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="middleName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> MiddleName </th>
+                        <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="lastName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actionsColumn">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Tools
+                        </th>
+
+
+                        <td mat-cell *matCellDef="let element"> <button mat-button (click)="editUser(element.userKey)">
+                                <mat-icon>brush</mat-icon>
+                            </button> </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[7,14,21]" showFirstLastButtons></mat-paginator>
             </div>
-            <button mat-raised-button (click)="reportUsersWeekly()">Weekly</button>
-            <button mat-raised-button (click)="reportUsersMonthly()">Monthly</button>
-            <button mat-raised-button (click)="reportUsersYearly()">Yearly</button>
-            <button mat-raised-button (click)="downloadUserPDF()">Download</button>
 
-        </ng-container>       
-        <ng-container *ngIf="chartHospital">
-                <h1>Hospital reports</h1>
+
+        </mat-tab>
+        <mat-tab label="HOSPITALS">
+            <br>
+
+
+            <button mat-raised-button color="primary" (click)="AddHospital()">Add Hospital <mat-icon>add_box</mat-icon></button>
+            <br>
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+
+            <div *ngIf="choiceisHopital">
+                <table mat-table [dataSource]="dataHospital" matSort class="mat-elevation-z8">
+
+                    <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+
+                    <!-- Position Column -->
+
+                    <ng-container matColumnDef="Name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hosital Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="Address">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="ContactNumber">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ContactNumber}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="Email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actionsColumn">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Tools
+                        </th>
+
+
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-raised-button color="primary" (click)="editHospital(element.Key)"
+                                mat-raised-button color="primary">
+                                <mat-icon>brush</mat-icon>
+                            </button>
+                            <button mat-raised-button color="warn" (click)="removeHospital(element.Key)">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+
+                        </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[7,14,21]" showFirstLastButtons></mat-paginator>
+            </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="CHART REPORTS">
+            <br>
+                <button (click)="switchReportUserAdmin()" mat-raised-button><mat-icon>portrait</mat-icon> User Reports</button>
+                <button (click)="switchReportAppointmentReport()" mat-raised-button><mat-icon>insert_chart</mat-icon> Appointment Reports</button>
+                <button (click)="switchReportHospitalAdmin()" mat-raised-button><mat-icon>local_hospital</mat-icon> Hospital Reports</button>
+  
+            <ng-container *ngIf="chartHospital">
+                <h1>Total Hospital of PROV-H</h1>
                 <div class="chart-container">
-                        <canvas id="canvasHospital">
-                               
-                            </canvas>
+                    <canvas id="canvasHospital">
+
+                    </canvas>
                 </div>
+
                 
-                <button mat-raised-button (click)="downloadHospitalPDF()">Download</button>
-    
-        </ng-container>
+
+                <button mat-raised-button (click)="downloadHospitalPDF()"><mat-icon>poll</mat-icon>Generate Total Hospital PDF</button>
+                
+            </ng-container>
+
+
         
-        <ng-container *ngIf="chartAppointment">
-                <h1>Appointment reports</h1>
-                <div class="chart-container">
-                        <canvas id="canvasAppointment">
-                               
-                            </canvas>
-                </div>
-                <button mat-raised-button (click)="reportAppointmentWeekly()">Weekly</button>
-                <button mat-raised-button (click)="reportAppointmentMonthly()">Monthly</button>
-                <button mat-raised-button (click)="reportAppointmentYearly()">Yearly</button>
-                <button mat-raised-button (click)="downloadAppointmentPDF()">Download</button>
-    
-        </ng-container>  
-       
-        
-        
-    </mat-tab>
-  </mat-tab-group>
+
+
+
+
+        </mat-tab>
+    </mat-tab-group>
 
 </div>

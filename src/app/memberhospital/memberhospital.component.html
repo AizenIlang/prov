@@ -1,81 +1,89 @@
-
 <ng-container *ngIf="HospitalObject">
     <h1>{{HospitalObject.Name}}</h1>
 </ng-container>
 
 <mat-tab-group (selectedTabChange)="onLinkClick($event)">
-   
-            <mat-tab label="Appointments">
-                    <div *ngIf="choiceAppointments">
-                    <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
-            
-                        <ng-container matColumnDef="userName">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
-                            <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
-                        </ng-container>
 
-                        <ng-container matColumnDef="user">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </th>
-                            <td mat-cell *matCellDef="let element"> {{element.user.bloodType}} </td>
-                        </ng-container>
-            
-                        <ng-container matColumnDef="message">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Message </th>
-                            <td mat-cell *matCellDef="let element"> {{element.message}} </td>
-                        </ng-container>
-            
-            
-                        <ng-container matColumnDef="status">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-                            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-                        </ng-container>
-            
-            
-                        <ng-container matColumnDef="type">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-                            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-                        </ng-container>
-            
-            
-            
-            
-                        <ng-container matColumnDef="date">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-                        </ng-container>
-            
-                        <ng-container matColumnDef="doctor">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </th>           
-            
-                            <td mat-cell *matCellDef="let element"> {{element.doctor.firstName}} {{element.doctor.lastName}} </td>
-                        </ng-container>
-            
-                        <ng-container matColumnDef="actionsColumn">
-                            <th mat-header-cell *matHeaderCellDef>
-                                Tools
-                            </th>
-                                
-                           
-                            <td mat-cell *matCellDef="let element"> 
-                                    <button mat-raised-button color="primary" (click)="appoint(element.key,element.uid)"><mat-icon>accessible_forward</mat-icon></button>
-                                <button mat-raised-button (click)="editAppointment(element.key)"><mat-icon>brush</mat-icon></button> 
-                                <button mat-raised-button color="accent" (click)="assignDoctor(element.key)"><mat-icon>assignment_ind</mat-icon></button> 
-                                <button mat-raised-button color="warn" (click)="removeAppointment(element.key,element.uid)"><mat-icon>clear</mat-icon></button>
-                            </td>
-                        </ng-container>
-            
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-            
-                    <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
-                </div>
-                </mat-tab>
-    
-   
+    <mat-tab label="Appointments">
+        <div *ngIf="choiceAppointments">
+            <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
 
-        <mat-tab label="Comments">
-                <div *ngIf="choiceComments">
+                <ng-container matColumnDef="userName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+                    <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="user">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Blood Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.user.bloodType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="message">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Message </th>
+                    <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                </ng-container>
+
+
+
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="doctor">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </th>
+
+                    <td mat-cell *matCellDef="let element"> {{element.doctor.firstName}} {{element.doctor.lastName}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actionsColumn">
+                    <th mat-header-cell *matHeaderCellDef>
+                        Tools
+                    </th>
+
+
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button color="primary" (click)="appoint(element.key,element.uid)">
+                            <mat-icon>accessible_forward</mat-icon>
+                        </button>
+                        <button mat-raised-button (click)="editAppointment(element.key)">
+                            <mat-icon>brush</mat-icon>
+                        </button>
+                        <button mat-raised-button color="accent" (click)="assignDoctor(element.key)">
+                            <mat-icon>assignment_ind</mat-icon>
+                        </button>
+                        <button mat-raised-button color="warn" (click)="removeAppointment(element.key,element.uid)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-tab>
+
+
+
+    <mat-tab label="Comments">
+        <div *ngIf="choiceComments">
             <table mat-table [dataSource]="dataComments" matSort class="mat-elevation-z8">
 
 
@@ -105,72 +113,78 @@
 
             <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
         </div>
-        </mat-tab>
-        <mat-tab label="Doctors">
-                <br> 
-                <button mat-raised-button color="primary" (click)="addDoctor()">Add Doctor <mat-icon>add_box</mat-icon></button>
-                <br>
-            <div *ngIf="choiceDoctors">
-        <table mat-table [dataSource]="dataDoctors" matSort class="mat-elevation-z8">
+    </mat-tab>
+    <mat-tab label="Doctors">
+        <br>
+        <button mat-raised-button color="primary" (click)="addDoctor()">Add Doctor <mat-icon>add_box</mat-icon></button>
+        <br>
+        <div *ngIf="choiceDoctors">
+            <table mat-table [dataSource]="dataDoctors" matSort class="mat-elevation-z8">
 
 
-            <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-            </ng-container>
+                <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                </ng-container>
 
 
-            <ng-container matColumnDef="middleName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
-            </ng-container>
+                <ng-container matColumnDef="middleName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.middleName}} </td>
+                </ng-container>
 
 
-            <ng-container matColumnDef="lastName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-            </ng-container>
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
 
-            <ng-container matColumnDef="service">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
-                <td mat-cell *matCellDef="let element"> {{element.service}} </td>
-            </ng-container>
-
-
+                <ng-container matColumnDef="service">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Service </th>
+                    <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                </ng-container>
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
 
-        <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
-    </div>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
+        </div>
     </mat-tab>
 
-        <mat-tab label="Tools">
-            <ng-container *ngIf="HospitalObject">
-                <mat-card class="example-card">
-                    <mat-card-header>
-                    
-                         
-                     
-                      <mat-card-title>{{HospitalObject.Name}}</mat-card-title>
-                      <mat-card-subtitle>{{HospitalObject.Location}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <ng-container *ngIf="picture">
-                        <img mat-card-image [src]="picture" alt="Photo of a Shiba Inu">
-                    </ng-container>
-                    
-                    <mat-card-content>
-                      <p>
-                        {{HospitalObject.Details}}
-                      </p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                      <button (click)="editHospital()" mat-raised-button color="primary">EDIT</button>
-                     
-                    </mat-card-actions>
-                  </mat-card>
+    <mat-tab label="Tools">
+        <ng-container *ngIf="HospitalObject">
+            <mat-card class="example-card">
+                <mat-card-header>
+
+
+
+                    <mat-card-title>{{HospitalObject.Name}}</mat-card-title>
+                    <mat-card-subtitle>{{HospitalObject.Location}}</mat-card-subtitle>
+                </mat-card-header>
+                <ng-container *ngIf="picture">
+                    <img mat-card-image [src]="picture" alt="Photo of a Shiba Inu">
                 </ng-container>
-        </mat-tab>
+
+                <mat-card-content>
+                    <p>
+                        {{HospitalObject.Details}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button (click)="editHospital()" mat-raised-button color="primary">EDIT</button>
+
+                </mat-card-actions>
+            </mat-card>
+        </ng-container>
+    </mat-tab>
+
+   
+
+    <mat-tab label="Reports">
+        <a routerLink="/reportsappointment" mat-raised-button>Appointment Reports</a>
+    </mat-tab>
 </mat-tab-group>

@@ -30,6 +30,15 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { DoctorsaddComponent } from './doctorsadd/doctorsadd.component';
 import { AppointmentassigndoctorComponent } from './appointmentassigndoctor/appointmentassigndoctor.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { EdituserpasswordComponent } from './edituserpassword/edituserpassword.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HospitalreportsComponent } from './reports/hospitalreports/hospitalreports.component';
+import { UserreportsComponent } from './reports/userreports/userreports.component';
+import { AppointmentreportsComponent } from './reports/appointmentreports/appointmentreports.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ImageService } from './service/image.service';
+import {HttpClientModule} from '@angular/common/http';
+import { AdminappointmentreportsComponent } from './reports/adminappointmentreports/adminappointmentreports.component';
 
 
 
@@ -49,10 +58,18 @@ import {MatRadioModule} from '@angular/material/radio';
     UserlobbyComponent,
     AddcommentsComponent,
     DoctorsaddComponent,
-    AppointmentassigndoctorComponent
+    AppointmentassigndoctorComponent,
+    EdituserpasswordComponent,
+    ProfileComponent,
+    HospitalreportsComponent,
+    UserreportsComponent,
+    AppointmentreportsComponent,
+    ResetpasswordComponent,
+    AdminappointmentreportsComponent
     
   ],
   imports: [
+    HttpClientModule,
     BarRatingModule,
     BrowserModule,
     AppRoutingModule,
@@ -104,6 +121,27 @@ import {MatRadioModule} from '@angular/material/radio';
       {
         path : 'userlobby',
         component : UserlobbyComponent
+      },
+
+      {
+        path : 'profile',
+        component : ProfileComponent
+      },
+      {
+        path : 'hospitalreport',
+        component : HospitalreportsComponent
+      },
+      {
+        path : 'reportsappointment',
+        component : AppointmentreportsComponent
+      },
+      {
+        path : 'adminappointmentreport',
+        component : AdminappointmentreportsComponent
+      },
+      {
+        path : 'userreports',
+        component : UserreportsComponent
       }
       
 
@@ -112,8 +150,8 @@ import {MatRadioModule} from '@angular/material/radio';
 
   ],
   providers: [
-    UserService
-    
+    UserService,
+    ImageService
   ],
   bootstrap: [AppComponent],
   entryComponents:[SignupComponent,
@@ -123,6 +161,7 @@ import {MatRadioModule} from '@angular/material/radio';
     AppointmentseditComponent,
     EdithospitalComponent,
     AddcommentsComponent,
-    DoctorsaddComponent]
+    DoctorsaddComponent,
+    ResetpasswordComponent]
 })
 export class AppModule { }

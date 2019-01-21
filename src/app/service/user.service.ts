@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 import { map, switchMap } from 'rxjs/operators';
 import { of as observableOf } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -49,7 +50,7 @@ export class UserService {
 
   )
 
-  add(act: boolean, adm: boolean, ema: String, hospitalMember: boolean, hospitalKey: String, fn: String, mn: String, ln: String, bt: String, dt: String, pw: String, un: String, uk: String,add : String, gen : String) {
+  add(act: boolean, adm: boolean, ema: String, hospitalMember: boolean, hospitalKey: String, fn: String, mn: String, ln: String, bt: String, dt: String, pw: String, un: String, uk: String,add : String, gen : String,created : String) {
 
     let user: Users = new Users(act,
       adm, ema, hospitalMember,
@@ -63,7 +64,8 @@ export class UserService {
       un,
       uk,
       add,
-      gen);
+      gen,
+      created);
 
       
 
@@ -92,6 +94,10 @@ export class UserService {
     this.isLoggedIn = false;
     this.user = null;
     this.afAuth.auth.signOut();
+    
+  }
+
+  verificationEmail(){
     
   }
 

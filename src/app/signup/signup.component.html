@@ -116,7 +116,7 @@
     </mat-form-field>
 
     <mat-radio-group class="example-radio-group fullwidth" [formControl]="genderControl">
-            <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="genders">
+            <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
               {{gender}}
             </mat-radio-button>
     </mat-radio-group>
@@ -130,7 +130,7 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="bloodControl.hasError('required')">Blood Type</mat-error>
-      <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+     
     </mat-form-field>
 
 

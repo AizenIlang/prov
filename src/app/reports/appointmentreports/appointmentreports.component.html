@@ -1,0 +1,99 @@
+
+<a routerLink="/memberhospital" class="bigbutton" mat-button><mat-icon>arrow_back</mat-icon> Back </a>
+<br>
+<mat-form-field class="date">
+  <input matInput [matDatepicker]="dpfrom" placeholder="From Date" disabled [formControl]="date">
+  <mat-datepicker-toggle matSuffix [for]="dpfrom"></mat-datepicker-toggle>
+  <mat-datepicker #dpfrom disabled="false"></mat-datepicker>
+</mat-form-field>
+<mat-form-field class="date">
+  <input matInput [matDatepicker]="dpto" placeholder="To Date" disabled [formControl]="date2">
+  <mat-datepicker-toggle matSuffix [for]="dpto"></mat-datepicker-toggle>
+  <mat-datepicker #dpto disabled="false"></mat-datepicker>
+</mat-form-field>
+<button mat-button (click)="filterTestDate()">Filter</button>
+<button mat-button (click)="downloadAppointmentPDF()">Download PDF</button>
+
+
+
+
+<div id="canvasAppointmentTable">
+  <div class="centerme">
+      <h1>Appointment reports</h1>
+      <ng-container *ngIf="logoProvh">
+          <img [src]="logoProvh">
+      </ng-container>
+  </div>
+  <br>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+    
+    <table mat-table [dataSource]="dataAppointment" matSort class="mat-elevation-z8">
+
+
+        <ng-container matColumnDef="hospitalName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hospital Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.hospitalName}} </td>
+        </ng-container>
+      
+      
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+          <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+          <td mat-cell *matCellDef="let element">{{ element.firstName}}</td>
+      
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+          <td mat-cell *matCellDef="let element">{{ element.lastName}}</td>
+      
+        </ng-container>
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+          <td mat-cell *matCellDef="let element">{{ element.gender}}</td>
+      
+        </ng-container>
+      
+        <ng-container matColumnDef="doctor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </th>
+          <td mat-cell *matCellDef="let element">{{ element.doctor}}
+            </td>
+      
+        </ng-container>
+        <ng-container matColumnDef="expertise">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Expertise </th>
+          <td mat-cell *matCellDef="let element">{{ element.expertise}}</td>
+      
+        </ng-container>
+      
+        <ng-container matColumnDef="message">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Message </th>
+          <td mat-cell *matCellDef="let element">{{ element.message}}</td>
+      
+        </ng-container>
+      
+      
+      
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+      
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
+
+
+<mat-paginator [pageSizeOptions]="[7,14,21]" showFirstLastButtons></mat-paginator>

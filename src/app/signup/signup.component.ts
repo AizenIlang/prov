@@ -4,6 +4,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 import { UserService } from '../service/user.service';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
 import {PasswordValidators} from '../common/validators/password.validators';
+import { UsernameValidators } from '../login/username.validators';
 
 
 
@@ -26,21 +27,28 @@ export interface Animal {
 export class SignupComponent implements OnInit {
 
   form = new FormGroup({
-    firstNameControl : new FormControl('',[Validators.required,Validators.minLength(2)]),
-    middleNameControl : new FormControl('',[Validators.required,Validators.minLength(2)]),
-    lastNameControl : new FormControl('',[Validators.required,Validators.minLength(2)]),
-    userNameControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    firstNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[a-z]+')]),
+    middleNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[a-z]+')]),
+    lastNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[a-z]+')]),
+    userNameControl : new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('[A-Z]+[a-zA-Z0-9]+')],
+    UsernameValidators.shouldBeUnique),
     addressControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
-    dateControl : new FormControl('',Validators.required),
-    passwordControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
+    dateControl : new FormControl('',[Validators.required]),
+    passwordControl : new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('[A-Za-z0-9]+')]),
     
     retypepasswordControl : new FormControl('',[Validators.required,Validators.minLength(8),
   PasswordValidators.passwordMatch]),
     emailControl : new FormControl('',[Validators.required,Validators.email]),
     bloodControl : new FormControl('', [Validators.required]),
-    genderControl : new FormControl('',Validators.required)
-  });
+    genderControl : new FormControl('',Validators.required),
 
+  });
+    get animalControl(){
+      return this.form.get('animalControl');
+    }
+    get selectFormControl(){
+      return this.form.get('selectFormControl');
+    }
     get genderControl(){
       return this.form.get('genderControl');
     }
@@ -100,6 +108,7 @@ export class SignupComponent implements OnInit {
   userKey : String;
   address : String;
   selectedValue : String;
+  selectedGender : String;
   
   // selectFormControl = new FormControl('', Validators.required);
   retypepassword : String;
@@ -121,8 +130,7 @@ export class SignupComponent implements OnInit {
   ];
 
 
-  animalControl = new FormControl('', [Validators.required]);
-  selectFormControl = new FormControl('', Validators.required);
+  
   animals: Animal[] = [
     {name: 'Dog', sound: 'Woof!'},
     {name: 'Cat', sound: 'Meow!'},
@@ -134,8 +142,9 @@ export class SignupComponent implements OnInit {
 
     
    }
-
+   log(x){console.log(x)};
   ngOnInit() {
+    
   }
 
   onSignUp(){
@@ -159,7 +168,8 @@ export class SignupComponent implements OnInit {
       this.userNameControl.value,
       "",
       this.addressControl.value,
-      this.genderControl.value);
+      this.genderControl.value,
+      Date());
       this.dialog.closeAll();
 
 
@@ -172,6 +182,9 @@ export class SignupComponent implements OnInit {
     console.log(this.selectedValue);
 }
 
+  selectedGenderpick(event){
+    this.selectedGender = event.value;
+  }
 
 
 }

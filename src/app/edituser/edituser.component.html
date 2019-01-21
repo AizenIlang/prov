@@ -1,7 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="onUpdate()">
 <mat-card [style.overflow]="'auto'" [style.height.px]="'500'">
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>First Name</mat-label>
-      <input matInput type="text" [(ngModel)]="firstName" placeholder="First Name">
+      <input matInput type="text" [formControl]="firstNameControl" placeholder="First Name">
   
     </mat-form-field>
     <br>
@@ -9,7 +10,7 @@
   
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Middle Name</mat-label>
-      <input matInput [(ngModel)]="middleName" placeholder="Middle Name" type="text" required />
+      <input matInput [formControl]="middleNameControl" placeholder="Middle Name" type="text" required />
   
   
   
@@ -18,14 +19,14 @@
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Last Name</mat-label>
   
-      <input matInput [(ngModel)]="lastName" placeholder="Last Name" type="text" required />
+      <input matInput [formControl]="lastNameControl" placeholder="Last Name" type="text" required />
   
   
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="fullwidth">
         <mat-label>Address</mat-label>
-        <input matInput [(ngModel)]="address" type="text" placeholder="Address" required />
+        <input matInput [formControl]="addressControl" type="text" placeholder="Address" required />
     
     
     
@@ -34,14 +35,14 @@
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>User Name</mat-label>
   
-      <input matInput [(ngModel)]="userName" placeholder="Username" type="text" required />
+      <input matInput [formControl]="userNameControl" placeholder="Username" type="text" required />
   
   
     </mat-form-field>
   
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" type="email" placeholder="Email" required />
+      <input matInput [formControl]="emailControl" type="email" placeholder="Email" required />
   
   
   
@@ -49,7 +50,7 @@
   
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Password</mat-label>
-      <input matInput [(ngModel)]="password" placeholder="Password" type="password" required />
+      <input matInput [formControl]="passwordControl" placeholder="Password" type="password" required />
   
   
   
@@ -58,21 +59,23 @@
   
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Re-type Password</mat-label>
-      <input matInput [(ngModel)]="password" placeholder="Re-type Password" type="password" required />
+      <input matInput [formControl]="retypepasswordControl" placeholder="Re-type Password" type="password" required />
   
   
   
   
     </mat-form-field>
 
-    <mat-radio-group class="example-radio-group fullwidth" [(ngModel)]="genderControl">
+    <mat-radio-group class="example-radio-group fullwidth" [formControl]="genderControl">
         <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
           {{gender}}
         </mat-radio-button>
     </mat-radio-group>
     
+    <ng-container *ngIf="userService.user.admin">
 
-    <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onValChange(group.value)">
+    
+    <mat-button-toggle-group  #group="matButtonToggleGroup" [value]="memberType" (change)="onValChange(group.value)">
         <mat-button-toggle value="left">
           <p>Admin</p>
           <mat-icon>adb</mat-icon>
@@ -87,10 +90,11 @@
         </mat-button-toggle>
        
       </mat-button-toggle-group>
+    </ng-container>
       
     <mat-form-field appearance="outline" class="fullwidth">
       <mat-label>Birth Date</mat-label>
-      <input matInput [(ngModel)]="date" type="date" placeholder="Birth Date" required />
+      <input matInput [formControl]="dateControl" type="date" placeholder="Birth Date" required />
   
   
   
@@ -104,28 +108,26 @@
               {{animal.name}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="animalControl.hasError('required')">Blood Type</mat-error>
-          <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+          
         </mat-form-field>
 
         <mat-form-field>
-            <mat-select placeholder="Hospital Member" [formControl]="hopsitalFormControl" (selectionChange)="selectedHospital($event)" >
+            <mat-select placeholder="Hospital Member" [formControl]="hospitalFormControl" (selectionChange)="selectedHospital($event)" >
               <mat-option>--</mat-option>
               <mat-option *ngFor="let animal of hospitals" [value]="animal">
                 {{animal.Name}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="animalControl.hasError('required')">Choose Hospital</mat-error>
-            <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+            
           </mat-form-field>
   
     
   
   
   
-          <button mat-raised-button color="primary" class="halfwidth" (click)="onUpdate()">Update</button> <button mat-flat-button
+          <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" class="halfwidth" >Update</button> <button mat-flat-button
           mat-dialog-close class="halfwidth">Cancel</button>
   
   </mat-card>
- 
+</form>
  

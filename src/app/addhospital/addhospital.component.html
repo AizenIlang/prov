@@ -43,10 +43,13 @@
   
     </mat-form-field>
   
-    <mat-form-field appearance="outline" class="fullwidth">
+    <mat-form-field class="fullwidth">
       <mat-label>Contact Number</mat-label>
-      <input matInput [formControl]="ContactNumberControl" type="text" placeholder="ContactNumber" />
-  
+      
+        <span matPrefix>+63 &nbsp;</span>
+        <input matInput [formControl]="ContactNumberControl" type="tel" placeholder="ContactNumber">
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      
   
     </mat-form-field>
   

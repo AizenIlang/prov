@@ -1,0 +1,24 @@
+
+<mat-card class="example-card">
+    <mat-card-header>
+    
+         
+     
+      <mat-card-title>{{userService.user.userName}}</mat-card-title>
+      <mat-card-subtitle>{{userService.user.firstName}} {{userService.user.lastName}}</mat-card-subtitle>
+    </mat-card-header>
+   
+    
+    <mat-card-content>
+      <p>
+        {{userService.user.address}}
+      </p>
+      <p>
+          {{userService.user.gender}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="editUser(userService.user.userKey)" mat-raised-button color="primary">EDIT</button>
+     
+    </mat-card-actions>
+  </mat-card>
