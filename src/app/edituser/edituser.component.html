@@ -111,6 +111,8 @@
           
         </mat-form-field>
 
+        <ng-container *ngIf="userService.user.admin">
+
         <mat-form-field>
             <mat-select placeholder="Hospital Member" [formControl]="hospitalFormControl" (selectionChange)="selectedHospital($event)" >
               <mat-option>--</mat-option>
@@ -120,6 +122,8 @@
             </mat-select>
             
           </mat-form-field>
+
+        </ng-container>
   
     
   

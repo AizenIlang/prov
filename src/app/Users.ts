@@ -19,9 +19,10 @@ export class Users {
     userKey : String;
     address : String;
     gender : String;
-    createdDate : String;
+    created : String;
+    hospitalName : String;
 
-    constructor(act: boolean, adm : boolean, ema : String, hospitalMember : boolean, hospitalKey : String, fn : String, mn : String, ln : String, bt : String, dt : String, pw : String, un : String, uk : String, add : String, gen : String,create : String){
+    constructor(act: boolean, adm : boolean, ema : String, hospitalMember : boolean, hospitalKey : String, fn : String, mn : String, ln : String, bt : String, dt : String, pw : String, un : String, uk : String, add : String, gen : String,create : String, hospitalName : String){
             this.actived = act;
             this.admin = adm;
             this.email = ema;
@@ -37,7 +38,8 @@ export class Users {
             this.userKey = uk;
             this.address = add;
             this.gender = gen;
-            this.createdDate = create;
+            this.created = create;
+            this.hospitalName = hospitalName;
             
     }
     

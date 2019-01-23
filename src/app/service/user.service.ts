@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { of as observableOf } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +51,7 @@ export class UserService {
 
   )
 
-  add(act: boolean, adm: boolean, ema: String, hospitalMember: boolean, hospitalKey: String, fn: String, mn: String, ln: String, bt: String, dt: String, pw: String, un: String, uk: String,add : String, gen : String,created : String) {
+  add(act: boolean, adm: boolean, ema: String, hospitalMember: boolean, hospitalKey: String, fn: String, mn: String, ln: String, bt: String, dt: String, pw: String, un: String, uk: String,add : String, gen : String,created : String, hospName: String) {
 
     let user: Users = new Users(act,
       adm, ema, hospitalMember,
@@ -65,7 +66,8 @@ export class UserService {
       uk,
       add,
       gen,
-      created);
+      created,
+      hospName);
 
       
 
@@ -94,6 +96,34 @@ export class UserService {
     this.isLoggedIn = false;
     this.user = null;
     this.afAuth.auth.signOut();
+    
+  }
+
+  delete(key){
+    this.db.object('Users/'+key).remove().then(full=>{
+      swal("User Deleted");
+    })
+  }
+
+  getTotalGenderArray() {
+    var male = 0;
+    var female = 0;
+    let userList : any;
+    this.getUsers().valueChanges().subscribe(user=>{
+      userList = user;
+      console.log("Check the users gender" + JSON.stringify(userList));
+      for(let tempUser of userList){
+        console.log("Getting itterated? " +tempUser.gender);
+        if(tempUser.gender == "Male"){
+          male++;
+          console.log("added the male?" +male);
+        }else{
+          female++;
+          console.log("added the female?" +female);
+        }
+      }
+      
+    })
     
   }
 

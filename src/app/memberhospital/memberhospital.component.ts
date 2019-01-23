@@ -13,6 +13,8 @@ import { DoctorsService } from '../service/doctors.service';
 import { DoctorsaddComponent } from '../doctorsadd/doctorsadd.component';
 import { AppointmentassigndoctorComponent } from '../appointmentassigndoctor/appointmentassigndoctor.component';
 import swal from 'sweetalert2';
+import { ReportParserService } from '../service/report-parser.service';
+
 
 @Component({
   selector: 'app-memberhospital',
@@ -29,7 +31,7 @@ export class MemberhospitalComponent implements OnInit {
   
 
 
-  displayedColumns: string[] = ['userName','user','message', 'status', 'type', 'date','doctor','actionsColumn'];
+  displayedColumns: string[] = ['user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
@@ -52,7 +54,8 @@ export class MemberhospitalComponent implements OnInit {
     private appointmentService: AppointmentsService,
     private commentService: CommentsService,
     private doctorService: DoctorsService,
-    private route : Router) { }
+    private route : Router,
+    private reportService : ReportParserService) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -83,7 +86,8 @@ export class MemberhospitalComponent implements OnInit {
       appointmentlist = [];
       item.forEach(element => {
         var y = element.payload.toJSON();
-        appointmentlist.push(y);
+        let theObject = this.reportService.appointmentObjectParse(y);
+        appointmentlist.push(theObject);
 
       })
       console.log(appointmentlist);
@@ -148,7 +152,7 @@ export class MemberhospitalComponent implements OnInit {
     this.choiceComments = false;
     this.choiceDoctors = false;
    
-    this.displayedColumns = ['userName','user','message', 'status', 'type','doctor', 'date','actionsColumn'];
+    this.displayedColumns = ['user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadAppointments();

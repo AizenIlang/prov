@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { HospitalService } from './hospital.service';
 import { finalize } from 'rxjs/operators';
@@ -16,6 +16,9 @@ export class AppointmentObjectReport{
   message : string;
   status : string;
   date : string;
+  preferredDoctor : string;
+  key : string;
+  uid : string;
 }
 
 export class UserObjectReport{
@@ -30,16 +33,34 @@ export class UserObjectReport{
   lastName : string;
   hospitalMember : string;
   userKey : string;
+  created : string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReportParserService {
+export class ReportParserService implements OnInit{
 
+  HospitalList=[];
   constructor(private userService : UserService,
     private hospitalService : HospitalService,
-    private storage : AngularFireStorage) { }
+    private storage : AngularFireStorage) {
+      this.hospitalService.getHospitalList().snapshotChanges().subscribe(values=>{
+        values.forEach(element => {
+          var y = element.payload.toJSON();
+          
+          this.HospitalList.push(y);
+   
+        })
+      });
+
+     
+     }
+
+   async ngOnInit(){
+ 
+
+   }
 
     getImage(location : string) : any{
       this.storage.ref(location).getDownloadURL().subscribe(data =>{
@@ -50,7 +71,7 @@ export class ReportParserService {
   appointmentObjectParse(appointment : any) : AppointmentObjectReport{
     console.log("Double check the values " + appointment.user.userName + " " + appointment.user.lastName);
      let tempAppointment = new AppointmentObjectReport();
-
+     
      tempAppointment.userName = appointment.user.userName;
      tempAppointment.firstName = appointment.user.firstName;
      tempAppointment.lastName = appointment.user.lastName;
@@ -61,7 +82,9 @@ export class ReportParserService {
      tempAppointment.expertise = appointment.doctor.service;
      tempAppointment.gender = appointment.user.gender;
      tempAppointment.date = appointment.date;
-
+     tempAppointment.preferredDoctor = appointment.preferredDoctor;
+     tempAppointment.key = appointment.key;
+     tempAppointment.uid = appointment.uid;
 
 
      return tempAppointment;
@@ -84,6 +107,7 @@ export class ReportParserService {
       tempUser.lastName = user.lastName;
       tempUser.middleName = user.middleName;
       tempUser.userKey = user.userKey;
+      tempUser.created = user.created;
       tempUser.type = "User";
       if(user.admin){
         tempUser.type = "Admin";
@@ -92,6 +116,15 @@ export class ReportParserService {
         tempUser.type = "Hospital Admin";
       }
       tempUser.userName = user.userName;
+      tempUser.hospitalMember = user.hospitalMember;
+      for(let item of this.HospitalList){
+        if(item.Key == user.hospitalKey){
+          tempUser.hospitalMember = item.Name;
+          break;
+        }
+      }      
+
+
       return tempUser;
     
    

@@ -56,16 +56,18 @@ export class EdituserComponent implements OnInit {
   selectedValue: any; // for blood type;
   selectedValueHospital: any; //for hospital member;
 
+  hospitalList = [];
+
   form = new FormGroup({
     firstNameControl : new FormControl(this.firstName,[Validators.required]),
     middleNameControl : new FormControl(this.middleName,[Validators.required]),
     lastNameControl : new FormControl(this.lastName,[Validators.required]),
     addressControl : new FormControl(this.address,[Validators.required]),
-    bloodControl : new FormControl(this.newBlood, [Validators.required]),
+    bloodControl : new FormControl('', [Validators.required]),
     userNameControl : new FormControl(this.userName,[Validators.required]),
     // animalControl : new FormControl('', [Validators.required]),
     // selectFormControl : new FormControl('', Validators.required),
-    hospitalFormControl : new FormControl(this.hospitalName, Validators.required),
+    hospitalFormControl : new FormControl(this.hospitalName,),
     dateControl : new FormControl('',[Validators.required]),
     passwordControl : new FormControl('',[Validators.required]),
     retypepasswordControl : new FormControl('',[Validators.required,PasswordValidators.passwordMatch]),
@@ -169,7 +171,7 @@ export class EdituserComponent implements OnInit {
 
 
   async loadHospital() {
-    var hospitalList = [];
+    
 
     this.HospitalList = await this.hospitalService.getHospitalList();
     await this.HospitalList.snapshotChanges().subscribe(item => {
@@ -184,12 +186,12 @@ export class EdituserComponent implements OnInit {
             this.bindNewValues();
           }
       
-        hospitalList.push(y);
+        this.hospitalList.push(y);
         
 
       })
  
-      this.hospitals = hospitalList;
+      this.hospitals = this.hospitalList;
       
       console.log("The Hospitals is IS NOW ****** " +this.hospitals);
       console.log("The Hospitals is IS NOW ****** " + JSON.stringify(this.hospitals));
@@ -246,21 +248,29 @@ export class EdituserComponent implements OnInit {
     if(!this.selectedValue){
       this.selectedValue = this.bloodType;
     }
+    var theNameofHospital = "";
+    for(let check of this.HospitalList){
+      if(this.selectedValueHospital == check.Key){
+        theNameofHospital = check.Name;
+      }
+    }
 
     let user: Users = new Users(true,
-      this.makeMeadmin, this.email, this.selectedVal,
+      this.makeMeadmin, this.emailControl.value, this.selectedVal,
       this.selectedValueHospital,
-      this.firstName,
-      this.middleName,
-      this.lastName,
+      this.firstNameControl.value,
+      this.middleNameControl.value,
+      this.lastNameControl.value,
       this.selectedValue,
-      this.date,
+      this.dateControl.value,
       this.passwordControl.value,
-      this.userName,
+      this.userNameControl.value,
       this.userKey,
-      this.address,
+      this.addressControl.value,
       this.genderControl.value,
-      Date());
+      Date(),
+      theNameofHospital
+      );
 
     this.userService.update(user);
 
@@ -280,16 +290,17 @@ bindNewValues(){
   console.log("The Hospitals " + this.hospitals + "The Object " + JSON.stringify(this.hospitalName));
   this.newBlood.name = this.bloodType as string;
   this.newBlood.type = this.bloodType as string;
+  let myobjecttest = JSON.parse('{"name": "A positive", "type" : "A Positive"}');
   this.form = new FormGroup({
     firstNameControl : new FormControl(this.firstName,[Validators.required]),
     middleNameControl : new FormControl(this.middleName,[Validators.required]),
     lastNameControl : new FormControl(this.lastName,[Validators.required]),
     addressControl : new FormControl(this.address,[Validators.required]),
-    bloodControl : new FormControl(this.newBlood, [Validators.required]),
+    bloodControl : new FormControl(myobjecttest, [Validators.required]),
     userNameControl : new FormControl(this.userName,[Validators.required]),
     // animalControl : new FormControl('', [Validators.required]),
     // selectFormControl : new FormControl('', Validators.required),
-    hospitalFormControl : new FormControl(this.hospitalName, Validators.required),
+    hospitalFormControl : new FormControl(this.hospitalName,),
     dateControl : new FormControl(this.date,[Validators.required]),
     passwordControl : new FormControl(this.password,[Validators.required]),
     retypepasswordControl : new FormControl(this.password,[Validators.required,PasswordValidators.passwordMatch]),

@@ -57,22 +57,22 @@ export class EdithospitalComponent implements OnInit {
   theFile: any;
 
   Locations : Location[] = [
-    {value : 'Caloocan', viewValue : 'Caloocan'},
-    {value : 'Las Pinas', viewValue : 'Las Pinas'},
-    {value : 'Makati', viewValue : 'Makati'},
-    {value : 'Malabon', viewValue : 'Malabon'},
-    {value : 'Mandaluyong', viewValue : 'Mandaluyong'},
-    {value : 'Manila', viewValue : 'Manila'},
-    {value : 'Marikina', viewValue : 'Marikina'},
-    {value : 'Muntinlupa', viewValue : 'MuntinLupa'},
-    {value : 'Navotas', viewValue : 'Navotas'},
-    {value : 'Paranaque', viewValue: 'Paranaque'},
-    {value : 'Pasay', viewValue : 'Pasay'},
-    {value : 'Pasig', viewValue : 'Pasig'},
+    {value : 'Caloocan City', viewValue : 'Caloocan City'},
+    {value : 'Las Pinas City', viewValue : 'Las Pinas City'},
+    {value : 'Makati City', viewValue : 'Makati City'},
+    {value : 'Malabon City', viewValue : 'Malabon City'},
+    {value : 'Mandaluyong City', viewValue : 'Mandaluyong City'},
+    {value : 'Manila City', viewValue : 'Manila City'},
+    {value : 'Marikina City', viewValue : 'Marikina City'},
+    {value : 'Muntinlupa City', viewValue : 'MuntinLupa City'},
+    {value : 'Navotas City', viewValue : 'Navotas City'},
+    {value : 'Paranaque City', viewValue: 'Paranaque City'},
+    {value : 'Pasay City', viewValue : 'Pasay City'},
+    {value : 'Pasig City', viewValue : 'Pasig City'},
     {value : 'Quezon City', viewValue :'Quezon City'},
-    {value : 'San Juan City, Metro Manila', viewValue : 'San Juan City, Metro Manila'},
-    {value : 'Taguig', viewValue : 'Taguig'},
-    {value : 'Valenzuela, Metro Manila', viewValue : 'Valenzuela, Metro Manila'}
+    {value : 'San Juan City', viewValue : 'San Juan City'},
+    {value : 'Taguig City', viewValue : 'Taguig City'},
+    {value : 'Valenzuela City', viewValue : 'Valenzuela City'}
   ];
 
   ngOnInit() {
