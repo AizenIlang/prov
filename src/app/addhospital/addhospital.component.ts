@@ -142,7 +142,7 @@ export class AddhospitalComponent implements OnInit {
     const ref = this.storage.ref(path);
     
     this.task = ref.put(file,{customMetadata});
-
+    
       
     console.log("The selected Location",this.selectedLocation.value);
     

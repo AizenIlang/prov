@@ -39,6 +39,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ImageService } from './service/image.service';
 import {HttpClientModule} from '@angular/common/http';
 import { AdminappointmentreportsComponent } from './reports/adminappointmentreports/adminappointmentreports.component';
+import { DropZoneDirective } from './drop-zone.directive';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 
@@ -65,7 +67,9 @@ import { AdminappointmentreportsComponent } from './reports/adminappointmentrepo
     UserreportsComponent,
     AppointmentreportsComponent,
     ResetpasswordComponent,
-    AdminappointmentreportsComponent
+    AdminappointmentreportsComponent,
+    DropZoneDirective,
+    FileUploadComponent
     
   ],
   imports: [
@@ -162,6 +166,7 @@ import { AdminappointmentreportsComponent } from './reports/adminappointmentrepo
     EdithospitalComponent,
     AddcommentsComponent,
     DoctorsaddComponent,
-    ResetpasswordComponent]
+    ResetpasswordComponent,
+    FileUploadComponent]
 })
 export class AppModule { }

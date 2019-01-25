@@ -19,6 +19,7 @@ export class AppointmentObjectReport{
   preferredDoctor : string;
   key : string;
   uid : string;
+  type : string;
 }
 
 export class UserObjectReport{
@@ -85,6 +86,7 @@ export class ReportParserService implements OnInit{
      tempAppointment.preferredDoctor = appointment.preferredDoctor;
      tempAppointment.key = appointment.key;
      tempAppointment.uid = appointment.uid;
+     tempAppointment.type = appointment.type;
 
 
      return tempAppointment;

@@ -14,6 +14,7 @@ import { DoctorsaddComponent } from '../doctorsadd/doctorsadd.component';
 import { AppointmentassigndoctorComponent } from '../appointmentassigndoctor/appointmentassigndoctor.component';
 import swal from 'sweetalert2';
 import { ReportParserService } from '../service/report-parser.service';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class MemberhospitalComponent implements OnInit {
   
 
 
-  displayedColumns: string[] = ['user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date','actionsColumn'];
+  displayedColumns: string[] = ['user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor','type', 'message', 'status', 'date','actionsColumn'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: any;
 
@@ -152,7 +153,7 @@ export class MemberhospitalComponent implements OnInit {
     this.choiceComments = false;
     this.choiceDoctors = false;
    
-    this.displayedColumns = ['user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date','actionsColumn'];
+    this.displayedColumns = ['user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor','type', 'message', 'status', 'date','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadAppointments();
@@ -177,7 +178,7 @@ export class MemberhospitalComponent implements OnInit {
     this.choiceComments = false;
     this.choiceDoctors = true;
    
-    this.displayedColumns = ['firstName', 'middleName', 'lastName','service'];
+    this.displayedColumns = ['firstName', 'middleName', 'lastName','service','actionsColumn'];
     this.columnsToDisplay = this.displayedColumns.slice();
 
     this.loadDoctors();
@@ -253,8 +254,35 @@ export class MemberhospitalComponent implements OnInit {
 
   }
 
+  editDoctor(key){
+    
+  }
+
+  deleteDoctor(key){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Doctor file!",
+      type: 'warning',
+      showConfirmButton: true,
+      showCancelButton: true     
+    })
+    .then((willDelete) => {
+      if (willDelete.value) {
+         this.doctorService.getDoctor(this.user.hospitalKey,key).remove();
+        swal({title:"Poof! Your Doctor file has been deleted!",
+          type: "success",
+        });
+      } else {
+        swal("Your Doctor file is safe!");
+      }
+    });
+  }
+
   switchtoAppointment(){
     this.route.navigate(['reportappointment']);
+  }
+  switchtoFileUpload(){
+    this.dialog.open(FileUploadComponent,{data : this.user.hospitalKey});
   }
 
   appoint(appkey,uid){

@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Inject } from '@angular/core';
 import { DoctorsService } from '../service/doctors.service';
 import { HospitalService } from '../service/hospital.service';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-doctorsadd',
@@ -15,7 +16,8 @@ export class DoctorsaddComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private doctorService : DoctorsService,
               private dialog: MatDialog,
-              private hospitalService : HospitalService) { }
+              private hospitalService : HospitalService,
+              private db : AngularFireDatabase) { }
 
   form = new FormGroup({
     firstName : new FormControl('',Validators.required),
@@ -38,11 +40,12 @@ export class DoctorsaddComponent implements OnInit {
   }
 
   onDoctorAdd(){
+    let generatedKey = this.db.createPushId();
      let doc = new Doctors(this.firstName.value,
       this.middleName.value,
       this.lastName.value,
-      this.selectedFromService);
-      this.doctorService.addDoctorsServiceHospital(this.data).set(doc).then(fullfilled=>{
+      this.selectedFromService,generatedKey);
+      this.doctorService.addDoctorsServiceHospital(this.data,generatedKey).set(doc).then(fullfilled=>{
          swal("Doctor is created");
           this.dialog.closeAll();
       },rejected =>{

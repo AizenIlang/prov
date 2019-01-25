@@ -12,8 +12,12 @@ export class DoctorsService {
     return this.db.list('Doctors/'+key);
   }
 
-  addDoctorsServiceHospital(key){
-    let generatedKey = this.db.createPushId();
+  getDoctor(key,dockey){
+    return this.db.object('Doctors/'+key+'/'+dockey);
+  }
+
+  addDoctorsServiceHospital(key,generatedKey){
+    
     return this.db.object('Doctors/'+key+'/'+generatedKey);
   }
 }

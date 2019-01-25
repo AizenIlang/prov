@@ -7,7 +7,7 @@
        
         <mat-label>Username</mat-label>
         <input formControlName="username" class="logininput" matInput placeholder="Username">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <div *ngIf="username.touched && username.invalid" class="alert alert-danger">
             
             <div *ngIf="username.errors.required">Username is required.</div>

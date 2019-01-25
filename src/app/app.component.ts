@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { UserService } from './service/user.service';
 import {Router } from '@angular/router';
+import { MessagingService } from "./messaging.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'material-ng';
   opened: boolean;
 
@@ -17,8 +18,17 @@ export class AppComponent {
 
   //For Adding
 
+  //Notification
+  message;
 
-  constructor(public userService : UserService, private router : Router){
+  ngOnInit() {
+    this.msgService.getPermission();
+    this.msgService.receiveMessage();
+    this.message = this.msgService.currentMessage;
+  }
+  
+  constructor(public userService : UserService, private router : Router,
+    private msgService : MessagingService){
       this.Users$ = userService.getUsers();
       // userSvalueChanges().subscribe(Users => {
       //   this.Users = Users;

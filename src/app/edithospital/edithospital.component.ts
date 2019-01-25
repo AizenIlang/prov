@@ -92,7 +92,7 @@ export class EdithospitalComponent implements OnInit {
       this.Coordinates  = x.Coordinates;
       this.Details  = x.Details;
       this.Rating  = x.Rating;
-      
+      this.selectedLocation = x.Location;
       this.Key  = x.Key;
     });
 
