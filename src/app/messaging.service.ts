@@ -19,7 +19,13 @@ export class MessagingService {
 
   updateToken(token) {
     this.afAuth.authState.pipe(take(1)).subscribe(user => {
-      if (!user) return;
+      
+      if (!user){
+        console.log("No User for Notification");
+        return;
+      }else{
+        console.log("got the user for Notification");
+      } 
 
       const data = { [user.uid]: token }
       this.db.object('fcmTokens/').update(data)
@@ -45,9 +51,13 @@ export class MessagingService {
     }
 
     receiveMessage() {
+      console.log("checking the reciever");
+     
        this.messaging.onMessage((payload) => {
         console.log("Message received. ", payload);
         this.currentMessage.next(payload)
+      },err=>{
+        console.log("messaging error" + err);
       });
 
     }

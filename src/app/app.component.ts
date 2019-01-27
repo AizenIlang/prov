@@ -25,6 +25,13 @@ export class AppComponent implements OnInit {
     this.msgService.getPermission();
     this.msgService.receiveMessage();
     this.message = this.msgService.currentMessage;
+    console.log("re instate");
+  }
+
+  relaunchNotif(){
+    this.msgService.getPermission();
+    this.msgService.receiveMessage();
+    this.message = this.msgService.currentMessage;
   }
   
   constructor(public userService : UserService, private router : Router,

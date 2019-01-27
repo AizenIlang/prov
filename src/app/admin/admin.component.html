@@ -1,5 +1,9 @@
 <div class="marginme">
 
+    <h1>{{ (message | async)?.notification.title }}</h1>
+    <p>{{ (message | async)?.notification.body }}</p>
+
+    {{message | async | json}}
 
     <mat-tab-group (selectedTabChange)="onLinkClick($event)">
         <mat-tab label="USERS">

@@ -18,6 +18,8 @@ import * as html2canvas from 'html2canvas';
 import { AppointmentsService } from '../service/appointments.service';
 import { FormControl } from '@angular/forms';
 import { ReportParserService } from '../service/report-parser.service';
+import { AppComponent } from '../app.component';
+import { MessagingService } from '../messaging.service';
 
 
 @Component({
@@ -82,7 +84,9 @@ export class AdminComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private userService : UserService, private hospitalService : HospitalService,
      private router : Router, private appointmentService : AppointmentsService,
-     private reportService : ReportParserService) {
+     private reportService : ReportParserService,
+     private appcomponent : AppComponent,
+     private msgService : MessagingService) {
 
 
     this.checkMe = JSON.parse(localStorage.getItem('user'));
@@ -99,8 +103,13 @@ export class AdminComponent implements OnInit {
    
 
 
-
+message;
   async ngOnInit() {
+    this.msgService.getPermission();
+    this.msgService.receiveMessage();
+    this.message = this.msgService.currentMessage;
+    
+    this.appcomponent.relaunchNotif();
     this.userService.getUsers().valueChanges().subscribe(data=>{
       this.UserList;
     });

@@ -7,8 +7,9 @@
     <span>PROV-H</span>
     <span class="example-spacer"></span>
     
-       
+    
     <h1>{{ (message | async)?.notification.title }}</h1>
+    <p>{{ (message | async)?.notification.body}}</p>
     
     <ng-container *ngIf="userService.isLoggedIn">
         <a routerLink="/profile">Welcome, {{userService.user.firstName}} {{userService.user.lastName}}</a><button mat-icon-button (click)="logout()"><mat-icon class="example-icon">power_settings_new</mat-icon></button> 
