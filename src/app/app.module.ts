@@ -41,6 +41,9 @@ import {HttpClientModule} from '@angular/common/http';
 import { AdminappointmentreportsComponent } from './reports/adminappointmentreports/adminappointmentreports.component';
 import { DropZoneDirective } from './drop-zone.directive';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AngularFireMessagingModule} from '@angular/fire/messaging';
+import { MessagingService } from './messaging.service';
+import { AsyncPipe } from '@angular/common';
 
 
 
@@ -88,6 +91,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
+    AngularFireMessagingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC1_Zoh07zVan9-XAloa_xSUV27DJQvyj8'
     }),
@@ -155,7 +159,9 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
   ],
   providers: [
     UserService,
-    ImageService
+    ImageService,
+    MessagingService,
+    AsyncPipe
   ],
   bootstrap: [AppComponent],
   entryComponents:[SignupComponent,

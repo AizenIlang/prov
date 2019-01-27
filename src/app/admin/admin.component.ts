@@ -105,11 +105,12 @@ export class AdminComponent implements OnInit {
 
 message;
   async ngOnInit() {
-    this.msgService.getPermission();
+    this.msgService.requestPermission("fUnBUjtZktXhg2RDy8PJtCsLtyV2");
     this.msgService.receiveMessage();
     this.message = this.msgService.currentMessage;
+    console.log("re instate");
     
-    this.appcomponent.relaunchNotif();
+   
     this.userService.getUsers().valueChanges().subscribe(data=>{
       this.UserList;
     });

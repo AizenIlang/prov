@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { UserService } from './service/user.service';
 import {Router } from '@angular/router';
 import { MessagingService } from "./messaging.service";
@@ -22,17 +21,16 @@ export class AppComponent implements OnInit {
   message;
 
   ngOnInit() {
-    this.msgService.getPermission();
+
+    
+
+    this.msgService.requestPermission("fUnBUjtZktXhg2RDy8PJtCsLtyV2");
     this.msgService.receiveMessage();
     this.message = this.msgService.currentMessage;
     console.log("re instate");
   }
 
-  relaunchNotif(){
-    this.msgService.getPermission();
-    this.msgService.receiveMessage();
-    this.message = this.msgService.currentMessage;
-  }
+
   
   constructor(public userService : UserService, private router : Router,
     private msgService : MessagingService){
