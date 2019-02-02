@@ -18,16 +18,12 @@ export class AppComponent implements OnInit {
   //For Adding
 
   //Notification
-  message;
-
+ 
   ngOnInit() {
 
     
 
-    this.msgService.requestPermission("fUnBUjtZktXhg2RDy8PJtCsLtyV2");
-    this.msgService.receiveMessage();
-    this.message = this.msgService.currentMessage;
-    console.log("re instate");
+   
   }
 
 

@@ -20,6 +20,7 @@ import { FormControl } from '@angular/forms';
 import { ReportParserService } from '../service/report-parser.service';
 import { AppComponent } from '../app.component';
 import { MessagingService } from '../messaging.service';
+import { auth } from 'firebase';
 
 
 @Component({
@@ -105,7 +106,8 @@ export class AdminComponent implements OnInit {
 
 message;
   async ngOnInit() {
-    this.msgService.requestPermission("fUnBUjtZktXhg2RDy8PJtCsLtyV2");
+    
+    this.msgService.requestPermission(auth().currentUser.uid);
     this.msgService.receiveMessage();
     this.message = this.msgService.currentMessage;
     console.log("re instate");
