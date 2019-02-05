@@ -21,6 +21,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MemberhospitalComponent } from './memberhospital/memberhospital.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { AddhospitalComponent} from './addhospital/addhospital.component';
+<<<<<<< HEAD
 import { AppointmentseditComponent } from './appointmentsedit/appointmentsedit.component';
 import { EdithospitalComponent } from './edithospital/edithospital.component';
 import { UserlobbyComponent } from './userlobby/userlobby.component';
@@ -46,6 +47,9 @@ import { MessagingService } from './messaging.service';
 import { AsyncPipe } from '@angular/common';
 import { DeleteMultitpleComponent } from './delete-multitple/delete-multitple.component';
 import { ImagestorageService } from './service/imagestorage.service';
+=======
+import { EditappointmentComponent } from './editappointment/editappointment.component';
+>>>>>>> ee5739a428c6175e1f5b3916af9aa166fa516563
 
 
 
@@ -60,6 +64,7 @@ import { ImagestorageService } from './service/imagestorage.service';
     MemberhospitalComponent,
     EdituserComponent,
     AddhospitalComponent,
+<<<<<<< HEAD
     AppointmentseditComponent,
     EdithospitalComponent,
     UserlobbyComponent,
@@ -76,6 +81,9 @@ import { ImagestorageService } from './service/imagestorage.service';
     DropZoneDirective,
     FileUploadComponent,
     DeleteMultitpleComponent
+=======
+    EditappointmentComponent
+>>>>>>> ee5739a428c6175e1f5b3916af9aa166fa516563
     
   ],
   imports: [
