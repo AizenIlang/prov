@@ -66,13 +66,14 @@ export class LoginComponent implements OnInit {
       if (this.form.get('username').value === magic.userName) {
 
         this.UN = this.form.get('username').value;
-        this.PW = magic.password;
-
+        this.PW = this.form.get('password').value;
+        console.log(this.UN + " " +this.PW);
         this.afAuth.auth.signInWithEmailAndPassword(magic.email.toString(), this.form.get('password').value).then(
           full => {
             if (full.user.emailVerified) {
               // swal("Great");
-              this.setLogin(magic);
+              magic.password = this.form.get('password').value;
+              this.userService.setLogin(magic);
               
 
             } else {
@@ -141,49 +142,15 @@ export class LoginComponent implements OnInit {
    
   }
 
-  setLogin(magic) {
-    localStorage.setItem('user', JSON.stringify({
-      actived: magic.actived,
-      admin: magic.admin,
-      email: magic.email,
-      hospitalMember: magic.hospitalMember,
-      hospitalKey: magic.hospitalKey,
-      firstName: magic.firstName,
-      middleName: magic.middleName,
-      lastName: magic.lastName,
-      bloodType: magic.bloodType,
-      date: magic.date,
-      password: magic.password,
-      userName: magic.userName
-    }));
-
-    if (magic.admin) {
-      // this.route.navigate(['admin']);
-      swal("Welcome back " + magic.firstName);
-      this.route.navigate(['admin']);
-      console.log("is admin");
+  relogin(){
+    if(localStorage){
       this.userService.isLoggedIn = true;
-      this.userService.user = magic;
-      return;
-    }
-
-    console.log("check if hospial membr" + magic.hospitalMember)
-    if (magic.hospitalMember) {
-      this.route.navigate(['memberhospital']);
-      this.userService.isLoggedIn = true;
-      this.userService.user = magic;
-      return;
+      
 
     }
-    this.userService.isLoggedIn = true;
-
-    console.log("is not admin");
-    this.route.navigate(['userlobby']);
-    this.userService.isLoggedIn = true;
-    this.userService.user = magic;
-    return;
   }
 
+  
 
 
 
@@ -197,10 +164,18 @@ export class LoginComponent implements OnInit {
 
   onCreate() {
 
-    this.dialog.open(SignupComponent);
+    this.dialog.open(SignupComponent,{
+      height: '500px'
+     
+    });
   }
   ResetPass() {
-    this.dialog.open(ResetpasswordComponent);
+
+    
+    this.dialog.open(ResetpasswordComponent,{
+      height: '500px'
+     
+    });
   }
 
 

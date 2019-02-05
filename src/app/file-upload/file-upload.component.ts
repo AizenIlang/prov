@@ -63,7 +63,10 @@ export class FileUploadComponent implements OnInit {
           console.log(Url);
         })
         var key = this.db.createPushId();
-        this.db.object('Images/' + this.data + '/' + key + '/image').set(path);
+        let tempImage = new TheImage();
+        tempImage.image = path;
+        tempImage.key = key;
+        this.db.object('Images/' + this.data + '/' + key).set(tempImage);
       });
 
     });
@@ -87,4 +90,9 @@ export class FileUploadComponent implements OnInit {
   ngOnInit() {
   }
 
+}
+
+export class TheImage{
+  image : any;
+  key : string;
 }

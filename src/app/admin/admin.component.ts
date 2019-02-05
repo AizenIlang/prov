@@ -106,10 +106,20 @@ export class AdminComponent implements OnInit {
 
 message;
   async ngOnInit() {
+    auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log(user);
+        // User is signed in.
+        this.msgService.requestPermission(auth().currentUser.uid);
+      this.msgService.receiveMessage();
+      this.message = this.msgService.currentMessage;
+      } else {
+        // No user is signed in.
+      }
+    });
+      
     
-    this.msgService.requestPermission(auth().currentUser.uid);
-    this.msgService.receiveMessage();
-    this.message = this.msgService.currentMessage;
+   
     console.log("re instate");
     
    
@@ -124,11 +134,17 @@ message;
   }
 
   AddUser(){
-    this.dialog.open(SignupComponent);
+    this.dialog.open(SignupComponent,{
+      height: '500px'
+     
+    });
   }
 
   AddHospital(){
-    this.dialog.open(AddhospitalComponent);
+    this.dialog.open(AddhospitalComponent,{
+      height: '500px'
+     
+    });
   }
 
   deleteUser(key){
@@ -265,14 +281,16 @@ message;
 
   editUser(theKey){
     let dialogRef = this.dialog.open(EdituserComponent, {
-      data : theKey
+      data : theKey,
+      height : '500px'
     });
     
   }
 
   editHospital(key){
     let dialogRef = this.dialog.open(EdithospitalComponent, {
-      data : key
+      data : key,
+      height : '500px'
     });
   }
 

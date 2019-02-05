@@ -1,0 +1,10 @@
+
+<table>
+<th></th>
+
+<tr *ngFor="let thePic of theURL">
+  <td><img [src]="thePic.url" width="300" height="300"/></td>
+  <td><button mat-button (click)="DeleteImage(thePic.key)">Delete</button></td>
+</tr>
+
+</table>

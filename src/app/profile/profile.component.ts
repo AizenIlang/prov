@@ -39,7 +39,8 @@ export class ProfileComponent implements OnInit {
 
   editUser(theKey){
     let dialogRef = this.dialog.open(EdituserComponent, {
-      data : theKey
+      data : theKey,
+      height : '500px'
     });
     
   }

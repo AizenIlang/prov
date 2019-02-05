@@ -15,6 +15,7 @@ import { AppointmentassigndoctorComponent } from '../appointmentassigndoctor/app
 import swal from 'sweetalert2';
 import { ReportParserService } from '../service/report-parser.service';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { DeleteMultitpleComponent } from '../delete-multitple/delete-multitple.component';
 
 
 @Component({
@@ -62,7 +63,7 @@ export class MemberhospitalComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.hosptialService.getHospital("/Hospitals/"+this.user.hospitalKey).valueChanges().subscribe(theData =>{
       this.HospitalObject = theData;
-      console.log(this.HospitalObject.image);
+      console.log("the Hospital Image " + this.HospitalObject.image);
      this.storage.ref(this.HospitalObject.image).getDownloadURL().subscribe(data =>{
         this.picture = data;
       });
@@ -207,27 +208,31 @@ export class MemberhospitalComponent implements OnInit {
 
   editAppointment(theKey){
     let dialogRef = this.dialog.open(AppointmentseditComponent, {
-      data : theKey
+      data : theKey,
+      height : '500px'
     });
     
   }
 
   assignDoctor(theKey){
     let dialogRef = this.dialog.open(AppointmentassigndoctorComponent,{
-      data : theKey
+      data : theKey,
+      height : '500px'
     });
   }
 
   editHospital(){
     let dialogRef = this.dialog.open(EdithospitalComponent, {
-      data : this.user.hospitalKey
+      data : this.user.hospitalKey,
+      height : '500px'
     });
     
   }
 
   addDoctor(){
     let dialogRef = this.dialog.open(DoctorsaddComponent, {
-      data : this.user.hospitalKey
+      data : this.user.hospitalKey,
+      height : '500px'
     })
   }
   
@@ -282,7 +287,11 @@ export class MemberhospitalComponent implements OnInit {
     this.route.navigate(['reportappointment']);
   }
   switchtoFileUpload(){
-    this.dialog.open(FileUploadComponent,{data : this.user.hospitalKey});
+    this.dialog.open(FileUploadComponent,{data : this.user.hospitalKey, height : '500px'});
+  }
+
+  switchtoFileDelete(){
+    this.dialog.open(DeleteMultitpleComponent,{data : this.user.hospitalKey, height : '500px'});
   }
 
   appoint(appkey,uid){

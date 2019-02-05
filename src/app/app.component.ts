@@ -38,11 +38,20 @@ export class AppComponent implements OnInit {
       userService.getUsers().valueChanges().subscribe(data =>{
         this.Users = data;
       });
-
+      userService.login();
 
 
      
   }
+
+  reLogin(){
+
+  }
+
+  switchLogin(){
+    this.router.navigate(['/login']);
+  }
+
 
   logout(){
     

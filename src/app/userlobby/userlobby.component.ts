@@ -82,7 +82,8 @@ export class UserlobbyComponent implements OnInit{
 
   addComments(theKey){
     let dialogRef = this.dialog.open(AddcommentsComponent, {
-      data : theKey
+      data : theKey,
+      height : '500px'
     });
     
   }

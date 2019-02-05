@@ -16,36 +16,44 @@
    
   </mat-toolbar-row>
 </mat-toolbar> -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">PROV-H LOCATOR</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="#">Profile</a></li>
-    <li role="presentation"><a href="#">Messages</a></li>
-  </ul>
-
-
-<mat-sidenav-container class="example-container" >
-  
-      <!-- <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="sideNav">         
-          <button *ngIf="userService.isLoggedIn" mat-button color="primary" class="linkButton" routerLink="home" (click)="logout()">Log out <span class="example-spacer"></span><mat-icon>home</mat-icon></button>
-          <p><button *ngIf="userService.isAdmin" mat-button color="primary" class="linkButton" routerLink="home">Admin <span class="example-spacer"></span></button></p>
-              <p><button *ngIf="userService" mat-button color="primary" class="linkButton" routerLink="home" (click)="logout()">Logout <span class="example-spacer"></span></button></p>
-              
-              
-          
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ng-container *ngIf="!userService.isLoggedIn">
+      <ul class="navbar-nav mr-auto navbar-right">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#aboutus">ABOUT US</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">FEATURES</a>
+        </li>
+   
+      </ul>
+      
+          <a routerLink="/login" class="nav-link loginLink">Login</a>
+      </ng-container>
+      
+      <ng-container *ngIf="userService.isLoggedIn">
         
-        </mat-sidenav>
-   -->
- 
-  
-    <mat-sidenav-content >
-        <div class="marginator">
-                <router-outlet></router-outlet>
-        </div>
-        
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+          <a class="ml-auto" style="color:white;" routerLink="/profile">Welcome, {{userService.user.firstName}} {{userService.user.lastName}}</a><button mat-icon-button (click)="logout()"><mat-icon class="example-icon">power_settings_new</mat-icon></button> 
+      </ng-container>
+    </div>
+  </nav>
+
+  <main role="main" class="containerme">
+    <div class="pushbot"></div>
+    <router-outlet ></router-outlet>
+
+  </main>
+
+
   
 
 

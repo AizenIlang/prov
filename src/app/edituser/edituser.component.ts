@@ -69,7 +69,7 @@ export class EdituserComponent implements OnInit {
     // selectFormControl : new FormControl('', Validators.required),
     hospitalFormControl : new FormControl(this.hospitalName,),
     dateControl : new FormControl('',[Validators.required]),
-    passwordControl : new FormControl('',[Validators.required]),
+    passwordControl : new FormControl('',[Validators.required,PasswordValidators.mainpasswordMatch]),
     retypepasswordControl : new FormControl('',[Validators.required,PasswordValidators.passwordMatch]),
     emailControl : new FormControl('',[Validators.required, Validators.email]),
     genderControl : new FormControl('',[Validators.required])
@@ -223,17 +223,20 @@ export class EdituserComponent implements OnInit {
       this.selectedVal = false;
     }
 
-    if(this.admin){
-      this.memberType = "left";
-      this.makeMeadmin = true;
-    }else{
-      this.makeMeadmin = false;
+    if(!this.user.hospitalMember){
+      if(this.admin){
+        this.memberType = "left";
+        this.makeMeadmin = true;
+      }else{
+        this.makeMeadmin = false;
+      }
     }
+  
   }
 
   selectedHospital(event) {
 
-
+    this.makeMeadmin = false;
     this.selectedValueHospital = event.value.Key;
     console.log(this.selectedValueHospital);
   }
@@ -273,6 +276,7 @@ export class EdituserComponent implements OnInit {
       );
 
     this.userService.update(user);
+    
 
   }
 
@@ -302,7 +306,7 @@ bindNewValues(){
     // selectFormControl : new FormControl('', Validators.required),
     hospitalFormControl : new FormControl(this.hospitalName,),
     dateControl : new FormControl(this.date,[Validators.required]),
-    passwordControl : new FormControl(this.password,[Validators.required]),
+    passwordControl : new FormControl(this.password,[Validators.required,PasswordValidators.mainpasswordMatch]),
     retypepasswordControl : new FormControl(this.password,[Validators.required,PasswordValidators.passwordMatch]),
     emailControl : new FormControl(this.email,[Validators.required, Validators.email]),
     genderControl : new FormControl(this.gender,[Validators.required])

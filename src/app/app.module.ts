@@ -44,6 +44,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AngularFireMessagingModule} from '@angular/fire/messaging';
 import { MessagingService } from './messaging.service';
 import { AsyncPipe } from '@angular/common';
+import { DeleteMultitpleComponent } from './delete-multitple/delete-multitple.component';
+import { ImagestorageService } from './service/imagestorage.service';
 
 
 
@@ -72,7 +74,8 @@ import { AsyncPipe } from '@angular/common';
     ResetpasswordComponent,
     AdminappointmentreportsComponent,
     DropZoneDirective,
-    FileUploadComponent
+    FileUploadComponent,
+    DeleteMultitpleComponent
     
   ],
   imports: [
@@ -161,7 +164,8 @@ import { AsyncPipe } from '@angular/common';
     UserService,
     ImageService,
     MessagingService,
-    AsyncPipe
+    AsyncPipe,
+    ImagestorageService
   ],
   bootstrap: [AppComponent],
   entryComponents:[SignupComponent,
@@ -173,6 +177,7 @@ import { AsyncPipe } from '@angular/common';
     AddcommentsComponent,
     DoctorsaddComponent,
     ResetpasswordComponent,
-    FileUploadComponent]
+    FileUploadComponent,
+    DeleteMultitpleComponent]
 })
 export class AppModule { }

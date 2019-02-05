@@ -27,14 +27,14 @@ export interface Animal {
 export class SignupComponent implements OnInit {
 
   form = new FormGroup({
-    firstNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[a-z]+')]),
+    firstNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[A-Za-z ]+')]),
     middleNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[a-z]+')]),
     lastNameControl : new FormControl('',[Validators.required,Validators.minLength(2),Validators.pattern('[A-Z]+[a-z]+')]),
     userNameControl : new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('[A-Z]+[a-zA-Z0-9]+')],
     UsernameValidators.shouldBeUnique),
     addressControl : new FormControl('',[Validators.required,Validators.minLength(8)]),
     dateControl : new FormControl('',[Validators.required]),
-    passwordControl : new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('[A-Za-z0-9]+')]),
+    passwordControl : new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern('[A-Za-z0-9]+'),PasswordValidators.mainpasswordMatch]),
     
     retypepasswordControl : new FormControl('',[Validators.required,Validators.minLength(8),
   PasswordValidators.passwordMatch]),

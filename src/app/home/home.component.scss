@@ -10,3 +10,71 @@
     background-size: cover;
   }
   
+  
+  .bg { 
+    /* The image used */
+    background-image: url("../../assets/mainbg.jpg");
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+
+  .centerTheTitle{
+    text-align: center;
+  }
+
+  .content{
+    word-wrap: break-word;
+  }
+
+  .bg-darkgreen{
+    background-color: rgb(85, 170, 85) !important;
+  } 
+
+  .title{
+    position: absolute;
+    color: white;
+    font-size: 100px;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  }
+
+  .centerme{
+    position: absolute;
+    color: white;
+    
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  }
+
+  
+
+  .pushbot{
+    margin-bottom: 75px;
+  }
+
+  .container {
+    height: 100vh;
+    
+  }
+  .containermodules {
+    height: 100%;
+    position: relative;
+  }
+
+  .fonter{
+    color : black;
+    width: 100%;
+  }
+  
+  i.fa {font-size : 18px;}
