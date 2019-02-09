@@ -27,7 +27,7 @@ export class AppointmentreportsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) table: MatTable<any>;
 
-  displayedColumns: string[] = ['hospitalName', 'user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date'];
+  displayedColumns: string[] = ['hospitalName', 'user', 'firstName', 'lastName', 'gender','type', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   dataAppointment: any;
 

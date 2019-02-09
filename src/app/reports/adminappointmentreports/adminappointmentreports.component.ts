@@ -18,7 +18,7 @@ export class AdminappointmentreportsComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
   constructor(private appointmentService: AppointmentsService,
     private reportService : ReportParserService) { }
-  displayedColumns: string[] = ['hospitalName', 'user', 'firstName', 'lastName', 'gender', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date'];
+  displayedColumns: string[] = ['hospitalName', 'user', 'firstName', 'lastName', 'gender','type', 'doctor', 'expertise','preferredDoctor', 'message', 'status', 'date'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   dataAppointment: any;
 
