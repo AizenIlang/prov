@@ -1,0 +1,15 @@
+
+
+  <mat-form-field>
+    <input matInput (keyup)="getAppointments($event.target.value)" placeholder="Service">
+  </mat-form-field>
+  
+  <div class="chart-container">
+    <h2>{{theTitle}}</h2>
+    <canvas id="canvasHospital">
+
+    </canvas>
+  </div>
+ 
+  
+<br/>

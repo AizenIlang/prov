@@ -5,6 +5,7 @@ import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { AppointmentsService } from 'src/app/service/appointments.service';
 import { ReportParserService } from 'src/app/service/report-parser.service';
+import { GraphappointmentComponent } from 'src/app/graphappointment/graphappointment.component';
 
 @Component({
   selector: 'app-adminappointmentreports',

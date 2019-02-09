@@ -1,6 +1,23 @@
 <button mat-button (click)="BackButton()"><mat-icon>arrow_back_ios</mat-icon>Back</button>
 <button mat-button (click)="downloadHospitalPDF()"><mat-icon>poll</mat-icon> Generate Hospital Reports PDF</button>
 
+
+<ng-container *ngIf="chartHospital">
+    <h1>Total Hospital of PROV-H</h1>
+    <div class="chart-container">
+        <canvas id="canvasHospital">
+
+        </canvas>
+    </div>
+
+    
+
+    <button mat-raised-button (click)="downloadHospitalPDF()"><mat-icon>poll</mat-icon>Generate Total Hospital PDF</button>
+    
+</ng-container>
+
+
+
 <br>
 <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

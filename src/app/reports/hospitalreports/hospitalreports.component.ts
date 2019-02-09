@@ -4,6 +4,7 @@ import { HospitalService } from 'src/app/service/hospital.service';
 import { Router } from '@angular/router';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
+import {Chart } from 'chart.js';
 
 @Component({
   selector: 'app-hospitalreports',
@@ -18,6 +19,8 @@ export class HospitalreportsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatTable) table: MatTable<any>;
 
+  chartHospital = [];
+
   displayedColumns: string[] = ['Name','Address','Location','ContactNumber','Email'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   dataHospital: any;
@@ -28,6 +31,7 @@ export class HospitalreportsComponent implements OnInit {
     this.displayedColumns = ['Name','Address','Location','ContactNumber','Email'];
     this.columnsToDisplay = this.displayedColumns.slice();
     this.loadHospital();
+    this.getTotalHospitalArray();
   }
 
   async loadHospital(){
@@ -94,6 +98,155 @@ export class HospitalreportsComponent implements OnInit {
       doc.addImage(imgData, 'JPEG', 0, 70, width, 0);
       doc.text(90,290,'LGNDS');
       doc.save('HospitalReports.pdf');
+    })
+  }
+
+
+  generateHospitalChart(theData){
+    console.log(JSON.stringify(theData) + "The Hospital Count");
+    this.chartHospital = new Chart(
+      'canvasHospital',
+      {type : 'horizontalBar',
+      data :{
+        datasets: [{
+          data : theData,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(25, 20, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(15, 10, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(2, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(2, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 1, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 1, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 1, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(2, 159, 64, 0.2)',
+
+        ]
+        }],
+        labels: [
+          'Caloocan',
+          'Las Pinas',
+          'Makati',
+          'Malabon',
+          'Mandaluyong',
+          'Manila',
+          'Marikina',
+          'Muntinlupa',
+          'Navotas',
+          'Paranaque',
+          'Pasay',
+          'Pasig',
+          'Quezon City',
+          'San Juan, Metro Manila',
+          'Taguig',
+          'Valenzuela, Metro Manila'
+        ]
+      },scaleOverride: true, 
+      scaleStepWidth: 1, 
+      scaleSteps: 10,
+      options :{
+        xAxes : [{
+          display: true
+        }],
+        yAxes : [{
+          display: true
+        }],
+        legend:{
+          display : false,
+          position : 'left',
+        }
+      }
+    
+      });
+  }
+
+  getTotalHospitalArray(){
+    var CaloocanCity = 0; 
+    var LasPinasCity = 0; 
+    var MakatiCity = 0;
+    var MalabonCity = 0;
+    var MandaluyongCity = 0; 
+    var ManilaCity = 0; 
+    var MarikinaCity = 0; 
+    var MuntinlupaCity = 0; 
+    var NavotasCity = 0; 
+    var ParanaqueCity = 0; 
+    var PasayCity =0; 
+    var PasigCity =0; 
+    var QuezonCity =0;
+    var SanJuanCity = 0; 
+    var TaguigCity = 0;
+    var ValenzuelaCity = 0;
+    
+      let hospitalValue : any;
+    this.hospitalService.getHospitalList().valueChanges().subscribe(value=>{
+      hospitalValue = value;
+       for(let tempValue of hospitalValue){
+         console.log(tempValue.Location);
+         if(tempValue.Location == "Caloocan City"){
+           CaloocanCity++;
+         }
+         if(tempValue.Location == "Las Pinas City"){
+           LasPinasCity++;
+         }
+         if(tempValue.Location == "Makati City"){
+           MakatiCity++;
+         }
+         if(tempValue.Location == "Malabon City"){
+           MalabonCity++;
+         }
+         if(tempValue.Location == "Mandaluyong City"){
+           MandaluyongCity++;
+           console.log(MandaluyongCity + "Mandaluyong City is");
+         }
+         if(tempValue.Location == "Manila City"){
+           ManilaCity++;
+         }
+         if(tempValue.Location == "Marikina City"){
+           MarikinaCity++;
+         }
+         if(tempValue.Location == "Muntinlupa City"){
+           MuntinlupaCity++;
+         }
+         if(tempValue.Location == "Navotas City"){
+           NavotasCity++;
+         }
+         if(tempValue.Location == "Paranaque City"){
+           ParanaqueCity++;
+         }
+         if(tempValue.Location == "Pasay City"){
+           PasayCity++;
+         }
+         if(tempValue.Location == "Pasig City"){
+           PasigCity++;
+         }
+         if(tempValue.Location == "Quezon City"){
+           QuezonCity++;
+         }
+         if(tempValue.Location == "San Juan City"){
+           SanJuanCity++;
+         }
+         if(tempValue.Location == "Taguig City"){
+           TaguigCity++;
+         }
+         if(tempValue.Location == "Valenzuela City"){
+           ValenzuelaCity++;
+         }
+
+       }
+       var theData = [CaloocanCity,LasPinasCity,MakatiCity,MalabonCity,MandaluyongCity,ManilaCity,
+        MarikinaCity,MuntinlupaCity,NavotasCity,ParanaqueCity,PasayCity,PasigCity,QuezonCity,SanJuanCity,
+      TaguigCity,ValenzuelaCity,];
+       this.generateHospitalChart(theData);
     })
   }
 

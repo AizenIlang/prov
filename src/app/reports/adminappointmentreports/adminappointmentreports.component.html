@@ -1,6 +1,8 @@
 
 <a routerLink="/admin" class="bigbutton" mat-button><mat-icon>arrow_back</mat-icon> Back </a>
 <br>
+
+<app-graphappointment></app-graphappointment>
 <mat-form-field class="date">
   <input matInput [matDatepicker]="dpfrom" placeholder="From Date" disabled [formControl]="date">
   <mat-datepicker-toggle matSuffix [for]="dpfrom"></mat-datepicker-toggle>

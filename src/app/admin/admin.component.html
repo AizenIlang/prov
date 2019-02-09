@@ -229,19 +229,7 @@
                 <button (click)="switchReportAppointmentReport()" mat-raised-button><mat-icon>insert_chart</mat-icon> Appointment Reports</button>
                 <button (click)="switchReportHospitalAdmin()" mat-raised-button><mat-icon>local_hospital</mat-icon> Hospital Reports</button>
   
-            <ng-container *ngIf="chartHospital">
-                <h1>Total Hospital of PROV-H</h1>
-                <div class="chart-container">
-                    <canvas id="canvasHospital">
-
-                    </canvas>
-                </div>
-
-                
-
-                <button mat-raised-button (click)="downloadHospitalPDF()"><mat-icon>poll</mat-icon>Generate Total Hospital PDF</button>
-                
-            </ng-container>
+          
 
             <ng-container *ngIf="chartUser">
                 <h1>Total Gender of PROV-H</h1>
