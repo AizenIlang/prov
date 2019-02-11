@@ -207,9 +207,14 @@ export class GraphappointmentComponent implements OnInit {
           MarikinaCity, MuntinlupaCity, NavotasCity, ParanaqueCity, PasayCity, PasigCity, QuezonCity, SanJuanCity,
           TaguigCity, ValenzuelaCity,];
           console.log("Data of the Appointments :" + theData);
-          this.generateHospitalChart(theData);
+          if(filter == ""){
+            this.theTitle = "ALL SERVICES";
+          }
+          
       }
+      this.generateHospitalChart(theData);
     });
+
   }
   getTotalHospitalArray() {
     var CaloocanCity = 0;
